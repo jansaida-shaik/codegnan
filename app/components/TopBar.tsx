@@ -19,7 +19,7 @@ const apps = [
     label: "CRM",
     icon: (
       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
       </svg>
     ),
   },
@@ -106,7 +106,7 @@ export default function TopBar() {
       </div>
 
       {/* App Switcher */}
-      <div className="flex items-center gap-1 border-r border-gray-200 pr-3 mr-2">
+      <div className="flex items-center gap-2 border-r border-gray-200 pr-3 mr-2">
         {apps.map((app) => {
           const isActive = pathname.startsWith(app.href);
           return (
@@ -114,10 +114,10 @@ export default function TopBar() {
               key={app.id}
               onClick={() => router.push(app.href)}
               title={app.label}
-              className={`flex flex-col items-center justify-center px-2.5 py-1 rounded-lg text-[10px] font-medium transition-all gap-0.5 ${
+              className={`flex items-center justify-center px-4 py-1.5 rounded-lg text-sm font-medium transition-all gap-2 ${
                 isActive
                   ? "bg-blue-600 text-white shadow-sm"
-                  : "text-gray-500 hover:bg-gray-100 hover:text-gray-800"
+                  : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
               }`}
             >
               {app.icon}

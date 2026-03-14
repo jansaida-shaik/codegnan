@@ -105,8 +105,10 @@ export default function CRMHome() {
           {/* Page Header */}
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">
-                J
+              <div className="w-10 h-10 rounded-lg border border-gray-200 bg-white flex items-center justify-center text-gray-400 shadow-sm shrink-0">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
               </div>
               <h1 className="text-xl font-bold text-gray-900">Welcome Codegnan</h1>
             </div>
@@ -126,6 +128,32 @@ export default function CRMHome() {
           <div className="flex gap-4">
             {/* Left Column */}
             <div className="flex-1 space-y-4">
+              {/* Leads by Status */}
+              <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                <div className="px-4 py-3 border-b border-gray-100">
+                  <h2 className="font-semibold text-gray-800 text-sm">Leads by Status</h2>
+                  <p className="text-xs text-gray-400 mt-0.5">Record Count: <span className="font-medium">105828</span></p>
+                </div>
+                <div className="p-4 grid grid-cols-3 gap-3">
+                  {[
+                    { label: "New", count: 45620, color: "bg-blue-500" },
+                    { label: "Follow-Up", count: 28340, color: "bg-orange-500" },
+                    { label: "DNP", count: 12440, color: "bg-red-500" },
+                    { label: "Converted", count: 9800, color: "bg-green-500" },
+                    { label: "Not Interested", count: 6128, color: "bg-gray-400" },
+                    { label: "Enrolled", count: 3500, color: "bg-purple-500" },
+                  ].map((s) => (
+                    <div key={s.label} className="flex items-center gap-2 p-2 rounded-lg bg-gray-50">
+                      <div className={`w-2.5 h-2.5 rounded-full shrink-0 ${s.color}`}></div>
+                      <div>
+                        <p className="text-xs font-semibold text-gray-800">{s.count.toLocaleString()}</p>
+                        <p className="text-[10px] text-gray-500">{s.label}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               {/* Today's Leads */}
               <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
                 <div className="px-4 py-3 border-b border-gray-100 flex justify-between items-center">
@@ -165,32 +193,6 @@ export default function CRMHome() {
                     ))}
                   </tbody>
                 </table>
-              </div>
-
-              {/* Leads by Status */}
-              <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-                <div className="px-4 py-3 border-b border-gray-100">
-                  <h2 className="font-semibold text-gray-800 text-sm">Leads by Status</h2>
-                  <p className="text-xs text-gray-400 mt-0.5">Record Count: <span className="font-medium">105828</span></p>
-                </div>
-                <div className="p-4 grid grid-cols-3 gap-3">
-                  {[
-                    { label: "New", count: 45620, color: "bg-blue-500" },
-                    { label: "Follow-Up", count: 28340, color: "bg-orange-500" },
-                    { label: "DNP", count: 12440, color: "bg-red-500" },
-                    { label: "Converted", count: 9800, color: "bg-green-500" },
-                    { label: "Not Interested", count: 6128, color: "bg-gray-400" },
-                    { label: "Enrolled", count: 3500, color: "bg-purple-500" },
-                  ].map((s) => (
-                    <div key={s.label} className="flex items-center gap-2 p-2 rounded-lg bg-gray-50">
-                      <div className={`w-2.5 h-2.5 rounded-full shrink-0 ${s.color}`}></div>
-                      <div>
-                        <p className="text-xs font-semibold text-gray-800">{s.count.toLocaleString()}</p>
-                        <p className="text-[10px] text-gray-500">{s.label}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
 
