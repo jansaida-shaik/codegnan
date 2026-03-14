@@ -54,7 +54,7 @@ const sourceColor = (source: string) => {
   return map[source] || "bg-gray-100 text-gray-700";
 };
 
-export default function CRMHome() {
+export default function Page() {
   const [activeNav, setActiveNav] = useState("Home");
 
   return (
@@ -80,10 +80,7 @@ export default function CRMHome() {
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar */}
         <div className="w-48 bg-white border-r border-gray-200 flex flex-col shrink-0 overflow-y-auto">
-          <div className="px-3 py-2 border-b border-gray-100 flex items-center justify-between">
-            <span className="text-xs font-semibold text-gray-600 uppercase tracking-wider">CRM</span>
-            <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" /></svg>
-          </div>
+
           <div className="px-3 py-2 border-b border-gray-100">
             <div className="flex items-center gap-2 px-2 py-1.5 bg-gray-50 rounded-md text-gray-400 text-xs">
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
@@ -102,6 +99,7 @@ export default function CRMHome() {
 
         {/* Main Content */}
         <div className="flex-1 overflow-y-auto p-5 bg-gray-50">
+          <div className="max-w-7xl">
           {/* Page Header */}
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
@@ -110,7 +108,7 @@ export default function CRMHome() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
               </div>
-              <h1 className="text-xl font-bold text-gray-900">Welcome Codegnan</h1>
+              <h1 className="text-xl font-bold text-gray-900">Welcome Jan Saida Shaik</h1>
             </div>
             <div className="flex items-center gap-2">
               <button className="w-7 h-7 flex items-center justify-center rounded hover:bg-gray-200 transition text-gray-500">
@@ -228,20 +226,11 @@ export default function CRMHome() {
               </div>
             </div>
           </div>
+          </div>
         </div>
       </div>
 
-      {/* Bottom Bar */}
-      <div className="bg-white border-t border-gray-200 h-10 flex items-center px-4 gap-6 shrink-0 text-xs text-gray-500">
-        <button className="flex items-center gap-1.5 hover:text-blue-600 transition-colors">
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-          Calls
-        </button>
-        <div className="flex-1"></div>
-        <button className="flex items-center gap-1.5 bg-blue-600 text-white px-3 py-1 rounded-lg text-xs hover:bg-blue-700 transition">
-          💬 Need Support?
-        </button>
-      </div>
+
     </div>
   );
 }
