@@ -37,12 +37,16 @@ const leadsBySource = [
   { source: "None", count: 3046 },
   { source: "2025 Passed Outs", count: 45548 },
   { source: "Bangalore Leads", count: 6078 },
+  { source: "Bangalore Leads", count: 122 },
   { source: "Callyzer", count: 1609 },
+  { source: "Callyzer", count: 20 },
   { source: "Custom Forms", count: 36 },
   { source: "Direct Call", count: 6482 },
   { source: "Empty", count: 2 },
-  { source: "Google Ads", count: 892 },
+  { source: "Fresh Sales Data", count: 8453 },
+  { source: "Google Ads", count: 1 },
 ];
+
 
 const sourceColor = (source: string) => {
   const map: Record<string, string> = {
@@ -67,11 +71,10 @@ export default function Page() {
           <button
             key={item}
             onClick={() => setActiveNav(item)}
-            className={`px-3 py-1 text-xs font-medium transition-colors ${
-              activeNav === item
-                ? "text-blue-700 border-b-2 border-blue-600 rounded-none font-semibold"
-                : "text-gray-500 hover:text-gray-800 hover:bg-gray-50"
-            }`}
+            className={`px-3 py-1 text-xs font-medium transition-colors ${activeNav === item
+              ? "text-blue-700 border-b-2 border-blue-600 rounded-none font-semibold"
+              : "text-gray-800 hover:text-gray-800 hover:bg-gray-50"
+              }`}
           >{item}</button>
         ))}
       </div>
@@ -82,15 +85,15 @@ export default function Page() {
         <div className="w-48 bg-white border-r border-gray-200 flex flex-col shrink-0 overflow-y-auto">
 
           <div className="px-3 py-2 border-b border-gray-100">
-            <div className="flex items-center gap-2 px-2 py-1.5 bg-gray-50 rounded-md text-gray-400 text-xs">
+            <div className="flex items-center gap-2 px-2 py-1.5 bg-gray-50 rounded-md text-gray-600 text-xs">
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
               <span>Search</span>
             </div>
           </div>
           <nav className="flex-1 py-1">
             {crmSidebarItems.map((item) => (
-              <a key={item.label} href="#" className="flex items-center gap-2.5 px-4 py-2 text-xs text-gray-600 hover:bg-blue-50 hover:text-blue-700 transition-colors group">
-                <span className="text-gray-400 group-hover:text-blue-600 shrink-0">{item.icon}</span>
+              <a key={item.label} href="#" className="flex items-center gap-2.5 px-4 py-2 text-xs text-gray-900 hover:bg-blue-50 hover:text-blue-700 transition-colors group">
+                <span className="text-gray-600 group-hover:text-blue-700 shrink-0">{item.icon}</span>
                 {item.label}
               </a>
             ))}
@@ -100,132 +103,157 @@ export default function Page() {
         {/* Main Content */}
         <div className="flex-1 overflow-y-auto p-5 bg-gray-50">
           <div className="max-w-7xl">
-          {/* Page Header */}
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg border border-gray-200 bg-white flex items-center justify-center text-gray-400 shadow-sm shrink-0">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-              </div>
-              <h1 className="text-xl font-bold text-gray-900">Welcome Jan Saida Shaik</h1>
-            </div>
-            <div className="flex items-center gap-2">
-              <button className="w-7 h-7 flex items-center justify-center rounded hover:bg-gray-200 transition text-gray-500">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
-              </button>
-              <select className="text-xs px-2 py-1 border border-gray-200 rounded bg-white text-gray-600">
-                <option>Codegnan's Home</option>
-              </select>
-              <button className="w-7 h-7 flex items-center justify-center rounded hover:bg-gray-200 transition text-gray-400">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" /></svg>
-              </button>
-            </div>
-          </div>
-
-          <div className="flex gap-4">
-            {/* Left Column */}
-            <div className="flex-1 space-y-4">
-              {/* Leads by Status */}
-              <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-                <div className="px-4 py-3 border-b border-gray-100">
-                  <h2 className="font-semibold text-gray-800 text-sm">Leads by Status</h2>
-                  <p className="text-xs text-gray-400 mt-0.5">Record Count: <span className="font-medium">105828</span></p>
+            {/* Page Header */}
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg border border-gray-200 bg-white flex items-center justify-center text-gray-600 shadow-sm shrink-0">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  </svg>
                 </div>
-                <div className="p-4 grid grid-cols-3 gap-3">
-                  {[
-                    { label: "New", count: 45620, color: "bg-blue-500" },
-                    { label: "Follow-Up", count: 28340, color: "bg-orange-500" },
-                    { label: "DNP", count: 12440, color: "bg-red-500" },
-                    { label: "Converted", count: 9800, color: "bg-green-500" },
-                    { label: "Not Interested", count: 6128, color: "bg-gray-400" },
-                    { label: "Enrolled", count: 3500, color: "bg-purple-500" },
-                  ].map((s) => (
-                    <div key={s.label} className="flex items-center gap-2 p-2 rounded-lg bg-gray-50">
-                      <div className={`w-2.5 h-2.5 rounded-full shrink-0 ${s.color}`}></div>
-                      <div>
-                        <p className="text-xs font-semibold text-gray-800">{s.count.toLocaleString()}</p>
-                        <p className="text-[10px] text-gray-500">{s.label}</p>
-                      </div>
+                <h1 className="text-xl font-bold text-gray-900">Welcome Jan Saida Shaik</h1>
+              </div>
+              <div className="flex items-center gap-2">
+                <button className="w-7 h-7 flex items-center justify-center rounded hover:bg-gray-200 transition text-gray-800">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+                </button>
+                <select className="text-xs px-2 py-1 border border-gray-200 rounded bg-white text-gray-900">
+                  <option>Codegnan's Home</option>
+                </select>
+                <button className="w-7 h-7 flex items-center justify-center rounded hover:bg-gray-200 transition text-gray-600">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" /></svg>
+                </button>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              {/* Left Column */}
+              <div className="flex-1 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  {/* Leads by Status */}
+                  <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
+                    <div className="px-6 py-5 border-b border-gray-100 flex justify-between items-center">
+                      <h2 className="text-xl font-bold text-gray-900 leading-none">Leads by Status</h2>
+                      <p className="text-sm text-gray-500">
+                        Record Count: <span className="font-semibold text-gray-800">105,828</span>
+                      </p>
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Today's Leads */}
-              <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-                <div className="px-4 py-3 border-b border-gray-100 flex justify-between items-center">
-                  <h2 className="font-semibold text-gray-800 text-sm">Today's Leads</h2>
-                  <button className="text-xs text-blue-600 hover:underline">View All</button>
-                </div>
-                <table className="w-full text-xs">
-                  <thead className="bg-gray-50 border-b border-gray-100">
-                    <tr>
-                      <th className="text-left px-4 py-2.5 text-gray-500 font-medium">Lead Name</th>
-                      <th className="text-left px-4 py-2.5 text-gray-500 font-medium">Email</th>
-                      <th className="text-left px-4 py-2.5 text-gray-500 font-medium">Phone</th>
-                      <th className="text-left px-4 py-2.5 text-gray-500 font-medium">Lead Source</th>
-                      <th className="text-left px-4 py-2.5 text-gray-500 font-medium">Lead Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {leads.map((lead, i) => (
-                      <tr key={i} className="border-b border-gray-50 hover:bg-gray-50 transition-colors">
-                        <td className="px-4 py-2.5 text-blue-600 font-medium cursor-pointer hover:underline">{lead.name}</td>
-                        <td className="px-4 py-2.5 text-gray-500">{lead.email}</td>
-                        <td className="px-4 py-2.5">
-                          <div className="flex items-center gap-1.5">
-                            <span className="text-gray-700">{lead.phone}</span>
-                            <div className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center">
-                              <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                            </div>
+                    <div className="p-6 grid grid-cols-2 gap-4 flex-1 overflow-y-auto">
+                      {[
+                        { label: "New", count: 45620, color: "bg-blue-600" },
+                        { label: "Follow-Up", count: 28340, color: "bg-orange-500" },
+                        { label: "DNP", count: 12440, color: "bg-red-500" },
+                        { label: "Converted", count: 9800, color: "bg-green-500" },
+                        { label: "Not Interested", count: 6128, color: "bg-gray-400" },
+                        { label: "Enrolled", count: 3500, color: "bg-purple-500" },
+                      ].map((s) => (
+                        <div key={s.label} className="flex items-center gap-2 p-2 rounded-lg bg-gray-50">
+                          <div className={`w-2.5 h-2.5 rounded-full ${s.color}`}></div>
+                          <div>
+                            <p className="text-xs font-semibold text-gray-800">{s.count.toLocaleString()}</p>
+                            <p className="text-[10px] text-gray-800">{s.label}</p>
                           </div>
-                        </td>
-                        <td className="px-4 py-2.5">
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${sourceColor(lead.source)}`}>{lead.source}</span>
-                        </td>
-                        <td className="px-4 py-2.5">
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${lead.statusColor}`}>{lead.status}</span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            {/* Right Column */}
-            <div className="w-72 space-y-4 shrink-0">
-              <div className="grid grid-cols-2 gap-3">
-                <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4">
-                  <p className="text-xs text-gray-500 mb-1">My Calls Today</p>
-                  <p className="text-3xl font-bold text-gray-900">0</p>
-                </div>
-                <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4">
-                  <p className="text-xs text-gray-500 mb-1">My Leads</p>
-                  <p className="text-3xl font-bold text-gray-900">18266</p>
-                </div>
-              </div>
-              <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-                <div className="px-4 py-3 border-b border-gray-100">
-                  <h2 className="font-semibold text-gray-800 text-sm uppercase tracking-wider">Leads by Source</h2>
-                  <p className="text-xs text-gray-400 mt-0.5">Record Count: <span className="font-medium">105828</span></p>
-                </div>
-                <div className="px-4 py-2">
-                  <div className="flex justify-between text-[10px] text-gray-500 font-medium uppercase tracking-wider py-2 border-b border-gray-100">
-                    <span>Lead Source</span>
-                    <span>Record Count</span>
-                  </div>
-                  {leadsBySource.map((row, i) => (
-                    <div key={i} className="flex justify-between items-center py-2 border-b border-gray-50 hover:bg-gray-50 transition-colors text-xs">
-                      <span className="text-blue-600 cursor-pointer hover:underline">{row.source}</span>
-                      <span className="font-medium text-gray-700">{row.count.toLocaleString()}</span>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  </div>
+
+                  <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col max-h-[400px]">
+                    <div className="px-6 py-5 border-b border-gray-100 flex justify-between items-center">
+                      <h2 className="text-xl font-bold text-gray-900 leading-none">Leads by Source</h2>
+                      <p className="text-sm text-gray-500">
+                        Record Count: <span className="font-semibold text-gray-800">105,828</span>
+                      </p>
+                    </div>
+                    <div className="flex justify-between text-[11px] font-bold text-gray-500 px-4 py-3 bg-white border-b border-gray-100 uppercase tracking-tight">
+                      <span>Lead Source</span>
+                      <span>Record Count</span>
+                    </div>
+                    <div className="flex-1 overflow-y-auto">
+                      {leadsBySource.map((row, i) => (
+                        <div
+                          key={i}
+                          className="flex justify-between items-center px-4 py-2 border-b border-gray-50 hover:bg-gray-50 text-xs"
+                        >
+                          <span className="text-blue-700 hover:underline cursor-pointer">
+                            {row.source}
+                          </span>
+                          <span>{row.count.toLocaleString()}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="flex justify-between items-center px-4 py-3 bg-white font-bold text-xs text-gray-900 border-t border-gray-100">
+                      <span>Total</span>
+                      <span>105,828</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Today's Leads */}
+                <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                  <div className="px-6 py-5 border-b border-gray-100 flex justify-between items-start">
+                    <div>
+                      <h2 className="text-xl font-bold text-gray-900 leading-none">Today's Leads</h2>
+                      <p className="text-sm text-gray-600 mt-2">Total: <span className="font-semibold text-gray-800">5</span></p>
+                    </div>
+                    <button className="text-xs font-bold text-blue-700 hover:underline uppercase tracking-wider">View All</button>
+                  </div>
+                  <table className="w-full text-xs">
+                    <thead className="bg-gray-50 border-b border-gray-100">
+                      <tr>
+                        <th className="text-left px-4 py-2.5 text-gray-800 font-medium">Lead Name</th>
+                        <th className="text-left px-4 py-2.5 text-gray-800 font-medium">Email</th>
+                        <th className="text-left px-4 py-2.5 text-gray-800 font-medium">Phone</th>
+                        <th className="text-left px-4 py-2.5 text-gray-800 font-medium">Lead Source</th>
+                        <th className="text-left px-4 py-2.5 text-gray-800 font-medium">Lead Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {leads.map((lead, i) => (
+                        <tr key={i} className="border-b border-gray-50 hover:bg-gray-50 transition-colors">
+                          <td className="px-4 py-2.5 text-blue-700 font-medium cursor-pointer hover:underline">{lead.name}</td>
+                          <td className="px-4 py-2.5 text-gray-800">{lead.email}</td>
+                          <td className="px-4 py-2.5">
+                            <div className="flex items-center gap-1.5">
+                              <span className="text-gray-700">{lead.phone}</span>
+                              <div className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center">
+                                <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-4 py-2.5">
+                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${sourceColor(lead.source)}`}>{lead.source}</span>
+                          </td>
+                          <td className="px-4 py-2.5">
+                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${lead.statusColor}`}>{lead.status}</span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Right Column */}
+              <div className="w-72 space-y-4 shrink-0">
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4">
+                    <p className="text-xs text-gray-800 mb-1">My Calls Today</p>
+                    <p className="text-3xl font-bold text-gray-900">0</p>
+                  </div>
+                  <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4">
+                    <p className="text-xs text-gray-800 mb-1">My Leads</p>
+                    <p className="text-3xl font-bold text-gray-900">18266</p>
+                  </div>
+                </div>
+                <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 h-full flex flex-col justify-center">
+                  <p className="text-xs text-gray-600 font-medium mb-1 uppercase tracking-wider">Record Highlights</p>
+                  <p className="text-[10px] text-gray-800 leading-relaxed">
+                    Overview of your CRM instance performance across all departments.
+                  </p>
                 </div>
               </div>
             </div>
-          </div>
           </div>
         </div>
       </div>

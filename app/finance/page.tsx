@@ -31,17 +31,17 @@ export default function FinancePage() {
                 key={item.label}
                 className={`flex items-center gap-3 px-4 py-2 text-xs font-semibold cursor-pointer transition-colors ${
                   item.active 
-                    ? "text-blue-600 bg-blue-50 border-r-4 border-blue-600" 
+                    ? "text-blue-700 bg-blue-50 border-r-4 border-blue-600" 
                     : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
                 }`}
               >
-                <span className={item.active ? "text-blue-600" : "text-gray-400"}>{item.icon}</span>
+                <span className={item.active ? "text-blue-700" : "text-gray-600"}>{item.icon}</span>
                 {item.label}
               </div>
             ))}
             
             <div className="mt-8 px-4 mb-2">
-              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Apps</p>
+              <p className="text-[10px] font-bold text-gray-600 uppercase tracking-wider">Apps</p>
             </div>
             {["Zoho Payroll", "Zoho Payments"].map((app) => (
               <div
@@ -58,235 +58,222 @@ export default function FinancePage() {
         {/* Main Content */}
         <div className="flex-1 overflow-y-auto bg-gray-50 p-6">
           <div className="max-w-7xl">
-          {/* Header */}
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-lg border border-gray-200 bg-white flex items-center justify-center text-gray-400 shadow-sm">
-                <svg className="w-6 h-6 font-thin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-gray-900">Welcome Jan Saida Shaik</h1>
-                <p className="text-xs text-gray-500">Codegnan IT Solutions Pvt Ltd • All Locations</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Tabs */}
-          <div className="flex items-center gap-6 border-b border-gray-200 mb-6 text-xs font-semibold text-gray-500">
-            <button className="pb-2 border-b-2 border-blue-600 text-blue-600">Dashboard</button>
-            <button className="pb-2 hover:text-gray-800 transition">Getting Started</button>
-            <button className="pb-2 hover:text-gray-800 transition">Recent Updates</button>
-          </div>
-
-          <div className="grid grid-cols-2 gap-6 mb-6">
-            {/* Total Receivables */}
-            <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-semibold text-gray-800">Total Receivables</h3>
-                <button className="text-[10px] text-blue-600 hover:underline flex items-center gap-1">
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
-                  New
-                </button>
-              </div>
-              <p className="text-[10px] text-gray-400 mb-1">Total Unpaid Invoices</p>
-              <p className="text-2xl font-bold text-gray-900 mb-4">₹56,49,924.87</p>
-              <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden mb-4">
-                <div className="h-full bg-orange-500 w-[60%]"></div>
-              </div>
-              <div className="flex items-center justify-between text-[10px]">
-                <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                  <span className="text-gray-500">Current : <span className="text-gray-900 font-bold">₹3,62,500.00</span></span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-orange-500"></div>
-                  <span className="text-gray-500">Overdue : <span className="text-gray-900 font-bold">₹52,87,424.87</span></span>
-                </div>
-              </div>
-            </div>
-
-            {/* Total Payables */}
-            <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-semibold text-gray-800">Total Payables</h3>
-                <button className="text-[10px] text-blue-600 hover:underline flex items-center gap-1">
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
-                  New
-                </button>
-              </div>
-              <p className="text-[10px] text-gray-400 mb-1">Total Unpaid Bills</p>
-              <p className="text-2xl font-bold text-gray-900 mb-4">₹1,15,55,155.71</p>
-              <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden mb-4">
-                <div className="h-full bg-orange-500 w-[85%]"></div>
-              </div>
-              <div className="flex items-center justify-between text-[10px]">
-                <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                  <span className="text-gray-500">Current : <span className="text-gray-900 font-bold">₹29,474.75</span></span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-orange-500"></div>
-                  <span className="text-gray-500">Overdue : <span className="text-gray-900 font-bold">₹1,15,25,680.96</span></span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Cash Flow */}
-          <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5 mb-6">
+            {/* Header */}
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-sm font-semibold text-gray-800">Cash Flow</h3>
-              <select className="text-[10px] border border-gray-200 rounded px-2 py-1 bg-white outline-none">
-                <option>This Fiscal Year</option>
-              </select>
-            </div>
-            
-            <div className="h-48 relative flex items-end gap-1 px-2 border-b border-gray-100 mb-4">
-               {/* Mock chart area */}
-               {[40, 45, 42, 48, 55, 60, 58, 20, 15, 12, 10, 8].map((h, i) => (
-                 <div key={i} className="flex-1 flex flex-col items-center gap-1 group">
-                   <div className="w-full bg-blue-100 rounded-t h-full absolute bottom-0 -z-10 group-hover:bg-blue-200 transition-colors" style={{ height: `${h}%` }}></div>
-                   <div className="w-1.5 h-1.5 rounded-full bg-blue-600 mb-1" style={{ marginBottom: `${h}%` }}></div>
-                 </div>
-               ))}
-               <div className="absolute top-0 right-0 p-4 text-right">
-                  <p className="text-[10px] text-gray-400">Cash as on 01/04/2025</p>
-                  <p className="text-sm font-bold text-gray-900">₹3,29,783.75</p>
-                  
-                  <div className="mt-4 space-y-2">
-                    <div>
-                      <p className="text-[10px] text-gray-400 uppercase">Incoming</p>
-                      <p className="text-xs font-bold text-gray-900 flex items-center justify-end gap-1">₹22,20,32,780.42 <span className="text-green-500 text-[10px]">( + )</span></p>
-                    </div>
-                    <div>
-                      <p className="text-[10px] text-gray-400 uppercase">Outgoing</p>
-                      <p className="text-xs font-bold text-gray-900 flex items-center justify-end gap-1">₹26,97,76,542.57 <span className="text-red-500 text-[10px]">( - )</span></p>
-                    </div>
-                    <div className="pt-2 border-t border-gray-100">
-                      <p className="text-[10px] text-gray-400">Cash as on 31/03/2026</p>
-                      <p className="text-sm font-bold text-gray-900">₹-4,74,13,978.40 <span className="text-orange-500 text-[10px]">( = )</span></p>
-                    </div>
-                  </div>
-               </div>
-            </div>
-            <div className="flex justify-between px-2 text-[10px] text-gray-400">
-               <span>Apr 2025</span>
-               <span>Jul 2025</span>
-               <span>Oct 2025</span>
-               <span>Jan 2026</span>
-               <span>Mar 2026</span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-6 mb-6">
-            {/* Income and Expense */}
-            <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-semibold text-gray-800">Income and Expense</h3>
-                <select className="text-[10px] border border-gray-200 rounded px-2 py-1 bg-white outline-none">
-                  <option>This Fiscal Year</option>
-                </select>
-              </div>
-              
-              <div className="flex items-center gap-6 mb-6">
-                <div>
-                  <div className="flex items-center gap-1.5 mb-1">
-                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
-                    <span className="text-[10px] text-gray-500">Total Income</span>
-                  </div>
-                  <p className="text-lg font-bold text-gray-900">₹15,00,61,66...</p>
-                </div>
-                <div>
-                  <div className="flex items-center gap-1.5 mb-1">
-                    <div className="w-2.5 h-2.5 rounded-full bg-rose-500"></div>
-                    <span className="text-[10px] text-gray-500">Total Expenses</span>
-                  </div>
-                  <p className="text-lg font-bold text-gray-900">₹13,49,95,432.46</p>
-                </div>
-                <div className="ml-auto flex border border-gray-200 rounded overflow-hidden shadow-sm">
-                  <button className="px-3 py-1 text-[10px] bg-gray-50 font-bold border-r border-gray-200 hover:bg-gray-100">Accrual</button>
-                  <button className="px-3 py-1 text-[10px] text-gray-400 font-bold hover:bg-gray-100">Cash</button>
-                </div>
-              </div>
-
-              <div className="h-48 flex items-end gap-1.5 px-2">
-                {[
-                  { i: 30, e: 25 }, { i: 50, e: 35 }, { i: 70, e: 40 }, { i: 70, e: 55 },
-                  { i: 60, e: 65 }, { i: 45, e: 45 }, { i: 35, e: 52 }, { i: 20, e: 48 },
-                  { i: 42, e: 55 }, { i: 35, e: 38 }, { i: 10, e: 15 }, { i: 5, e: 18 }
-                ].map((d, i) => (
-                  <div key={i} className="flex-1 flex flex-col justify-end gap-0.5 group">
-                    <div className="w-full bg-rose-500 rounded-t-sm transition-all group-hover:opacity-80" style={{ height: `${d.e}%` }}></div>
-                    <div className="w-full bg-emerald-500 rounded-t-sm transition-all group-hover:opacity-80" style={{ height: `${d.i}%` }}></div>
-                  </div>
-                ))}
-              </div>
-              <div className="flex justify-between px-2 text-[9px] text-gray-400 mt-2">
-                <span>Apr 2025</span>
-                <span>Jul 2025</span>
-                <span>Oct 2025</span>
-                <span>Jan 2026</span>
-                <span>Mar 2026</span>
-              </div>
-              <p className="text-[10px] text-gray-400 mt-6">* Income and expense values displayed are exclusive of taxes.</p>
-            </div>
-
-            {/* Top Expenses */}
-            <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
-              <div className="flex items-center justify-between mb-8">
-                <h3 className="text-sm font-semibold text-gray-800">Top Expenses</h3>
-                <select className="text-[10px] border border-gray-200 rounded px-2 py-1 bg-white outline-none">
-                  <option>This Fiscal Year</option>
-                </select>
-              </div>
-
-              <div className="flex items-center gap-8">
-                {/* Donut Chart Mockup */}
-                <div className="relative w-40 h-40">
-                  <svg viewBox="0 0 36 36" className="w-full h-full transform -rotate-90">
-                    <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#E2E8F0" strokeWidth="3"></circle>
-                    <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#10B981" strokeWidth="3" strokeDasharray="40 100" strokeDashoffset="0"></circle>
-                    <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#F97316" strokeWidth="3" strokeDasharray="25 100" strokeDashoffset="-40"></circle>
-                    <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#3B82F6" strokeWidth="3" strokeDasharray="15 100" strokeDashoffset="-65"></circle>
-                    <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#EAB308" strokeWidth="3" strokeDasharray="10 100" strokeDashoffset="-80"></circle>
-                    <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#A855F7" strokeWidth="3" strokeDasharray="5 100" strokeDashoffset="-90"></circle>
-                    <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#06B6D4" strokeWidth="3" strokeDasharray="5 100" strokeDashoffset="-95"></circle>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-lg border border-gray-200 bg-white flex items-center justify-center text-gray-600 shadow-sm">
+                  <svg className="w-6 h-6 font-thin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                   </svg>
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-                    <p className="text-[10px] text-gray-400 uppercase font-medium">All Expenses</p>
-                    <p className="text-xs font-bold text-gray-900">₹139497772.50</p>
+                </div>
+                <div>
+                  <h1 className="text-xl font-bold text-gray-900">Welcome Jan Saida Shaik</h1>
+                  <p className="text-xs text-gray-800">Codegnan IT Solutions Pvt Ltd • All Locations</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Tabs */}
+            <div className="flex items-center gap-6 border-b border-gray-200 mb-6 text-xs font-semibold text-gray-800">
+              <button className="pb-2 border-b-2 border-blue-600 text-blue-700">Dashboard</button>
+              <button className="pb-2 hover:text-gray-800 transition">Getting Started</button>
+              <button className="pb-2 hover:text-gray-800 transition">Recent Updates</button>
+            </div>
+
+            <div className="grid grid-cols-2 gap-6 mb-6">
+              {/* Total Receivables */}
+              <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
+                <div className="px-6 py-5 border-b border-gray-100 flex items-center justify-between">
+                  <h3 className="text-xl font-bold text-gray-900 leading-none">Total Receivables</h3>
+                  <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">12</span></p>
+                </div>
+                <div className="p-5">
+                  <p className="text-[10px] text-gray-600 mb-1">Total Unpaid Invoices</p>
+                  <p className="text-2xl font-bold text-gray-900 mb-4">₹56,49,924.87</p>
+                  <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden mb-4">
+                    <div className="h-full bg-orange-500 w-[60%]"></div>
+                  </div>
+                  <div className="flex items-center justify-between text-[10px]">
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                      <span className="text-gray-700">Current : <span className="text-gray-900 font-bold">₹3,62,500.00</span></span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-2 h-2 rounded-full bg-orange-500"></div>
+                      <span className="text-gray-700">Overdue : <span className="text-gray-900 font-bold">₹52,87,424.87</span></span>
+                    </div>
                   </div>
                 </div>
+              </div>
 
-                {/* Legend */}
-                <div className="flex-1 space-y-4">
-                  {[
-                    { label: "Salaries and Employe...", amount: "₹5,76,08,7...", color: "bg-emerald-500" },
-                    { label: "Advertising And Mar...", amount: "₹3,35,01,07...", color: "bg-orange-500" },
-                    { label: "Rent Expense", amount: "₹1,53,61,853.00", color: "bg-blue-500" },
-                    { label: "Training & Developm...", amount: "₹33,59,011....", color: "bg-yellow-500" },
-                    { label: "Event Expenses", amount: "₹29,04,477.21", color: "bg-purple-500" },
-                    { label: "Others", amount: "₹2,67,62,597.62", color: "bg-cyan-500" },
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center justify-between text-xs">
-                      <div className="flex items-center gap-2">
-                        <div className={`w-2.5 h-2.5 rounded-full ${item.color}`}></div>
-                        <span className="text-gray-600 truncate max-w-[120px]">{item.label}</span>
-                      </div>
-                      <span className="font-bold text-gray-900">{item.amount}</span>
+              {/* Total Payables */}
+              <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
+                <div className="px-6 py-5 border-b border-gray-100 flex items-center justify-between">
+                  <h3 className="text-xl font-bold text-gray-900 leading-none">Total Payables</h3>
+                  <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">48</span></p>
+                </div>
+                <div className="p-5">
+                  <p className="text-[10px] text-gray-600 mb-1">Total Unpaid Bills</p>
+                  <p className="text-2xl font-bold text-gray-900 mb-4">₹1,15,55,155.71</p>
+                  <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden mb-4">
+                    <div className="h-full bg-orange-500 w-[85%]"></div>
+                  </div>
+                  <div className="flex items-center justify-between text-[10px]">
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                      <span className="text-gray-700">Current : <span className="text-gray-900 font-bold">₹29,474.75</span></span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-2 h-2 rounded-full bg-orange-500"></div>
+                      <span className="text-gray-700">Overdue : <span className="text-gray-900 font-bold">₹1,15,25,680.96</span></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Cash Flow */}
+            <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden mb-6 flex flex-col">
+              <div className="px-6 py-5 border-b border-gray-100 flex items-center justify-between">
+                <h3 className="text-xl font-bold text-gray-900 leading-none">Cash Flow</h3>
+                <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">12 Months</span></p>
+              </div>
+              <div className="p-5">
+                <div className="h-48 relative flex items-end gap-1 px-2 border-b border-gray-100 mb-4">
+                  {[40, 45, 42, 48, 55, 60, 58, 20, 15, 12, 10, 8].map((h, i) => (
+                    <div key={i} className="flex-1 flex flex-col items-center gap-1 group">
+                      <div className="w-full bg-blue-100 rounded-t h-full absolute bottom-0 -z-10 group-hover:bg-blue-200 transition-colors" style={{ height: `${h}%` }}></div>
+                      <div className="w-1.5 h-1.5 rounded-full bg-blue-700 mb-1" style={{ marginBottom: `${h}%` }}></div>
                     </div>
                   ))}
+                  <div className="absolute top-0 right-0 p-4 text-right">
+                    <p className="text-[10px] text-gray-800">Cash as on 01/04/2025</p>
+                    <p className="text-sm font-bold text-gray-900">₹3,29,783.75</p>
+                    <div className="mt-4 space-y-2">
+                      <div>
+                        <p className="text-[10px] text-gray-800 uppercase">Incoming</p>
+                        <p className="text-xs font-bold text-gray-900 flex items-center justify-end gap-1">₹22,20,32,780.42 <span className="text-green-500 text-[10px]">( + )</span></p>
+                      </div>
+                      <div>
+                        <p className="text-[10px] text-gray-800 uppercase">Outgoing</p>
+                        <p className="text-xs font-bold text-gray-900 flex items-center justify-end gap-1">₹26,97,76,542.57 <span className="text-red-500 text-[10px]">( - )</span></p>
+                      </div>
+                      <div className="pt-2 border-t border-gray-100">
+                        <p className="text-[10px] text-gray-800">Cash as on 31/03/2026</p>
+                        <p className="text-sm font-bold text-gray-900">₹-4,74,13,978.40 <span className="text-orange-500 text-[10px]">( = )</span></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex justify-between px-2 text-[10px] text-gray-800">
+                  <span>Apr 2025</span>
+                  <span>Jul 2025</span>
+                  <span>Oct 2025</span>
+                  <span>Jan 2026</span>
+                  <span>Mar 2026</span>
                 </div>
               </div>
             </div>
-          </div>
+
+            <div className="grid grid-cols-2 gap-6 mb-6">
+              {/* Income and Expense */}
+              <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
+                <div className="px-6 py-5 border-b border-gray-100 flex items-center justify-between">
+                  <h3 className="text-xl font-bold text-gray-900 leading-none">Income and Expense</h3>
+                  <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">24 Metrics</span></p>
+                </div>
+                <div className="p-5">
+                  <div className="flex items-center gap-6 mb-6">
+                    <div>
+                      <div className="flex items-center gap-1.5 mb-1">
+                        <div className="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
+                        <span className="text-[10px] text-gray-600">Total Income</span>
+                      </div>
+                      <p className="text-lg font-bold text-gray-900">₹15,00,61,66...</p>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-1.5 mb-1">
+                        <div className="w-2.5 h-2.5 rounded-full bg-rose-500"></div>
+                        <span className="text-[10px] text-gray-600">Total Expenses</span>
+                      </div>
+                      <p className="text-lg font-bold text-gray-900">₹13,49,95,432.46</p>
+                    </div>
+                    <div className="ml-auto flex border border-gray-200 rounded overflow-hidden shadow-sm">
+                      <button className="px-3 py-1 text-[10px] bg-gray-50 font-bold border-r border-gray-200 hover:bg-gray-100">Accrual</button>
+                      <button className="px-3 py-1 text-[10px] text-gray-800 font-bold hover:bg-gray-100">Cash</button>
+                    </div>
+                  </div>
+                  <div className="h-48 flex items-end gap-1.5 px-2">
+                    {[
+                      { i: 30, e: 25 }, { i: 50, e: 35 }, { i: 70, e: 40 }, { i: 70, e: 55 },
+                      { i: 60, e: 65 }, { i: 45, e: 45 }, { i: 35, e: 52 }, { i: 20, e: 48 },
+                      { i: 42, e: 55 }, { i: 35, e: 38 }, { i: 10, e: 15 }, { i: 5, e: 18 }
+                    ].map((d, i) => (
+                      <div key={i} className="flex-1 flex flex-col justify-end gap-0.5 group">
+                        <div className="w-full bg-rose-500 rounded-t-sm transition-all group-hover:opacity-80" style={{ height: `${d.e}%` }}></div>
+                        <div className="w-full bg-emerald-500 rounded-t-sm transition-all group-hover:opacity-80" style={{ height: `${d.i}%` }}></div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex justify-between px-2 text-[9px] text-gray-800 mt-2">
+                    <span>Apr 2025</span>
+                    <span>Jul 2025</span>
+                    <span>Oct 2025</span>
+                    <span>Jan 2026</span>
+                    <span>Mar 2026</span>
+                  </div>
+                  <p className="text-[10px] text-gray-800 mt-6">* Income and expense values displayed are exclusive of taxes.</p>
+                </div>
+              </div>
+
+              {/* Top Expenses */}
+              <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
+                <div className="px-6 py-5 border-b border-gray-100 flex items-center justify-between">
+                  <h3 className="text-xl font-bold text-gray-900 leading-none">Top Expenses</h3>
+                  <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">6 Categories</span></p>
+                </div>
+                <div className="p-5 flex-1">
+                  <div className="flex items-center gap-8 h-full">
+                    <div className="relative w-40 h-40 shrink-0">
+                      <svg viewBox="0 0 36 36" className="w-full h-full transform -rotate-90">
+                        <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#E2E8F0" strokeWidth="3"></circle>
+                        <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#10B981" strokeWidth="3" strokeDasharray="40 100" strokeDashoffset="0"></circle>
+                        <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#F97316" strokeWidth="3" strokeDasharray="25 100" strokeDashoffset="-40"></circle>
+                        <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#3B82F6" strokeWidth="3" strokeDasharray="15 100" strokeDashoffset="-65"></circle>
+                        <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#EAB308" strokeWidth="3" strokeDasharray="10 100" strokeDashoffset="-80"></circle>
+                        <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#A855F7" strokeWidth="3" strokeDasharray="5 100" strokeDashoffset="-90"></circle>
+                        <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#06B6D4" strokeWidth="3" strokeDasharray="5 100" strokeDashoffset="-95"></circle>
+                      </svg>
+                      <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+                        <p className="text-[10px] text-gray-500 uppercase font-medium">All Expenses</p>
+                        <p className="text-xs font-bold text-gray-900">₹139497772.50</p>
+                      </div>
+                    </div>
+                    <div className="flex-1 space-y-4">
+                      {[
+                        { label: "Salaries and Employee...", amount: "₹5,76,08,7...", color: "bg-emerald-500" },
+                        { label: "Advertising...", amount: "₹3,35,01,07...", color: "bg-orange-500" },
+                        { label: "Rent Expense", amount: "₹1,53,61,853.00", color: "bg-blue-500" },
+                        { label: "Training...", amount: "₹33,59,011....", color: "bg-yellow-500" },
+                        { label: "Event Expenses", amount: "₹29,04,477.21", color: "bg-purple-500" },
+                        { label: "Others", amount: "₹2,67,62,597.62", color: "bg-cyan-500" },
+                      ].map((item, i) => (
+                        <div key={i} className="flex items-center justify-between text-xs">
+                          <div className="flex items-center gap-2">
+                            <div className={`w-2.5 h-2.5 rounded-full shrink-0 ${item.color}`}></div>
+                            <span className="text-gray-700 truncate max-w-[120px]">{item.label}</span>
+                          </div>
+                          <span className="font-bold text-gray-900">{item.amount}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      
-
     </div>
   );
 }
