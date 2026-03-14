@@ -109,7 +109,7 @@ export default function Home() {
               onClick={handleLogin}
               className="w-full py-4 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-bold rounded-xl transition-all shadow-lg shadow-red-500/30 transform hover:-translate-y-0.5"
             >
-              Sign In to Workspace
+              Sign In to Codegnan Spark
             </button>
           </div>
 
