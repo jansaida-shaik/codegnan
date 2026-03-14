@@ -40,7 +40,7 @@ export default function HRPage() {
             
             <div className="grid grid-cols-3 gap-6">
               <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
-                <div className="px-6 py-5 border-b border-gray-100 flex items-center justify-between">
+                <div className="px-6 py-3 border-b border-gray-100 flex items-center justify-between">
                   <h3 className="text-xl font-bold text-gray-900 leading-none">Attendance Summary</h3>
                   <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">12</span></p>
                 </div>
@@ -50,7 +50,7 @@ export default function HRPage() {
               </div>
               
               <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
-                <div className="px-6 py-5 border-b border-gray-100 flex items-center justify-between">
+                <div className="px-6 py-3 border-b border-gray-100 flex items-center justify-between">
                   <h3 className="text-xl font-bold text-gray-900 leading-none">Leave Applications</h3>
                   <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">5</span></p>
                 </div>
@@ -60,7 +60,7 @@ export default function HRPage() {
               </div>
 
               <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
-                <div className="px-6 py-5 border-b border-gray-100 flex items-center justify-between">
+                <div className="px-6 py-3 border-b border-gray-100 flex items-center justify-between">
                   <h3 className="text-xl font-bold text-gray-900 leading-none">Upcoming Birthdays</h3>
                   <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">2</span></p>
                 </div>

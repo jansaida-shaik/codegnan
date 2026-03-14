@@ -83,7 +83,7 @@ export default function FinancePage() {
             <div className="grid grid-cols-2 gap-6 mb-6">
               {/* Total Receivables */}
               <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
-                <div className="px-6 py-5 border-b border-gray-100 flex items-center justify-between">
+                <div className="px-6 py-3 border-b border-gray-100 flex items-center justify-between">
                   <h3 className="text-xl font-bold text-gray-900 leading-none">Total Receivables</h3>
                   <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">12</span></p>
                 </div>
@@ -108,7 +108,7 @@ export default function FinancePage() {
 
               {/* Total Payables */}
               <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
-                <div className="px-6 py-5 border-b border-gray-100 flex items-center justify-between">
+                <div className="px-6 py-3 border-b border-gray-100 flex items-center justify-between">
                   <h3 className="text-xl font-bold text-gray-900 leading-none">Total Payables</h3>
                   <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">48</span></p>
                 </div>
@@ -134,7 +134,7 @@ export default function FinancePage() {
 
             {/* Cash Flow */}
             <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden mb-6 flex flex-col">
-              <div className="px-6 py-5 border-b border-gray-100 flex items-center justify-between">
+              <div className="px-6 py-3 border-b border-gray-100 flex items-center justify-between">
                 <h3 className="text-xl font-bold text-gray-900 leading-none">Cash Flow</h3>
                 <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">12 Months</span></p>
               </div>
@@ -178,7 +178,7 @@ export default function FinancePage() {
             <div className="grid grid-cols-2 gap-6 mb-6">
               {/* Income and Expense */}
               <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
-                <div className="px-6 py-5 border-b border-gray-100 flex items-center justify-between">
+                <div className="px-6 py-3 border-b border-gray-100 flex items-center justify-between">
                   <h3 className="text-xl font-bold text-gray-900 leading-none">Income and Expense</h3>
                   <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">24 Metrics</span></p>
                 </div>
@@ -228,7 +228,7 @@ export default function FinancePage() {
 
               {/* Top Expenses */}
               <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
-                <div className="px-6 py-5 border-b border-gray-100 flex items-center justify-between">
+                <div className="px-6 py-3 border-b border-gray-100 flex items-center justify-between">
                   <h3 className="text-xl font-bold text-gray-900 leading-none">Top Expenses</h3>
                   <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">6 Categories</span></p>
                 </div>

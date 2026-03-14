@@ -26,10 +26,10 @@ const crmSidebarItems = [
 ];
 
 const leads = [
-  { name: "Varun", email: "varun@example.com", phone: "+917842678078", source: "Direct Call", status: "Follow-Up", statusColor: "bg-orange-100 text-orange-700" },
+  { name: "Varun", email: "varun@example.com", phone: "+917842678078", source: "Direct Call", status: "Follow-up", statusColor: "bg-orange-100 text-orange-700" },
   { name: "Prashanth", email: "prashanth@example.com", phone: "+916302838097", source: "Just Dial", status: "New", statusColor: "bg-blue-100 text-blue-700" },
   { name: "Sonteena Divya", email: "divya@example.com", phone: "+918886268479", source: "WhatsApp", status: "New", statusColor: "bg-blue-100 text-blue-700" },
-  { name: "Nanubala", email: "nanubala@example.com", phone: "+917395380508", source: "Suman TV", status: "Follow-Up", statusColor: "bg-orange-100 text-orange-700" },
+  { name: "Nanubala", email: "nanubala@example.com", phone: "+917395380508", source: "Suman TV", status: "Follow-up", statusColor: "bg-orange-100 text-orange-700" },
   { name: "Maji Sai Nikhil", email: "nikhil@example.com", phone: "+913298471504", source: "WhatsApp", status: "DNP", statusColor: "bg-red-100 text-red-700" },
 ];
 
@@ -132,7 +132,7 @@ export default function Page() {
                 <div className="grid grid-cols-2 gap-4">
                   {/* Leads by Status */}
                   <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
-                    <div className="px-6 py-5 border-b border-gray-100 flex justify-between items-center">
+                    <div className="px-6 py-3 border-b border-gray-100 flex justify-between items-center">
                       <h2 className="text-xl font-bold text-gray-900 leading-none">Leads by Status</h2>
                       <p className="text-sm text-gray-500">
                         Record Count: <span className="font-semibold text-gray-800">105,828</span>
@@ -141,11 +141,15 @@ export default function Page() {
                     <div className="p-6 grid grid-cols-2 gap-4 flex-1 overflow-y-auto">
                       {[
                         { label: "New", count: 45620, color: "bg-blue-600" },
-                        { label: "Follow-Up", count: 28340, color: "bg-orange-500" },
+                        { label: "Follow-up", count: 15340, color: "bg-orange-500" },
+                        { label: "In-Conversation", count: 5280, color: "bg-teal-500" },
+                        { label: "Connected", count: 4120, color: "bg-green-600" },
+                        { label: "Qualified", count: 3500, color: "bg-green-500" },
+                        { label: "Branch Visit", count: 1410, color: "bg-purple-500" },
+                        { label: "Junk", count: 2190, color: "bg-gray-500" },
                         { label: "DNP", count: 12440, color: "bg-red-500" },
-                        { label: "Converted", count: 9800, color: "bg-green-500" },
+                        { label: "Converted", count: 9800, color: "bg-blue-500" },
                         { label: "Not Interested", count: 6128, color: "bg-gray-400" },
-                        { label: "Enrolled", count: 3500, color: "bg-purple-500" },
                       ].map((s) => (
                         <div key={s.label} className="flex items-center gap-2 p-2 rounded-lg bg-gray-50">
                           <div className={`w-2.5 h-2.5 rounded-full ${s.color}`}></div>
@@ -159,7 +163,7 @@ export default function Page() {
                   </div>
 
                   <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col max-h-[400px]">
-                    <div className="px-6 py-5 border-b border-gray-100 flex justify-between items-center">
+                    <div className="px-6 py-3 border-b border-gray-100 flex justify-between items-center">
                       <h2 className="text-xl font-bold text-gray-900 leading-none">Leads by Source</h2>
                       <p className="text-sm text-gray-500">
                         Record Count: <span className="font-semibold text-gray-800">105,828</span>
@@ -191,12 +195,14 @@ export default function Page() {
 
                 {/* Today's Leads */}
                 <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-                  <div className="px-6 py-5 border-b border-gray-100 flex justify-between items-start">
-                    <div>
-                      <h2 className="text-xl font-bold text-gray-900 leading-none">Today's Leads</h2>
-                      <p className="text-sm text-gray-600 mt-2">Total: <span className="font-semibold text-gray-800">5</span></p>
+                  <div className="px-6 py-3 border-b border-gray-100 flex justify-between items-center">
+                    <h2 className="text-xl font-bold text-gray-900 leading-none">Today's Leads</h2>
+                    <div className="flex items-center gap-4">
+                      <p className="text-sm text-gray-500">
+                        Record Count: <span className="font-semibold text-gray-800">5</span>
+                      </p>
+                      <button className="text-[10px] font-bold text-blue-700 hover:underline uppercase tracking-wider">View All</button>
                     </div>
-                    <button className="text-xs font-bold text-blue-700 hover:underline uppercase tracking-wider">View All</button>
                   </div>
                   <table className="w-full text-xs">
                     <thead className="bg-gray-50 border-b border-gray-100">

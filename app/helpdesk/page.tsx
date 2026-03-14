@@ -38,7 +38,7 @@ export default function HelpdeskPage() {
             
             <div className="grid grid-cols-2 gap-6">
               <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
-                <div className="px-6 py-5 border-b border-gray-100 flex items-center justify-between">
+                <div className="px-6 py-3 border-b border-gray-100 flex items-center justify-between">
                   <h3 className="text-xl font-bold text-gray-900 leading-none">Recent Tickets</h3>
                   <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">14</span></p>
                 </div>
@@ -48,7 +48,7 @@ export default function HelpdeskPage() {
               </div>
               
               <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
-                <div className="px-6 py-5 border-b border-gray-100 flex items-center justify-between">
+                <div className="px-6 py-3 border-b border-gray-100 flex items-center justify-between">
                   <h3 className="text-xl font-bold text-gray-900 leading-none">SLA Health</h3>
                   <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">98%</span></p>
                 </div>
