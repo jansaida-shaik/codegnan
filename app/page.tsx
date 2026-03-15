@@ -177,7 +177,41 @@ export default function Home() {
           <div className="relative mb-12 flex justify-center items-center">
             {/* Subtle backlight */}
             <div className="absolute inset-0 bg-blue-500/10 blur-[60px] rounded-full scale-150"></div>
-            
+
+            {/* Orbit path outside the white circle */}
+            <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+              <div className="relative w-64 h-64 animate-[spin_32s_linear_infinite]">
+                {/* Top - frontend / JS */}
+                <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/3">
+                  <div className="w-9 h-9 rounded-full bg-yellow-400 flex items-center justify-center shadow-lg ring-2 ring-white/80">
+                    <Code className="w-4 h-4 text-gray-900" />
+                  </div>
+                </div>
+
+                {/* Right - cloud / globe */}
+                <div className="absolute right-0 top-1/2 translate-x-1/3 -translate-y-1/2">
+                  <div className="w-9 h-9 rounded-full bg-sky-500 flex items-center justify-center shadow-lg ring-2 ring-white/80">
+                    <Globe className="w-4 h-4 text-white" />
+                  </div>
+                </div>
+
+                {/* Bottom - data / DB */}
+                <div className="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/3">
+                  <div className="w-9 h-9 rounded-full bg-emerald-500 flex items-center justify-center shadow-lg ring-2 ring-white/80">
+                    <Database className="w-4 h-4 text-white" />
+                  </div>
+                </div>
+
+                {/* Left - AI / compute */}
+                <div className="absolute left-0 top-1/2 -translate-x-1/3 -translate-y-1/2">
+                  <div className="w-9 h-9 rounded-full bg-indigo-500 flex items-center justify-center shadow-lg ring-2 ring-white/80">
+                    <Cpu className="w-4 h-4 text-white" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Central Codegnan logo */}
             <div className="relative w-48 h-48 bg-white rounded-full shadow-2xl border border-gray-100/50 flex items-center justify-center overflow-hidden">
               <Image
                 src="/logo.png"
