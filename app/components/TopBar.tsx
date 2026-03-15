@@ -12,7 +12,7 @@ import {
   Menu, 
   X 
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const apps = [
   {
@@ -134,6 +134,13 @@ export default function TopBar() {
   const router = useRouter();
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [modifierKey, setModifierKey] = useState("");
+
+  useEffect(() => {
+    const isMac = typeof window !== "undefined" && 
+      (/Mac|iPod|iPhone|iPad/.test(navigator.userAgent) || navigator.platform.includes('Mac'));
+    setModifierKey(isMac ? "⌘" : "Ctrl");
+  }, []);
 
   return (
     <>
@@ -154,10 +161,11 @@ export default function TopBar() {
           <Image
             src="/Codegnan Logo R New.png"
             alt="Codegnan"
-            width={100}
-            height={28}
-            className="object-contain"
+            width={200}
+            height={56}
+            className="object-contain h-7 w-auto"
             priority
+            unoptimized
           />
         </div>
 
@@ -173,17 +181,14 @@ export default function TopBar() {
                 key={app.id}
                 onClick={() => router.push(app.href)}
                 className={`
-                  relative flex items-center gap-2 px-3 py-2 rounded-xl text-[13px] font-semibold transition-all duration-300 whitespace-nowrap shrink-0 group
+                  relative flex items-center gap-2 px-3 py-2 rounded-xl text-[13px] font-semibold whitespace-nowrap shrink-0 group
                   ${isActive ? `${app.bg} ${app.color} shadow-sm border border-white/40` : "text-gray-500 hover:text-gray-900 hover:bg-gray-100/50"}
                 `}
               >
-                <span className={`transition-all duration-300 group-hover:scale-110 shrink-0 ${isActive ? "text-current" : "text-gray-400 group-hover:text-gray-600"}`}>
+                <span className={`shrink-0 ${isActive ? "text-current" : "text-gray-400 group-hover:text-gray-600"}`}>
                   {app.icon}
                 </span>
                 {app.label}
-                {isActive && (
-                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-current" />
-                )}
               </button>
             );
           })}
@@ -203,25 +208,25 @@ export default function TopBar() {
         <div className="flex items-center gap-2 lg:gap-4 ml-auto shrink-0">
           {/* Search - Desktop Only */}
           <div className="relative group hidden xl:block">
-            <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-gray-400 group-focus-within:text-blue-500 transition-colors">
-              <Search size={14} />
+            <div className="absolute inset-y-0 left-3.5 flex items-center pointer-events-none text-gray-400 group-focus-within:text-primary transition-all duration-500">
+              <Search size={15} strokeWidth={2.5} />
             </div>
             <input 
               type="text" 
               placeholder="Search anything..." 
-              className="h-9 w-40 bg-gray-100/50 border border-transparent focus:bg-white focus:border-blue-200 focus:ring-4 focus:ring-blue-500/5 rounded-xl pl-9 pr-12 text-[12px] transition-all focus:w-56 outline-none font-medium text-gray-900"
+              className="h-10 w-44 rich-search hover:bg-white/40 focus:bg-white/90 focus:w-72 focus:primary-glow focus:border-primary/20 outline-none rounded-2xl pl-11 pr-14 text-[13px] font-semibold text-gray-900 placeholder:text-gray-400/80 tracking-tight"
             />
-            <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1 px-1.5 py-0.5 rounded border border-gray-200 bg-white/50 text-[10px] text-gray-400 font-mono">
-              <span>⌘</span>
-              <span>K</span>
+            <div className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-1 px-1.5 py-1 rounded-xl glass border-white/60 text-[10px] text-gray-500 font-bold shadow-sm backdrop-blur-md">
+              <span className="opacity-60">{modifierKey || "..."}</span>
+              <span className="opacity-60">K</span>
             </div>
           </div>
 
           <div className="flex items-center gap-0.5 lg:gap-1.5">
-            <button className="p-2 rounded-xl text-gray-500 hover:text-gray-900 hover:bg-white transition-all border border-transparent hover:border-gray-100 hover:shadow-sm">
+            <button className="p-2 rounded-xl text-gray-500 hover:text-gray-900 hover:bg-white border border-transparent hover:border-gray-100 hover:shadow-sm">
               <Settings size={18} />
             </button>
-            <button className="relative p-2 rounded-xl text-gray-500 hover:text-gray-900 hover:bg-white transition-all border border-transparent hover:border-gray-100 hover:shadow-sm">
+            <button className="relative p-2 rounded-xl text-gray-500 hover:text-gray-900 hover:bg-white border border-transparent hover:border-gray-100 hover:shadow-sm">
               <Bell size={18} />
               <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-red-500 border-2 border-white rounded-full" />
             </button>
@@ -247,9 +252,9 @@ export default function TopBar() {
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-[60] lg:hidden">
             <div className="absolute inset-0 bg-sapphire/20 backdrop-blur-sm" onClick={() => setIsMobileMenuOpen(false)} />
-            <div className="absolute top-0 left-0 w-[280px] h-full bg-white shadow-2xl animate-in slide-in-from-left duration-300 flex flex-col">
+            <div className="absolute top-0 left-0 w-[280px] h-full bg-white shadow-2xl flex flex-col">
                 <div className="p-6 border-b border-gray-100 flex items-center justify-between">
-                    <Image src="/Codegnan Logo R New.png" alt="Codegnan" width={110} height={30} />
+                    <Image src="/Codegnan Logo R New.png" alt="Codegnan" width={220} height={60} unoptimized className="h-8 w-auto" />
                     <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-gray-400 hover:text-gray-900"><X size={20} /></button>
                 </div>
                 <div className="flex-1 overflow-y-auto p-4 space-y-2">

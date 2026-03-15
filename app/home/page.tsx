@@ -15,7 +15,7 @@ import {
   Search
 } from "lucide-react";
 
-// Spark Home - Premium Dashboard
+// Home - Premium Dashboard
 function BundleHome() {
   const mails = [
     { initials: "SU", color: "bg-blue-600", sender: "Zoho Books", email: "support.india@zohobooks.com", subject: "Webhook failure report in books for Daily", time: "Today, 10:31 AM" },
@@ -32,9 +32,9 @@ function BundleHome() {
   );
 
   return (
-    <div className="flex-1 overflow-y-auto bg-gray-50/30 flex flex-col items-center">
+    <div className="flex-1 overflow-y-auto rich-bg flex flex-col items-start">
       {/* Dashboard */}
-      <div className="p-4 lg:p-8 w-full max-w-7xl space-y-6 lg:space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <div className="p-4 lg:p-8 w-full max-w-[1600px] space-y-6 lg:space-y-8">
         
         {/* Header Section */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">

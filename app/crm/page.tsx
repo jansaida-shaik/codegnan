@@ -1,270 +1,315 @@
 "use client";
-import Image from "next/image";
-import { useState } from "react";
+import React, { useState } from "react";
 import TopBar from "../components/TopBar";
+import { 
+  Users, 
+  Target, 
+  BarChart3, 
+  PieChart, 
+  Phone, 
+  Mail, 
+  MessageSquare, 
+  ChevronRight, 
+  Filter, 
+  Download,
+  Calendar,
+  Layers,
+  Zap,
+  UserPlus
+} from "lucide-react";
 
-const crmSidebarItems = [
-  { label: "Workqueue", icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" /></svg> },
-  { label: "Leads", icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg> },
-  { label: "Converted Leads", icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> },
-  { label: "Batch Master", icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg> },
-  { label: "Finance", icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> },
-  { label: "Customer Payments", icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg> },
-  { label: "Tasks", icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg> },
-  { label: "Meetings", icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg> },
-  { label: "Calls", icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg> },
-  { label: "Products", icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg> },
-  { label: "Quotes", icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg> },
-  { label: "Sales Orders", icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg> },
-  { label: "Purchase Orders", icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg> },
-  { label: "Invoices", icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z" /></svg> },
-  { label: "Campaigns", icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" /></svg> },
-  { label: "Vendors", icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg> },
-  { label: "Price Books", icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg> },
-  { label: "Cases", icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg> },
-  { label: "Solutions", icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg> },
+interface SidebarItem {
+  label: string;
+  icon: React.ReactNode;
+  active: boolean;
+}
+
+const crmSidebarItems: SidebarItem[] = [
+  { label: "Dashboard", icon: <Layers size={16} />, active: true },
+  { label: "Leads", icon: <UserPlus size={16} />, active: false },
+  { label: "Contacts", icon: <Users size={16} />, active: false },
+  { label: "Accounts", icon: <Zap size={16} />, active: false },
+  { label: "Deals", icon: <Target size={16} />, active: false },
+  { label: "Tasks", icon: <Calendar size={16} />, active: false },
+  { label: "Meetings", icon: <Phone size={16} />, active: false },
+  { label: "Calls", icon: <Phone size={16} />, active: false },
+  { label: "Reports", icon: <BarChart3 size={16} />, active: false },
+  { label: "Analytics", icon: <PieChart size={16} />, active: false },
 ];
 
 const leads = [
-  { name: "Varun", email: "varun@example.com", phone: "+917842678078", source: "Direct Call", status: "Follow-up", statusColor: "bg-orange-100 text-orange-700" },
-  { name: "Prashanth", email: "prashanth@example.com", phone: "+916302838097", source: "Just Dial", status: "New", statusColor: "bg-blue-100 text-blue-700" },
-  { name: "Sonteena Divya", email: "divya@example.com", phone: "+918886268479", source: "WhatsApp", status: "New", statusColor: "bg-blue-100 text-blue-700" },
-  { name: "Nanubala", email: "nanubala@example.com", phone: "+917395380508", source: "Suman TV", status: "Follow-up", statusColor: "bg-orange-100 text-orange-700" },
-  { name: "Maji Sai Nikhil", email: "nikhil@example.com", phone: "+913298471504", source: "WhatsApp", status: "DNP", statusColor: "bg-red-100 text-red-700" },
+  { name: "John Doe", email: "john@example.com", phone: "9876543210", source: "Social Media", status: "Contacted", statusColor: "bg-blue-100 text-blue-700 border-blue-200" },
+  { name: "Jane Smith", email: "jane@company.com", phone: "8765432109", source: "Website", status: "New", statusColor: "bg-emerald-100 text-emerald-700 border-emerald-200" },
+  { name: "Robert Brown", email: "robert@test.com", phone: "7654321098", source: "Reference", status: "Qualified", statusColor: "bg-indigo-100 text-indigo-700 border-indigo-200" },
+  { name: "Alice Green", email: "alice@demo.com", phone: "6543210987", source: "Email Campaign", status: "Lost", statusColor: "bg-rose-100 text-rose-700 border-rose-200" },
+  { name: "Mike Ross", email: "mike@legal.com", phone: "5432109876", source: "Direct", status: "In Progress", statusColor: "bg-amber-100 text-amber-700 border-amber-200" },
 ];
-
-const leadsBySource = [
-  { source: "None", count: 3046 },
-  { source: "2025 Passed Outs", count: 45548 },
-  { source: "Bangalore Leads", count: 6078 },
-  { source: "Bangalore Leads", count: 122 },
-  { source: "Callyzer", count: 1609 },
-  { source: "Callyzer", count: 20 },
-  { source: "Custom Forms", count: 36 },
-  { source: "Direct Call", count: 6482 },
-  { source: "Empty", count: 2 },
-  { source: "Fresh Sales Data", count: 8453 },
-  { source: "Google Ads", count: 1 },
-];
-
 
 const sourceColor = (source: string) => {
-  const map: Record<string, string> = {
-    "Direct Call": "bg-blue-100 text-blue-700",
-    "Just Dial": "bg-green-100 text-green-700",
-    "WhatsApp": "bg-green-100 text-green-700",
-    "Suman TV": "bg-purple-100 text-purple-700",
-  };
-  return map[source] || "bg-gray-100 text-gray-700";
+  switch (source) {
+    case "Social Media": return "bg-sky-50 text-sky-600 border-sky-100";
+    case "Website": return "bg-emerald-50 text-emerald-600 border-emerald-100";
+    case "Reference": return "bg-indigo-50 text-indigo-600 border-indigo-100";
+    case "Email Campaign": return "bg-rose-50 text-rose-600 border-rose-100";
+    default: return "bg-gray-50 text-gray-600 border-gray-100";
+  }
 };
 
 export default function Page() {
   const [activeNav, setActiveNav] = useState("Home");
 
   return (
-    <div className="flex flex-col h-screen bg-gray-100 text-gray-800 text-sm overflow-hidden">
+    <div className="flex flex-col h-screen rich-bg text-gray-800 text-sm overflow-hidden">
       <TopBar />
 
-      {/* Second Nav Bar - Only for CRM */}
-      <div className="bg-white border-b border-gray-200 h-9 flex items-center px-4 gap-1 shrink-0">
-        {["Home", "Modules", "Reports", "Analytics", "My Requests"].map((item) => (
+      {/* Modern Sub-Nav */}
+      <div className="bg-white border-b border-gray-200 h-11 flex items-center px-8 gap-4 shrink-0 shadow-sm z-10">
+        {["Home", "Lead Pipeline", "Sales Reports", "My Analytics"].map((item) => (
           <button
             key={item}
             onClick={() => setActiveNav(item)}
-            className={`px-3 py-1 text-xs font-medium transition-colors ${activeNav === item
-              ? "text-blue-700 border-b-2 border-blue-600 rounded-none font-semibold"
-              : "text-gray-800 hover:text-gray-800 hover:bg-gray-50"
+            className={`px-4 py-1 text-[13px] font-bold transition-all relative ${activeNav === item
+              ? "text-primary"
+              : "text-gray-400 hover:text-gray-900"
               }`}
-          >{item}</button>
+          >
+            {item}
+            {activeNav === item && (
+              <div className="absolute -bottom-[15px] left-0 right-0 h-0.5 bg-primary rounded-full shadow-sm" />
+            )}
+          </button>
         ))}
       </div>
 
-      {/* Main Layout */}
       <div className="flex flex-1 overflow-hidden">
-        {/* Sidebar */}
-        <div className="w-48 bg-white border-r border-gray-200 flex flex-col shrink-0 overflow-y-auto">
-
-          <div className="px-3 py-2 border-b border-gray-100">
-            <div className="flex items-center gap-2 px-2 py-1.5 bg-gray-50 rounded-md text-gray-600 text-xs">
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-              <span>Search</span>
-            </div>
-          </div>
-          <nav className="flex-1 py-1">
+        {/* Sleek Sidebar */}
+        <div className="w-60 bg-white border-r border-gray-100 flex flex-col shrink-0 overflow-y-auto pt-4">
+          <nav className="flex-1 px-4 space-y-1">
             {crmSidebarItems.map((item) => (
-              <a key={item.label} href="#" className="flex items-center gap-2.5 px-4 py-2 text-xs text-gray-900 hover:bg-blue-50 hover:text-blue-700 transition-colors group">
-                <span className="text-gray-600 group-hover:text-blue-700 shrink-0">{item.icon}</span>
+              <button 
+                key={item.label} 
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] font-bold transition-all group ${
+                  item.active 
+                    ? "bg-blue-50 text-primary" 
+                    : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                }`}
+              >
+                <span className={`${item.active ? "text-primary" : "text-gray-400 group-hover:text-gray-700"}`}>
+                  {item.icon}
+                </span>
                 {item.label}
-              </a>
+                {item.label === "Dashboard" && (
+                    <span className="ml-auto w-1.5 h-1.5 rounded-full bg-primary" />
+                )}
+              </button>
             ))}
           </nav>
         </div>
 
-        {/* Main Content */}
-        <div className="flex-1 overflow-y-auto p-5 bg-gray-50">
-          <div className="max-w-7xl">
-            {/* Page Header */}
-            <div className="flex items-center justify-between mb-4">
+        {/* Main Dashboard Content */}
+        <div className="flex-1 overflow-y-auto p-8 lg:p-10 space-y-8">
+          <div className="max-w-[1400px] mx-auto space-y-8">
+            
+            {/* Header with Visual Impact */}
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-2xl font-black text-gray-900 tracking-tight">CRM Command Center</h1>
+                <p className="text-[13px] text-gray-500 font-bold mt-1 uppercase tracking-widest flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                  System Operational • March 2026
+                </p>
+              </div>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg border border-gray-200 bg-transparent flex items-center justify-center text-gray-500 shadow-sm shrink-0">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                  </svg>
-                </div>
-                <h1 className="text-xl font-bold text-gray-900">Welcome Jan Saida Shaik</h1>
-              </div>
-              <div className="flex items-center gap-2">
-                <button className="w-7 h-7 flex items-center justify-center rounded hover:bg-gray-200 transition text-gray-800">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+                <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-2xl font-bold hover:bg-gray-50 shadow-sm transition-all">
+                  <Download size={16} /> Export
                 </button>
-                <select className="text-xs px-2 py-1 border border-gray-200 rounded bg-white text-gray-900">
-                  <option>Codegnan's Home</option>
-                </select>
-                <button className="w-7 h-7 flex items-center justify-center rounded hover:bg-gray-200 transition text-gray-600">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" /></svg>
+                <button className="flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-2xl font-bold hover:bg-primary-dark shadow-lg shadow-blue-500/20 transition-all">
+                  <UserPlus size={18} strokeWidth={2.5} /> Create Lead
                 </button>
               </div>
             </div>
 
-            <div className="flex gap-4">
-              {/* Left Column */}
-              <div className="flex-1 space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  {/* Leads by Status */}
-                  <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
-                    <div className="px-6 py-3 border-b border-gray-100 flex justify-between items-center">
-                      <h2 className="text-xl font-bold text-gray-900 leading-none">Leads by Status</h2>
-                      <p className="text-sm text-gray-500">
-                        Record Count: <span className="font-semibold text-gray-800">105,828</span>
-                      </p>
-                    </div>
-                    <div className="p-6 grid grid-cols-2 gap-4 flex-1 overflow-y-auto">
-                      {[
-                        { label: "New", count: 45620, color: "bg-blue-600" },
-                        { label: "Follow-up", count: 15340, color: "bg-orange-500" },
-                        { label: "In-Conversation", count: 5280, color: "bg-teal-500" },
-                        { label: "Connected", count: 4120, color: "bg-green-600" },
-                        { label: "Qualified", count: 3500, color: "bg-green-500" },
-                        { label: "Branch Visit", count: 1410, color: "bg-purple-500" },
-                        { label: "Junk", count: 2190, color: "bg-gray-500" },
-                        { label: "DNP", count: 12440, color: "bg-red-500" },
-                        { label: "Converted", count: 9800, color: "bg-blue-500" },
-                        { label: "Not Interested", count: 6128, color: "bg-gray-400" },
-                      ].map((s) => (
-                        <div key={s.label} className="flex items-center gap-2 p-2 rounded-lg bg-gray-50">
-                          <div className={`w-2.5 h-2.5 rounded-full ${s.color}`}></div>
-                          <div>
-                            <p className="text-xs font-semibold text-gray-800">{s.count.toLocaleString()}</p>
-                            <p className="text-[10px] text-gray-800">{s.label}</p>
-                          </div>
-                        </div>
-                      ))}
+            {/* High Impact Hero Stat Row */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { label: "Total Revenue Pipeline", value: "₹4.82 Cr", color: "text-blue-600", bg: "bg-blue-50", icon: <Target size={24} /> },
+                { label: "Open Deal count", value: "1,248", color: "text-indigo-600", bg: "bg-indigo-50", icon: <Layers size={24} /> },
+                { label: "Conversion rate", value: "24.5%", color: "text-emerald-600", bg: "bg-emerald-50", icon: <Zap size={24} /> },
+                { label: "Average Deal Size", value: "₹3.8L", color: "text-amber-600", bg: "bg-amber-50", icon: <BarChart3 size={24} /> },
+              ].map((stat, i) => (
+                <div key={i} className="premium-card p-6 flex items-center justify-between group">
+                  <div className="space-y-1">
+                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{stat.label}</p>
+                    <p className={`text-2xl font-black tracking-tight ${stat.color}`}>{stat.value}</p>
+                  </div>
+                  <div className={`w-14 h-14 ${stat.bg} ${stat.color} rounded-[22px] flex items-center justify-center border border-white group-hover:scale-105 transition-transform`}>
+                    {stat.icon}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {/* Main Column - Lead Tracking */}
+              <div className="lg:col-span-2 space-y-8">
+                
+                {/* Leads by Status - Redesigned Analytics */}
+                <div className="premium-card p-6 space-y-6">
+                  <div className="flex items-center justify-between px-2">
+                    <h2 className="text-lg font-black text-gray-900 tracking-tight">Leads by Status</h2>
+                    <div className="flex items-center gap-2 text-[11px] font-bold text-gray-400">
+                      <span className="w-2 h-2 rounded-full bg-primary/20"></span>
+                      Weekly Update
                     </div>
                   </div>
-
-                  <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col max-h-[400px]">
-                    <div className="px-6 py-3 border-b border-gray-100 flex justify-between items-center">
-                      <h2 className="text-xl font-bold text-gray-900 leading-none">Leads by Source</h2>
-                      <p className="text-sm text-gray-500">
-                        Record Count: <span className="font-semibold text-gray-800">105,828</span>
-                      </p>
-                    </div>
-                    <div className="flex justify-between text-[11px] font-bold text-gray-500 px-4 py-3 bg-white border-b border-gray-100 uppercase tracking-tight">
-                      <span>Lead Source</span>
-                      <span>Record Count</span>
-                    </div>
-                    <div className="flex-1 overflow-y-auto">
-                      {leadsBySource.map((row, i) => (
-                        <div
-                          key={i}
-                          className="flex justify-between items-center px-4 py-2 border-b border-gray-50 hover:bg-gray-50 text-xs"
-                        >
-                          <span className="text-blue-700 hover:underline cursor-pointer">
-                            {row.source}
-                          </span>
-                          <span>{row.count.toLocaleString()}</span>
+                  
+                  <div className="grid grid-cols-5 gap-4">
+                    {[
+                      { l: "New", v: "420", color: "bg-emerald-500" },
+                      { l: "Qualified", v: "185", color: "bg-indigo-500" },
+                      { l: "Proposition", v: "92", color: "bg-blue-500" },
+                      { l: "Negotiation", v: "48", color: "bg-amber-500" },
+                      { l: "Won", v: "15", color: "bg-primary" },
+                    ].map((item, i) => (
+                      <div key={i} className="flex flex-col gap-2 p-3 rounded-2xl bg-gray-50/50 border border-transparent hover:border-gray-100 hover:bg-white transition-all text-center">
+                        <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                          <div className={`h-full ${item.color}`} style={{ width: `${Math.random() * 60 + 20}%` }}></div>
                         </div>
-                      ))}
-                    </div>
-                    <div className="flex justify-between items-center px-4 py-3 bg-white font-bold text-xs text-gray-900 border-t border-gray-100">
-                      <span>Total</span>
-                      <span>105,828</span>
-                    </div>
+                        <p className="text-lg font-black text-gray-900 mt-1">{item.v}</p>
+                        <p className="text-[9px] font-black text-gray-400 uppercase tracking-tighter">{item.l}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
-                {/* Today's Leads */}
-                <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-                  <div className="px-6 py-3 border-b border-gray-100 flex justify-between items-center">
-                    <h2 className="text-xl font-bold text-gray-900 leading-none">Today's Leads</h2>
+                {/* Today's Leads Table */}
+                <div className="premium-card flex flex-col">
+                  <div className="px-8 py-6 border-b border-gray-50 flex justify-between items-center">
+                    <div>
+                      <h2 className="text-lg font-black text-gray-900 tracking-tight">Today's Priority Leads</h2>
+                      <p className="text-[11px] text-gray-400 font-bold uppercase tracking-widest mt-0.5">Automated Assignment</p>
+                    </div>
                     <div className="flex items-center gap-4">
-                      <p className="text-sm text-gray-500">
-                        Record Count: <span className="font-semibold text-gray-800">5</span>
-                      </p>
-                      <button className="text-[10px] font-bold text-blue-700 hover:underline uppercase tracking-wider">View All</button>
+                      <div className="flex items-center bg-gray-50 rounded-xl p-1 border border-gray-100">
+                        <button className="p-1.5 text-gray-400 hover:text-gray-900"><Filter size={14} /></button>
+                        <button className="p-1.5 text-gray-400 hover:text-gray-900"><Download size={14} /></button>
+                      </div>
+                      <button className="text-xs font-black text-primary hover:underline">View All Pipeline</button>
                     </div>
                   </div>
-                  <table className="w-full text-xs">
-                    <thead className="bg-gray-50 border-b border-gray-100">
-                      <tr>
-                        <th className="text-left px-4 py-2.5 text-gray-800 font-medium">Lead Name</th>
-                        <th className="text-left px-4 py-2.5 text-gray-800 font-medium">Email</th>
-                        <th className="text-left px-4 py-2.5 text-gray-800 font-medium">Phone</th>
-                        <th className="text-left px-4 py-2.5 text-gray-800 font-medium">Lead Source</th>
-                        <th className="text-left px-4 py-2.5 text-gray-800 font-medium">Lead Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {leads.map((lead, i) => (
-                        <tr key={i} className="border-b border-gray-50 hover:bg-gray-50 transition-colors">
-                          <td className="px-4 py-2.5 text-blue-700 font-medium cursor-pointer hover:underline">{lead.name}</td>
-                          <td className="px-4 py-2.5 text-gray-800">{lead.email}</td>
-                          <td className="px-4 py-2.5">
-                            <div className="flex items-center gap-1.5">
-                              <span className="text-gray-700">{lead.phone}</span>
-                              <div className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center">
-                                <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                              </div>
-                            </div>
-                          </td>
-                          <td className="px-4 py-2.5">
-                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${sourceColor(lead.source)}`}>{lead.source}</span>
-                          </td>
-                          <td className="px-4 py-2.5">
-                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${lead.statusColor}`}>{lead.status}</span>
-                          </td>
+                  
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left border-collapse">
+                      <thead>
+                        <tr className="bg-gray-50/50">
+                          <th className="px-8 py-4 text-[11px] font-black text-gray-400 uppercase tracking-widest">Prospect Name</th>
+                          <th className="px-6 py-4 text-[11px] font-black text-gray-400 uppercase tracking-widest">Source Entity</th>
+                          <th className="px-6 py-4 text-[11px] font-black text-gray-400 uppercase tracking-widest">Status / Stage</th>
+                          <th className="px-8 py-4 text-[11px] font-black text-gray-400 uppercase tracking-widest text-right">Actions</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody className="divide-y divide-gray-50">
+                        {leads.map((lead, i) => (
+                          <tr key={i} className="hover:bg-gray-50/50 group">
+                            <td className="px-8 py-5">
+                              <div className="flex items-center gap-3">
+                                <div className="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-black text-xs">
+                                  {lead.name.charAt(0)}
+                                </div>
+                                <div>
+                                  <p className="text-[13px] font-black text-gray-900 group-hover:text-primary transition-colors">{lead.name}</p>
+                                  <p className="text-[11px] text-gray-400 font-medium">{lead.email}</p>
+                                </div>
+                              </div>
+                            </td>
+                            <td className="px-6 py-5">
+                              <span className={`px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-tighter border ${sourceColor(lead.source)}`}>
+                                {lead.source}
+                              </span>
+                            </td>
+                            <td className="px-6 py-5">
+                              <div className="flex items-center gap-2">
+                                <span className={`w-2 h-2 rounded-full ${lead.status === 'Won' ? 'bg-emerald-500' : lead.status === 'Lost' ? 'bg-rose-500' : 'bg-primary'}`} />
+                                <span className="text-[12px] font-black text-gray-800">{lead.status}</span>
+                              </div>
+                            </td>
+                            <td className="px-8 py-5 text-right">
+                              <div className="flex items-center justify-end gap-2">
+                                <button className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all"><MessageSquare size={16} /></button>
+                                <button className="p-2 text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-xl transition-all"><Phone size={16} /></button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
 
-              {/* Right Column */}
-              <div className="w-72 space-y-4 shrink-0">
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4">
-                    <p className="text-xs text-gray-800 mb-1">My Calls Today</p>
-                    <p className="text-3xl font-bold text-gray-900">0</p>
-                  </div>
-                  <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4">
-                    <p className="text-xs text-gray-800 mb-1">My Leads</p>
-                    <p className="text-3xl font-bold text-gray-900">18266</p>
+              {/* Sidebar Column - Insights */}
+              <div className="space-y-8">
+                
+                {/* Visual Lead Source Chart */}
+                <div className="premium-card p-8 flex flex-col items-center justify-center text-center space-y-6 relative overflow-hidden">
+                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-primary" />
+                   <h2 className="text-lg font-black text-gray-900 tracking-tight">Leads by Source</h2>
+                   
+                   <div className="relative w-48 h-48 flex items-center justify-center">
+                     <svg viewBox="0 0 36 36" className="w-full h-full transform -rotate-90">
+                       <circle cx="18" cy="18" r="14" fill="transparent" stroke="#f1f5f9" strokeWidth="4"></circle>
+                       <circle cx="18" cy="18" r="14" fill="transparent" stroke="#2563eb" strokeWidth="4" strokeDasharray="45 100" strokeDashoffset="0"></circle>
+                       <circle cx="18" cy="18" r="14" fill="transparent" stroke="#6366f1" strokeWidth="4" strokeDasharray="25 100" strokeDashoffset="-45"></circle>
+                       <circle cx="18" cy="18" r="14" fill="transparent" stroke="#10b981" strokeWidth="4" strokeDasharray="30 100" strokeDashoffset="-70"></circle>
+                     </svg>
+                     <div className="absolute inset-0 flex flex-col items-center justify-center">
+                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Conversion</p>
+                        <p className="text-2xl font-black text-gray-900">82%</p>
+                     </div>
+                   </div>
+
+                   <div className="w-full space-y-3">
+                     {[
+                       { l: "Social Media", p: "45%", c: "bg-blue-500" },
+                       { l: "Direct Traffic", p: "30%", c: "bg-emerald-500" },
+                       { l: "Referrals", p: "25%", c: "bg-indigo-500" },
+                     ].map((item, i) => (
+                       <div key={i} className="flex items-center justify-between text-[11px] font-bold">
+                         <div className="flex items-center gap-2">
+                           <div className={`w-2 h-2 rounded-full ${item.c}`} />
+                           <span className="text-gray-500 uppercase tracking-tighter">{item.l}</span>
+                         </div>
+                         <span className="text-gray-900">{item.p}</span>
+                       </div>
+                     ))}
+                   </div>
+                </div>
+
+                {/* Highlights / Alerts */}
+                <div className="premium-card p-6 bg-primary overflow-hidden relative group">
+                  <div className="absolute inset-0 bg-blue-600/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                  <div className="relative z-10 space-y-4">
+                    <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center text-white border border-white/10">
+                      <Zap size={20} fill="currentColor" />
+                    </div>
+                    <div className="space-y-1">
+                       <h3 className="text-white font-black text-lg">Daily Goal Alert</h3>
+                       <p className="text-blue-100/70 text-[12px] font-medium leading-relaxed">
+                         You are only 5 leads away from hitting your weekly qualification target. Keep going!
+                       </p>
+                    </div>
+                    <button className="w-full py-2.5 bg-white text-primary rounded-xl font-black text-xs hover:bg-blue-50 transition-all flex items-center justify-center gap-2">
+                       View My Targets <ChevronRight size={14} strokeWidth={3} />
+                    </button>
                   </div>
                 </div>
-                <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 h-full flex flex-col justify-center">
-                  <p className="text-xs text-gray-600 font-medium mb-1 uppercase tracking-wider">Record Highlights</p>
-                  <p className="text-[10px] text-gray-800 leading-relaxed">
-                    Overview of your CRM instance performance across all departments.
-                  </p>
-                </div>
+
               </div>
             </div>
+
           </div>
         </div>
       </div>
-
-
     </div>
   );
 }

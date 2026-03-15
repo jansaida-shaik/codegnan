@@ -10,11 +10,11 @@ const sidebarItems = [
 
 export default function HelpdeskPage() {
   return (
-    <div className="flex flex-col h-screen bg-gray-50">
+    <div className="flex flex-col h-screen rich-bg overflow-hidden">
       <TopBar />
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar */}
-        <aside className="w-48 bg-white border-r border-gray-200 shrink-0">
+        <aside className="w-56 bg-white border-r border-gray-200 shrink-0">
           <nav className="py-4">
             {sidebarItems.map((item) => (
               <div
@@ -32,12 +32,12 @@ export default function HelpdeskPage() {
         </aside>
 
         {/* Content */}
-        <main className="flex-1 overflow-y-auto p-8">
+        <main className="flex-1 overflow-y-auto p-6 lg:p-8 rich-bg">
           <div className="max-w-7xl">
             <h1 className="text-xl font-bold text-gray-900 mb-6">Help Desk Dashboard</h1>
             
-            <div className="grid grid-cols-2 gap-6">
-              <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
+            <div className="grid grid-cols-2 gap-8">
+              <div className="premium-card overflow-hidden flex flex-col">
                 <div className="px-6 py-3 border-b border-gray-100 flex items-center justify-between">
                   <h3 className="text-xl font-bold text-gray-900 leading-none">Recent Tickets</h3>
                   <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">14</span></p>
@@ -47,7 +47,7 @@ export default function HelpdeskPage() {
                 </div>
               </div>
               
-              <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
+              <div className="premium-card overflow-hidden flex flex-col">
                 <div className="px-6 py-3 border-b border-gray-100 flex items-center justify-between">
                   <h3 className="text-xl font-bold text-gray-900 leading-none">SLA Health</h3>
                   <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">98%</span></p>

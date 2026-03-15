@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
-import { Mail, Lock, ShieldCheck, ArrowRight } from "lucide-react";
+import { Mail, Lock, ShieldCheck, ArrowRight, Code, GraduationCap, Cpu, Globe, BookOpen, Database, Sparkle } from "lucide-react";
 
 export default function Home() {
   const router = useRouter();
@@ -29,22 +29,41 @@ export default function Home() {
           <div className="absolute -bottom-1/4 -right-1/4 w-full h-full bg-indigo-600/20 blur-[120px] rounded-full"></div>
         </div>
 
+        {/* Tech & EdTech Floating Icons */}
+        <div className="absolute inset-0 pointer-events-none opacity-[0.08] text-white">
+          <div className="absolute top-[10%] left-[15%] animate-drift"><Code size={80} strokeWidth={1} /></div>
+          <div className="absolute top-[20%] right-[20%] animate-float duration-[18s]"><GraduationCap size={100} strokeWidth={1} /></div>
+          <div className="absolute bottom-[20%] left-[25%] animate-drift duration-[30s] delay-700"><Cpu size={70} strokeWidth={1} /></div>
+          <div className="absolute bottom-[10%] right-[15%] animate-float duration-[22s] delay-1000"><BookOpen size={90} strokeWidth={1} /></div>
+          <div className="absolute top-[45%] left-[5%] animate-drift duration-[20s] delay-500"><Globe size={60} strokeWidth={1} /></div>
+          <div className="absolute top-[60%] right-[10%] animate-float duration-[16s]"><Database size={75} strokeWidth={1} /></div>
+        </div>
+
         <div className="relative z-10 flex flex-col items-center max-w-md w-full animate-in fade-in zoom-in-95 duration-1000">
-          <div className="bg-white/5 backdrop-blur-xl p-8 rounded-[2.5rem] border border-white/10 shadow-2xl mb-12 group transition-all duration-500 hover:bg-white/10 hover:border-white/20">
-            <Image
-              src="/logo.png"
-              alt="Codegnan Logo"
-              width={200}
-              height={200}
-              className="object-contain transition-transform duration-500 group-hover:scale-105"
-            />
+          {/* Static Logo Section - Maximum Clarity, Clean Geometry */}
+          <div className="relative mb-12 flex justify-center items-center">
+            {/* Subtle backlight */}
+            <div className="absolute inset-0 bg-blue-500/10 blur-[60px] rounded-full scale-150"></div>
+            
+            <div className="relative w-48 h-48 bg-white rounded-full shadow-2xl border border-gray-100/50 flex items-center justify-center overflow-hidden">
+              <Image
+                src="/logo.png"
+                alt="Codegnan Logo"
+                width={800}
+                height={800}
+                unoptimized
+                priority
+                className="object-contain w-full h-full rounded-full"
+              />
+            </div>
           </div>
+
           <div className="space-y-6 text-center">
             <h2 className="text-white text-5xl font-extrabold tracking-tight leading-[1.1]">
-              Unlock your <span className="text-blue-400">full potential</span> with us.
+              Elevating your <span className="text-blue-400">daily workflow</span>.
             </h2>
             <p className="text-blue-100/60 text-lg font-medium">
-              Join the ecosystem of creators and builders at Codegnan Spark.
+              The central portal for your daily professional needs and operational excellence at Codegnan.
             </p>
           </div>
 
@@ -131,21 +150,9 @@ export default function Home() {
             </button>
           </div>
 
-          {/* Divider */}
-          <div className="flex items-center gap-4 my-8">
-            <div className="flex-1 h-px bg-gray-100"></div>
-            <span className="text-gray-300 font-bold text-[10px] uppercase tracking-[0.2em] px-2">Secure Login</span>
-            <div className="flex-1 h-px bg-gray-100"></div>
-          </div>
-
-          {/* SSO */}
-          <button className="w-full py-3.5 border border-gray-200 text-gray-700 font-bold rounded-2xl hover:bg-gray-50 hover:border-gray-300 transition-all flex items-center justify-center gap-3 shadow-sm group">
-            <ShieldCheck className="w-5 h-5 text-gray-400 group-hover:text-primary transition-colors" />
-            Continue with SAML SSO
-          </button>
 
           <footer className="text-center text-gray-400 font-medium text-[11px] mt-12 tracking-wide">
-             POWERED BY <span className="text-gray-900 font-bold tracking-tighter">Spark Ecosystem™</span>
+             POWERED BY <span className="text-gray-900 font-bold tracking-tighter">Codegnan Ecosystem™</span>
           </footer>
         </div>
       </div>

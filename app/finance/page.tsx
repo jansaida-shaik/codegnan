@@ -18,18 +18,18 @@ export default function FinancePage() {
   ];
 
   return (
-    <div className="flex flex-col h-screen bg-white">
+    <div className="flex flex-col h-screen rich-bg overflow-hidden">
       <TopBar />
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar */}
-        <div className="w-48 bg-gray-50 border-r border-gray-200 flex flex-col shrink-0">
+        <div className="w-56 bg-white border-r border-gray-200 flex flex-col shrink-0">
 
           
           <nav className="flex-1 overflow-y-auto py-2">
             {sidebarItems.map((item) => (
               <div
                 key={item.label}
-                className={`flex items-center gap-3 px-4 py-2 text-xs font-semibold cursor-pointer transition-colors ${
+                className={`flex items-center gap-3 px-4 py-2 text-xs font-semibold cursor-pointer ${
                   item.active 
                     ? "text-blue-700 bg-blue-50 border-r-4 border-blue-600" 
                     : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
@@ -46,7 +46,7 @@ export default function FinancePage() {
             {["Zoho Payroll", "Zoho Payments"].map((app) => (
               <div
                 key={app}
-                className="flex items-center gap-3 px-4 py-2 text-xs font-semibold text-gray-600 hover:bg-gray-100 hover:text-gray-900 cursor-pointer transition-colors"
+                className="flex items-center gap-3 px-4 py-2 text-xs font-semibold text-gray-600 hover:bg-gray-100 hover:text-gray-900 cursor-pointer"
               >
                 <div className="w-4 h-4 rounded bg-gray-300"></div>
                 {app}
@@ -56,7 +56,7 @@ export default function FinancePage() {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 overflow-y-auto bg-gray-50 p-6">
+        <div className="flex-1 overflow-y-auto rich-bg p-6 lg:p-8">
           <div className="max-w-7xl">
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
@@ -80,9 +80,9 @@ export default function FinancePage() {
               <button className="pb-2 hover:text-gray-800 transition">Recent Updates</button>
             </div>
 
-            <div className="grid grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-2 gap-8 mb-8">
               {/* Total Receivables */}
-              <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
+              <div className="premium-card overflow-hidden flex flex-col">
                 <div className="px-6 py-3 border-b border-gray-100 flex items-center justify-between">
                   <h3 className="text-xl font-bold text-gray-900 leading-none">Total Receivables</h3>
                   <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">12</span></p>
@@ -107,7 +107,7 @@ export default function FinancePage() {
               </div>
 
               {/* Total Payables */}
-              <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
+              <div className="premium-card overflow-hidden flex flex-col">
                 <div className="px-6 py-3 border-b border-gray-100 flex items-center justify-between">
                   <h3 className="text-xl font-bold text-gray-900 leading-none">Total Payables</h3>
                   <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">48</span></p>
@@ -133,7 +133,7 @@ export default function FinancePage() {
             </div>
 
             {/* Cash Flow */}
-            <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden mb-6 flex flex-col">
+            <div className="premium-card overflow-hidden mb-8 flex flex-col">
               <div className="px-6 py-3 border-b border-gray-100 flex items-center justify-between">
                 <h3 className="text-xl font-bold text-gray-900 leading-none">Cash Flow</h3>
                 <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">12 Months</span></p>
@@ -175,9 +175,9 @@ export default function FinancePage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-2 gap-8 mb-8">
               {/* Income and Expense */}
-              <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
+              <div className="premium-card overflow-hidden flex flex-col">
                 <div className="px-6 py-3 border-b border-gray-100 flex items-center justify-between">
                   <h3 className="text-xl font-bold text-gray-900 leading-none">Income and Expense</h3>
                   <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">24 Metrics</span></p>
@@ -227,7 +227,7 @@ export default function FinancePage() {
               </div>
 
               {/* Top Expenses */}
-              <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
+              <div className="premium-card overflow-hidden flex flex-col">
                 <div className="px-6 py-3 border-b border-gray-100 flex items-center justify-between">
                   <h3 className="text-xl font-bold text-gray-900 leading-none">Top Expenses</h3>
                   <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">6 Categories</span></p>
