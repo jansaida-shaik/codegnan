@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
+import { Mail, Lock, ShieldCheck, ArrowRight } from "lucide-react";
 
 export default function Home() {
   const router = useRouter();
@@ -18,117 +19,134 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen flex bg-white">
+    <div className="min-h-screen flex bg-white font-sans selection:bg-blue-100 selection:text-primary">
 
       {/* Left Panel - Brand */}
-      <div className="hidden lg:flex w-1/2 bg-blue-700 flex-col items-center justify-center p-12 relative overflow-hidden">
-        {/* Background decorative elements */}
-        <div className="absolute top-0 left-0 w-full h-full opacity-10">
-          <div className="absolute -top-20 -left-20 w-96 h-96 rounded-full bg-white blur-3xl"></div>
-          <div className="absolute bottom-10 right-10 w-64 h-64 rounded-full bg-red-500 blur-3xl"></div>
+      <div className="hidden lg:flex w-1/2 bg-sapphire flex-col items-center justify-center p-12 relative overflow-hidden">
+        {/* Abstract Background Decor */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-40">
+          <div className="absolute -top-1/4 -left-1/4 w-full h-full bg-blue-600/20 blur-[120px] rounded-full"></div>
+          <div className="absolute -bottom-1/4 -right-1/4 w-full h-full bg-indigo-600/20 blur-[120px] rounded-full"></div>
         </div>
 
-        <div className="relative z-10 flex flex-col items-center">
-          <div className="bg-white p-6 rounded-3xl shadow-2xl mb-12">
+        <div className="relative z-10 flex flex-col items-center max-w-md w-full animate-in fade-in zoom-in-95 duration-1000">
+          <div className="bg-white/5 backdrop-blur-xl p-8 rounded-[2.5rem] border border-white/10 shadow-2xl mb-12 group transition-all duration-500 hover:bg-white/10 hover:border-white/20">
             <Image
               src="/logo.png"
               alt="Codegnan Logo"
-              width={180}
-              height={180}
-              className="object-contain"
+              width={200}
+              height={200}
+              className="object-contain transition-transform duration-500 group-hover:scale-105"
             />
           </div>
-          <h2 className="text-white text-4xl font-extrabold text-center leading-tight mb-6">
-            Everything you need,<br />in one place.
-          </h2>
+          <div className="space-y-6 text-center">
+            <h2 className="text-white text-5xl font-extrabold tracking-tight leading-[1.1]">
+              Unlock your <span className="text-blue-400">full potential</span> with us.
+            </h2>
+            <p className="text-blue-100/60 text-lg font-medium">
+              Join the ecosystem of creators and builders at Codegnan Spark.
+            </p>
+          </div>
 
-          {/* Decorative dots */}
-          <div className="flex gap-3 mt-8">
-            <div className="w-3 h-3 rounded-full bg-white"></div>
-            <div className="w-3 h-3 rounded-full bg-red-500"></div>
-            <div className="w-3 h-3 rounded-full bg-blue-300"></div>
+          {/* Interactive Indicators */}
+          <div className="flex gap-4 mt-12">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className={`h-1.5 rounded-full transition-all duration-500 ${i === 1 ? 'w-10 bg-blue-500' : 'w-2 bg-white/20'}`}></div>
+            ))}
           </div>
         </div>
       </div>
 
       {/* Right Panel - Login Form */}
-      <div className="flex-1 bg-white flex items-center justify-center p-8 lg:p-12 relative">
-        <div className="w-full max-w-md">
+      <div className="flex-1 bg-white flex items-center justify-center p-8 lg:p-12 relative overflow-y-auto">
+        <div className="w-full max-w-sm animate-in fade-in slide-in-from-right-8 duration-700">
 
           {/* Mobile logo */}
           <div className="flex lg:hidden justify-center mb-10">
             <Image
               src="/logo.png"
               alt="Codegnan Logo"
-              width={120}
-              height={120}
+              width={140}
+              height={140}
             />
           </div>
 
           {/* Heading */}
           <div className="mb-10 text-center lg:text-left">
-            <h1 className="text-4xl font-bold text-blue-900 mb-3">Welcome back</h1>
-            <p className="text-blue-700 font-medium">Sign in to your Codegnan account</p>
+            <h1 className="text-3xl font-extrabold text-gray-900 mb-2 tracking-tight">Welcome back</h1>
+            <p className="text-gray-500 font-semibold">Log in to manage your workspace</p>
           </div>
 
-          {/* Error */}
+          {/* Error Message */}
           {error && (
-            <div className="mb-6 px-4 py-3 bg-red-50 border-l-4 border-red-500 text-red-700 rounded-r-lg text-sm font-medium">
-              {error}
+            <div className="mb-6 px-4 py-3 bg-rose-50 border border-rose-100 text-rose-600 rounded-2xl text-sm font-bold flex items-center gap-2 animate-in slide-in-from-top-2">
+               <div className="w-1.5 h-1.5 rounded-full bg-rose-500"></div>
+               {error}
             </div>
           )}
 
           {/* Form */}
-          <div className="space-y-6">
-            <div>
-              <label className="text-sm font-bold text-blue-900 uppercase tracking-wider">Email address</label>
-              <input
-                type="email"
-                placeholder="you@codegnan.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full mt-2 px-4 py-3.5 bg-white text-blue-900 rounded-xl border-2 border-blue-100 focus:outline-none focus:border-blue-700 focus:ring-4 focus:ring-blue-50 transition-all font-medium placeholder:text-blue-300"
-              />
+          <div className="space-y-5">
+            <div className="space-y-2">
+              <label className="text-[11px] font-bold text-gray-400 uppercase tracking-widest ml-1">Email Address</label>
+              <div className="relative group">
+                <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-gray-400 group-focus-within:text-primary transition-colors">
+                  <Mail size={18} />
+                </div>
+                <input
+                  type="email"
+                  placeholder="name@company.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full pl-12 pr-4 py-3.5 bg-gray-50 text-gray-900 rounded-2xl border border-transparent focus:bg-white focus:border-primary/20 focus:ring-4 focus:ring-primary/5 transition-all font-semibold outline-none placeholder:text-gray-300"
+                />
+              </div>
             </div>
 
-            <div>
-              <div className="flex justify-between items-center mb-2">
-                <label className="text-sm font-bold text-blue-900 uppercase tracking-wider">Password</label>
-                <a href="#" className="text-sm font-bold text-red-600 hover:text-red-700 transition-colors">Forgot password?</a>
+            <div className="space-y-2">
+              <div className="flex justify-between items-center ml-1">
+                <label className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Password</label>
+                <button className="text-[11px] font-bold text-primary hover:text-primary-dark transition-colors uppercase tracking-widest">Forgot?</button>
               </div>
-              <input
-                type="password"
-                placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3.5 bg-white text-blue-900 rounded-xl border-2 border-blue-100 focus:outline-none focus:border-blue-700 focus:ring-4 focus:ring-blue-50 transition-all font-medium placeholder:text-blue-300"
-              />
+              <div className="relative group">
+                <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-gray-400 group-focus-within:text-primary transition-colors">
+                  <Lock size={18} />
+                </div>
+                <input
+                  type="password"
+                  placeholder="••••••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full pl-12 pr-4 py-3.5 bg-gray-50 text-gray-900 rounded-2xl border border-transparent focus:bg-white focus:border-primary/20 focus:ring-4 focus:ring-primary/5 transition-all font-semibold outline-none placeholder:text-gray-300"
+                />
+              </div>
             </div>
 
             <button
               onClick={handleLogin}
-              className="w-full py-4 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-bold rounded-xl transition-all shadow-lg shadow-red-500/30 transform hover:-translate-y-0.5"
+              className="w-full py-4 bg-primary hover:bg-primary-dark active:scale-[0.98] text-white font-bold rounded-2xl transition-all shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2 mt-4"
             >
-              Sign In to Codegnan Spark
+              Sign In
+              <ArrowRight size={18} strokeWidth={2.5} />
             </button>
           </div>
 
           {/* Divider */}
           <div className="flex items-center gap-4 my-8">
-            <div className="flex-1 h-px bg-blue-100"></div>
-            <span className="text-blue-400 font-medium text-sm px-2">OR</span>
-            <div className="flex-1 h-px bg-blue-100"></div>
+            <div className="flex-1 h-px bg-gray-100"></div>
+            <span className="text-gray-300 font-bold text-[10px] uppercase tracking-[0.2em] px-2">Secure Login</span>
+            <div className="flex-1 h-px bg-gray-100"></div>
           </div>
 
           {/* SSO */}
-          <button className="w-full py-3.5 border-2 border-blue-100 text-blue-900 font-bold rounded-xl hover:bg-blue-50 hover:border-blue-200 transition-all flex items-center justify-center gap-3">
-            <svg className="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-            Continue with Single Sign-On
+          <button className="w-full py-3.5 border border-gray-200 text-gray-700 font-bold rounded-2xl hover:bg-gray-50 hover:border-gray-300 transition-all flex items-center justify-center gap-3 shadow-sm group">
+            <ShieldCheck className="w-5 h-5 text-gray-400 group-hover:text-primary transition-colors" />
+            Continue with SAML SSO
           </button>
 
-          <p className="text-center text-blue-400 font-medium text-sm mt-12">
-            © 2025 Codegnan®. All rights reserved.
-          </p>
+          <footer className="text-center text-gray-400 font-medium text-[11px] mt-12 tracking-wide">
+             POWERED BY <span className="text-gray-900 font-bold tracking-tighter">Spark Ecosystem™</span>
+          </footer>
         </div>
       </div>
     </div>
