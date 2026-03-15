@@ -21,8 +21,8 @@ export default function FinancePage() {
     <div className="flex flex-col h-screen rich-bg overflow-hidden">
       <TopBar />
       <div className="flex flex-1 overflow-hidden">
-        {/* Sidebar */}
-        <div className="w-56 bg-white border-r border-gray-200 flex flex-col shrink-0">
+        {/* Sidebar - Hidden on mobile */}
+        <div className="hidden lg:flex w-56 bg-white border-r border-gray-200 flex-col shrink-0">
 
           
           <nav className="flex-1 overflow-y-auto py-2">
@@ -56,10 +56,10 @@ export default function FinancePage() {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 overflow-y-auto rich-bg p-6 lg:p-8">
-          <div className="max-w-7xl">
+        <div className="flex-1 overflow-y-auto rich-bg p-4 md:p-6 lg:p-8">
+          <div className="w-full">
             {/* Header */}
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-lg border border-gray-200 bg-transparent flex items-center justify-center text-gray-500 shadow-sm">
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -74,13 +74,13 @@ export default function FinancePage() {
             </div>
 
             {/* Tabs */}
-            <div className="flex items-center gap-6 border-b border-gray-200 mb-6 text-xs font-semibold text-gray-800">
+            <div className="flex items-center gap-4 md:gap-6 border-b border-gray-200 mb-6 text-[11px] md:text-xs font-semibold text-gray-800 overflow-x-auto no-scrollbar whitespace-nowrap">
               <button className="pb-2 border-b-2 border-blue-600 text-blue-700">Dashboard</button>
               <button className="pb-2 hover:text-gray-800 transition">Getting Started</button>
               <button className="pb-2 hover:text-gray-800 transition">Recent Updates</button>
             </div>
 
-            <div className="grid grid-cols-2 gap-8 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-8">
               {/* Total Receivables */}
               <div className="premium-card overflow-hidden flex flex-col">
                 <div className="px-6 py-3 border-b border-gray-100 flex items-center justify-between">

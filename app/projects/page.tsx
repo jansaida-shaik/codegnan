@@ -14,8 +14,8 @@ export default function ProjectsPage() {
     <div className="flex flex-col h-screen rich-bg overflow-hidden">
       <TopBar />
       <div className="flex flex-1 overflow-hidden">
-        {/* Sidebar */}
-        <aside className="w-56 bg-white border-r border-gray-200 shrink-0">
+        {/* Sidebar - Hidden on mobile */}
+        <aside className="hidden lg:block w-56 bg-white border-r border-gray-200 shrink-0">
           <nav className="py-4">
             {sidebarItems.map((item) => (
               <div
@@ -33,11 +33,11 @@ export default function ProjectsPage() {
         </aside>
 
         {/* Content */}
-        <main className="flex-1 overflow-y-auto p-6 lg:p-8 rich-bg">
-          <div className="max-w-7xl">
+        <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 rich-bg">
+          <div className="w-full">
             <h1 className="text-xl font-bold text-gray-900 mb-6">Projects Dashboard</h1>
             
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
               <div className="premium-card overflow-hidden flex flex-col">
                 <div className="px-6 py-3 border-b border-gray-100 flex items-center justify-between">
                   <h3 className="text-xl font-bold text-gray-900 leading-none">Project Overview</h3>

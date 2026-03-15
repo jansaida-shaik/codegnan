@@ -240,8 +240,9 @@ export default function TopBar() {
             <div className="w-8 lg:w-9 h-8 lg:h-9 rounded-xl bg-gradient-to-br from-primary to-primary-dark shadow-md shadow-primary/20 flex items-center justify-center text-white text-[13px] font-bold shrink-0">
               J
             </div>
-            <div className="hidden sm:flex flex-col items-start leading-tight">
-              <span className="text-[12px] lg:text-[13px] font-bold text-gray-800 group-hover:text-primary transition-colors whitespace-nowrap">Jan Saida Shaik</span>
+            <div className="hidden sm:flex flex-col items-start leading-none">
+              <span className="text-[12px] lg:text-[13px] font-black text-gray-900 group-hover:text-primary transition-colors whitespace-nowrap mb-0.5">Jan Saida Shaik</span>
+              <span className="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Super Admin</span>
             </div>
             <ChevronDown size={14} className="text-gray-400 group-hover:text-gray-600 transition-colors hidden sm:block" />
           </button>

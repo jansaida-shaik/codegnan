@@ -32,9 +32,9 @@ function BundleHome() {
   );
 
   return (
-    <div className="flex-1 overflow-y-auto rich-bg flex flex-col items-start">
+    <div className="flex-1 overflow-y-auto rich-bg flex flex-col items-start px-4 md:px-6 lg:px-8 py-6 lg:py-8 space-y-6 lg:space-y-8">
       {/* Dashboard */}
-      <div className="p-4 lg:p-8 w-full max-w-[1600px] space-y-6 lg:space-y-8">
+      <div className="w-full space-y-6 lg:space-y-8">
         
         {/* Header Section */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
