@@ -1,96 +1,115 @@
 "use client";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
+import { Home, Search, Bell, ChevronDown, Settings } from "lucide-react";
 
 const apps = [
   {
     id: "home",
     href: "/home",
     label: "Home",
-    icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-      </svg>
-    ),
+    icon: <Home size={15} strokeWidth={2} />,
+    color: "#6366f1",
+    bg: "#eef2ff",
   },
   {
     id: "crm",
     href: "/crm",
     label: "CRM",
     icon: (
-      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path d="M15 7h1c2.76 0 5 2.24 5 5s-2.24 5-5 5h-1" strokeWidth="2.5" strokeLinecap="round"/>
-        <path d="M9 17H8c-2.76 0-5-2.24-5-5s2.24-5 5-5h1" strokeWidth="2.5" strokeLinecap="round"/>
-        <path d="M8 12h8" strokeWidth="2.5" strokeLinecap="round"/>
+      <svg width="15" height="15" viewBox="0 0 1024 1024" fill="currentColor">
+        <path d="M701.8,834.2c-85.4,0-165.9-33.1-226.6-93.2l-0.1-0.1L297.8,563.6c-20.6-20.7-32-48.1-31.9-77.3s11.6-56.6,32.4-77.1c20.5-20.3,47.7-31.4,76.5-31.4c0.1,0,0.2,0,0.3,0c29,0.1,56.2,11.4,76.7,31.9l162.5,162.5c19,19,50.1,19.1,69.2,0.2c9.3-9.2,14.5-21.6,14.6-34.8c0-13.2-5.1-25.5-14.4-34.8L506.5,325.5c-49.4-48.8-114.8-75.7-184.3-75.7c-0.2,0-0.4,0-0.6,0c-71.1,0.2-137.5,28.1-186.9,78.6c-49.5,50.6-76,117.7-74.6,188.8c1.4,68.9,29.2,133.5,78.5,181.8c49.3,48.4,114.5,75.1,183.7,75.1c25.3,0,50.4-3.6,74.4-10.7c15.9-4.7,32.6,4.4,37.3,20.3c4.7,15.9-4.4,32.6-20.3,37.3c-29.6,8.7-60.3,13.2-91.4,13.2c-84.9,0-165.1-32.8-225.7-92.2C36,682.5,1.7,603.2,0.1,518.5c-0.9-44.1,7-87,23.3-127.5c15.8-39.1,38.8-74.2,68.3-104.5c29.5-30.2,64.1-53.9,102.8-70.6c40.1-17.2,82.8-26,126.9-26.1c0.2,0,0.5,0,0.8,0c85.4,0,165.9,33.1,226.6,93.1l0.1,0.1l177.2,177.2c20.7,20.7,32,48.2,31.9,77.4s-11.6,56.7-32.3,77.2c-42.5,42.1-111.5,41.9-153.8-0.4L409.4,452c-19-19-49.9-19-68.9-0.2c-9.3,9.2-14.5,21.5-14.5,34.6s5,25.5,14.3,34.7l177.2,177.2c49.3,48.8,114.8,75.7,184.3,75.7c70,0,135.8-27.2,185.3-76.7s76.8-115.2,76.9-185.2c0.1-70-27.2-135.9-76.8-185.5s-115.4-77-185.4-77c-22.3,0-44.5,2.8-65.8,8.3c-3.1,0.8-6.2,1.7-9.3,2.6c-15.9,4.7-32.6-4.3-37.3-20.2s4.3-32.6,20.2-37.3c3.8-1.1,7.6-2.2,11.4-3.2c26.3-6.8,53.5-10.2,80.9-10.2c43.5,0,85.7,8.5,125.4,25.4c38.4,16.3,72.8,39.5,102.4,69.2c29.6,29.6,52.8,64.1,69,102.5c16.8,39.8,25.3,82,25.3,125.5c-0.1,86-33.7,166.8-94.5,227.6C868.7,800.7,787.8,834.2,701.8,834.2z"/>
       </svg>
     ),
+    color: "#226DB4",
+    bg: "#e8f0fb",
   },
   {
     id: "finance",
     href: "/finance",
     label: "Finance",
     icon: (
-      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <rect x="3" y="3" width="18" height="18" rx="4" strokeWidth="2.5"/>
-        <path d="M9 8h3a2 2 0 012 2v0a2 2 0 01-2 2H9m0 0h3a2 2 0 012 2v0a2 2 0 01-2 2H9m0-8v8" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M15 9.5a4 4 0 0 0-6 3.5c0 2 1.5 3 3 3.5s3 1.5 3 3.5a4 4 0 0 1-6 0"/>
+        <line x1="12" y1="7" x2="12" y2="17"/>
       </svg>
     ),
+    color: "#0ea5e9",
+    bg: "#e0f2fe",
   },
   {
     id: "hr",
     href: "/hr",
     label: "HR",
     icon: (
-      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" strokeWidth="2" strokeLinecap="round"/>
-        <circle cx="9" cy="7" r="4" strokeWidth="2"/>
-        <path d="M23 21v-2a4 4 0 00-3-3.87" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M16 3.13a4 4 0 010 7.75" strokeWidth="2" strokeLinecap="round"/>
+      <svg width="15" height="15" viewBox="0 0 1024 1024" fill="currentColor">
+        <path d="M512,1024c-7.7,0-15.4-2.9-21.2-8.8L367,891.4c-5.6-5.6-8.8-13.3-8.8-21.2s3.2-15.6,8.8-21.2l123.8-123.8c11.7-11.7,30.7-11.7,42.4,0L657,849c5.6,5.6,8.8,13.3,8.8,21.2s-3.2,15.6-8.8,21.2l-123.8,123.8C527.4,1021.1,519.7,1024,512,1024z M430.6,870.2l81.4,81.4l81.4-81.4L512,788.8L430.6,870.2z"/>
+        <path d="M755.9,780.6c-7.7,0-15.4-2.9-21.2-8.8L611.1,648.3c-5.6-5.6-8.8-13.3-8.8-21.2s3.2-15.6,8.8-21.2l38.4-38.3c36.7-36.7,56.9-85.4,56.9-137.3c0-51.8-20.2-100.6-56.9-137.3l-0.2-0.2c-75.7-75.7-198.8-75.7-274.5,0l-0.1,0.1c-30.1,30.1-49.1,68.1-55,110.1c-5.7,40.6,1.7,82.8,21,118.7c7.8,14.6,2.3,32.8-12.3,40.6c-14.6,7.8-32.8,2.3-40.6-12.3c-25.2-47.1-34.9-102.3-27.5-155.4c7.7-55,32.6-104.8,72-144.1l0.1-0.1c48-48,111.9-74.5,179.7-74.5c67.9,0,131.7,26.4,179.7,74.4l0.2,0.2c48,48,74.4,111.8,74.4,179.7c0,67.9-26.4,131.7-74.4,179.7l-17.1,17.1l81.1,81.1l17.4-17.4c69.8-69.8,108.2-162.6,108.2-261.3S843.1,238,773.3,168.2C703.5,98.4,610.7,60,512,60S320.5,98.4,250.7,168.2C180.9,238,142.5,330.8,142.5,429.5c0,98.7,38.4,191.5,108.2,261.3l17.4,17.4l102.3-102.3c11.7-11.7,30.7-11.7,42.4,0c11.7,11.7,11.7,30.7,0,42.4L289.3,771.8c-11.7,11.7-30.7,11.7-42.4,0l-38.7-38.6c-41-41-72.7-88.8-94.4-142.1C93,539.6,82.5,485.3,82.5,429.5c0-55.8,10.6-110.1,31.5-161.6c21.6-53.3,53.4-101.1,94.4-142.1c41-41,88.8-72.7,142.1-94.3C401.8,10.6,456.2,0,512,0c55.8,0,110.2,10.6,161.6,31.5c53.3,21.6,101.1,53.4,142.1,94.3c41,41,72.7,88.8,94.4,142.1c20.9,51.5,31.5,105.8,31.5,161.6c0,55.8-10.6,110.1-31.5,161.6c-21.6,53.3-53.4,101.1-94.4,142.1l-38.7,38.7C771.2,777.7,763.5,780.6,755.9,780.6z"/>
       </svg>
     ),
+    color: "#E52729",
+    bg: "#fef2f2",
   },
   {
     id: "projects",
     href: "/projects",
     label: "Projects",
     icon: (
-      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M9 13l2 2 4-4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <svg width="15" height="15" viewBox="0 0 1024 1024">
+        <path fill="#F7B21B" d="M395.9,928c-7.7,0-15.4-2.9-21.2-8.8L182.9,727.4c-11.7-11.7-11.7-30.7,0-42.4c11.7-11.7,30.7-11.7,42.4,0l191.8,191.8c11.7,11.7,11.7,30.7,0,42.4C411.3,925.1,403.6,928,395.9,928z"/>
+        <path fill="#F7B21B" d="M396.1,579.7c-7.7,0-15.3-2.9-21.2-8.8l-192-191.5c-11.7-11.7-11.8-30.7-0.1-42.4c11.7-11.7,30.7-11.8,42.4-0.1l192,191.5c11.7,11.7,11.8,30.7,0.1,42.4C411.5,576.8,403.8,579.7,396.1,579.7z"/>
+        <path fill="#F7B21B" d="M395.9,754c-7.7,0-15.4-2.9-21.2-8.8L183.3,553.8c-11.7-11.7-11.7-30.7,0-42.4c11.7-11.7,30.7-11.7,42.4,0l191.4,191.4c11.7,11.7,11.7,30.7,0,42.4C411.3,751,403.6,754,395.9,754z"/>
+        <path fill="#236EB4" d="M619.5,704.4c-7.7,0-15.4-2.9-21.2-8.8c-11.7-11.7-11.7-30.7,0-42.4l374.4-374.4c11.7-11.7,30.7-11.7,42.4,0c11.7,11.7,11.7,30.7,0,42.4L640.7,695.6C634.9,701.5,627.2,704.4,619.5,704.4z"/>
+        <path fill="#236EB4" d="M619.5,530.4c-7.7,0-15.4-2.9-21.2-8.8c-11.7-11.7-11.7-30.7,0-42.4L864.5,213l-44.6-44.6L640.8,347.5c-11.7,11.7-30.7,11.7-42.4,0c-11.7-11.7-11.7-30.7,0-42.4l200.3-200.3c5.6-5.6,13.3-8.8,21.2-8.8c8,0,15.6,3.2,21.2,8.8l87,87c11.7,11.7,11.7,30.7,0,42.4L640.7,521.6C634.9,527.4,627.2,530.4,619.5,530.4z"/>
+        <path fill="#049949" d="M396.1,579.7c-7.7,0-15.4-2.9-21.2-8.8c-11.7-11.7-11.7-30.7,0-42.4l223.4-223.4c11.7-11.7,30.7-11.7,42.4,0c11.7,11.7,11.7,30.7,0,42.4L417.4,570.9C411.5,576.8,403.8,579.7,396.1,579.7z"/>
+        <path fill="#049949" d="M395.9,754c-7.7,0-15.4-2.9-21.2-8.8c-11.7-11.7-11.7-30.7,0-42.4l223.6-223.6c11.7-11.7,30.7-11.7,42.4,0c11.7,11.7,11.7,30.7,0,42.4L417.1,745.2C411.3,751,403.6,754,395.9,754z"/>
+        <path fill="#049949" d="M395.9,928c-7.7,0-15.4-2.9-21.2-8.8c-11.7-11.7-11.7-30.7,0-42.4l223.6-223.6c11.7-11.7,30.7-11.7,42.4,0c11.7,11.7,11.7,30.7,0,42.4L417.1,919.2C411.3,925.1,403.6,928,395.9,928z"/>
+        <path fill="#E32628" d="M204.1,736.2c-7.7,0-15.4-2.9-21.2-8.8l-174-174c-5.6-5.6-8.8-13.3-8.8-21.2s3.2-15.6,8.8-21.2l174-174c11.7-11.7,30.7-11.7,42.4,0c11.7,11.7,11.7,30.7,0,42.4L72.5,532.2L225.3,685c11.7,11.7,11.7,30.7,0,42.4C219.5,733.3,211.8,736.2,204.1,736.2z"/>
       </svg>
     ),
+    color: "#F7B21B",
+    bg: "#fffbeb",
   },
   {
     id: "helpdesk",
     href: "/helpdesk",
     label: "Help Desk",
     icon: (
-      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 11-7.6-7.6 8.38 8.38 0 013.8.9L22 4l-2.5 7.5z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <svg width="15" height="15" viewBox="0 0 1024 1024" fill="currentColor">
+        <path d="M132.37,1024c-5.81,0-11.62-1.69-16.65-5.05c-9.78-6.53-14.84-18.16-12.96-29.76l85.68-527.31c4.56-28.09,19.02-53.72,40.7-72.16s49.29-28.6,77.75-28.6H660.2l19.74-121.02H647c-14.69,0-28.57-6.42-38.08-17.6c-9.52-11.19-13.62-25.91-11.27-40.41l22.74-140.1C624.33,17.66,645.09,0,669.74,0h131.87c35.25,0,68.57,15.4,91.41,42.25c22.84,26.85,32.69,62.21,27.04,97l-53.04,326.22c-2.32,14.29-10.71,26.86-23.02,34.48L548.29,683.17c-17.91,11.1-41.02,9.73-57.5-3.4L352.94,569.89c-12.96-10.33-15.09-29.2-4.76-42.16c10.33-12.96,29.2-15.09,42.16-4.76l132.34,105.49l285.85-177.1l52.3-321.73c2.83-17.4-2.1-35.08-13.52-48.5C835.9,67.7,819.24,60,801.61,60H678.25l-19.5,120.1h32.96c14.69,0,28.58,6.42,38.1,17.62s13.62,25.93,11.25,40.43l-23,141.02c-3.96,24.31-24.72,41.95-49.35,41.95H306.88c-29.57,0-54.48,21.19-59.22,50.38l-75.12,462.3l105.36-65.3c7.92-4.91,17.03-7.5,26.34-7.5h386.66c29.57,0,54.48-21.19,59.22-50.38l24.06-148.05c2.66-16.35,18.07-27.46,34.42-24.8c16.35,2.66,27.46,18.07,24.8,34.42l-24.06,148.05c-4.57,28.09-19.02,53.72-40.7,72.16C746.97,910.85,719.35,921,690.89,921H307.09l-158.91,98.5C143.33,1022.5,137.84,1024,132.37,1024z"/>
       </svg>
     ),
+    color: "#089949",
+    bg: "#f0fdf4",
   },
   {
     id: "analytics",
     href: "/analytics",
     label: "Analytics",
     icon: (
-      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <line x1="18" y1="20" x2="18" y2="10" strokeWidth="2.5" strokeLinecap="round"/>
-        <line x1="12" y1="20" x2="12" y2="4" strokeWidth="2.5" strokeLinecap="round"/>
-        <line x1="6" y1="20" x2="6" y2="14" strokeWidth="2.5" strokeLinecap="round"/>
+      <svg width="15" height="15" viewBox="0 0 1024 1024" fill="currentColor">
+        <path d="M1011.2,830L818.2,497.4l133.9-230.7l12.2,46c3.6,13.4,15.7,22.3,29,22.3c2.5,0,5.1-0.3,7.7-1c16-4.3,25.5-20.7,21.3-36.7l-30.8-116c-1.4-5.4-4.2-10-7.9-13.6c-0.3-0.3-0.7-0.7-1-1c-2.3-2-4.8-3.7-7.6-4.9c-2-0.9-4.1-1.5-6.3-1.9c-0.5-0.1-1-0.2-1.5-0.4l-115.9,30.8c-16,4.3-25.5,20.7-21.3,36.7c4.3,16,20.7,25.5,36.7,21.3l46-12.2l-116.6,201l-193.7-334c-16.3-28.1-45.4-44.8-77.8-44.8s-61.6,16.8-77.8,44.8L12.8,830c-16.3,28.2-16.4,61.9-0.1,90.1c16.3,28.2,45.4,45.1,78,45.1h107.2c16.6,0,30-13.4,30-30s-13.4-30-30-30H90.7c-15.7,0-23.4-10.5-26-15c-2.6-4.5-7.8-16.5,0.1-30L486,133.8c7.8-13.5,20.8-15,26-15c5.2,0,18.1,1.5,26,15l210.9,363.6L647.6,671.9l-83.7-144.4c-10.9-18.7-30.3-29.9-51.9-29.9s-41,11.2-51.9,29.9L284.6,830c-16.3,28.2-16.4,61.8-0.1,90.1c16.3,28.2,45.4,45.1,78,45.1h570.8c32.6,0,61.7-16.8,78-45.1C1027.6,891.9,1027.5,858.2,1011.2,830z M959.3,890.2c-2.6,4.5-10.3,15-26,15H362.5c-15.7,0-23.4-10.5-26-15c-2.6-4.5-7.8-16.5,0-30L512,557.6L595.7,702c10.9,18.7,30.3,29.9,51.9,29.9s41-11.2,51.9-29.9l84-144.8l175.7,303C967.1,873.7,961.9,885.7,959.3,890.2z"/>
       </svg>
     ),
+    color: "#E42528",
+    bg: "#fff1f2",
   },
   {
     id: "marketing",
     href: "/marketing",
     label: "Marketing",
     icon: (
-      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <svg width="15" height="15" viewBox="0 0 1024 1024">
+        <path fill="#E42527" d="M797.65,431.48H39.25c-20.71,0-37.5-16.79-37.5-37.5c0-20.71,16.79-37.5,37.5-37.5H775.4L905.91,117.4c9.92-18.18,32.7-24.87,50.88-14.95s24.87,32.7,14.95,50.88L830.57,411.95C823.99,423.99,811.37,431.48,797.65,431.48z"/>
+        <path fill="#F9B21D" d="M707.61,596.54H129.37c-20.71,0-37.5-16.79-37.5-37.5s16.79-37.5,37.5-37.5h578.24c20.71,0,37.5,16.79,37.5,37.5S728.32,596.54,707.61,596.54z"/>
+        <path fill="#089949" d="M617.63,761.35H219.35c-20.71,0-37.5-16.79-37.5-37.5s16.79-37.5,37.5-37.5h398.28c20.71,0,37.5,16.79,37.5,37.5S638.34,761.35,617.63,761.35z"/>
+        <path fill="#226DB4" d="M527.47,926.13H309.5c-20.71,0-37.5-16.79-37.5-37.5s16.79-37.5,37.5-37.5h217.97c20.71,0,37.5,16.79,37.5,37.5S548.18,926.13,527.47,926.13z"/>
+        <path fill="#E42527" d="M985.23,344.38c-16.52,0-31.65-11-36.17-27.71l-36.63-135.3L777.13,218c-19.99,5.41-40.58-6.41-46-26.4c-5.41-19.99,6.41-40.58,26.4-46l171.49-46.43c9.6-2.6,19.84-1.28,28.47,3.67c8.63,4.95,14.93,13.12,17.53,22.73l46.43,171.5c5.41,19.99-6.41,40.58-26.4,46C991.77,343.96,988.47,344.38,985.23,344.38z"/>
       </svg>
     ),
+    color: "#E42527",
+    bg: "#fff1f2",
   },
 ];
 
@@ -99,75 +118,143 @@ export default function TopBar() {
   const pathname = usePathname();
 
   return (
-    <div className="bg-white border-b border-gray-200 h-12 flex items-center px-4 gap-2 shrink-0 shadow-sm">
-      {/* Logo — clicking goes to Spark home */}
+    <div
+      className="h-[52px] flex items-center px-4 shrink-0 bg-white"
+      style={{
+        borderBottom: "1px solid #f0f0f0",
+        boxShadow: "0 1px 0 0 #f0f0f0, 0 2px 8px 0 rgba(0,0,0,0.04)",
+      }}
+    >
+      {/* Logo */}
       <div
-        className="flex items-center shrink-0 mr-3 cursor-pointer"
+        className="flex items-center shrink-0 cursor-pointer mr-4"
         onClick={() => router.push("/home")}
       >
         <Image
           src="/Codegnan Logo R New.png"
-          alt="Codegnan Logo"
-          width={150}
-          height={40}
+          alt="Codegnan"
+          width={124}
+          height={34}
           className="object-contain"
+          priority
         />
       </div>
 
+      {/* Divider */}
+      <div className="h-5 w-px bg-gray-200 mr-4 shrink-0" />
+
       {/* App Switcher */}
-      <div className="flex items-center gap-2 border-r border-gray-200 pr-3 mr-2">
+      <div className="flex items-center gap-0.5 flex-1 overflow-x-auto no-scrollbar">
         {apps.map((app) => {
           const isActive = pathname.startsWith(app.href);
           return (
             <button
               key={app.id}
               onClick={() => router.push(app.href)}
-              title={app.label}
-              className={`flex items-center justify-center px-4 py-1.5 rounded-lg text-sm font-medium transition-all gap-2 ${
+              className="relative flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12.5px] font-medium transition-all duration-200 whitespace-nowrap shrink-0 group"
+              style={
                 isActive
-                  ? "bg-blue-700 text-white shadow-sm"
-                  : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-              }`}
+                  ? {
+                      background: app.bg,
+                      color: app.color,
+                    }
+                  : {
+                      color: "#4b5563",
+                    }
+              }
             >
-              <div className={
-                isActive 
-                  ? "text-white" 
-                  : app.id === "home" ? "text-blue-700" :
-                    app.id === "crm" ? "text-blue-700" :
-                    app.id === "finance" ? "text-blue-700" :
-                    app.id === "hr" ? "text-red-600" :
-                    app.id === "projects" ? "text-green-600" :
-                    app.id === "helpdesk" ? "text-cyan-600" :
-                    app.id === "analytics" ? "text-orange-600" :
-                    app.id === "marketing" ? "text-red-700" : ""
-              }>
+              {/* Active left border accent */}
+              {isActive && (
+                <span
+                  className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-4 rounded-full"
+                  style={{ background: app.color }}
+                />
+              )}
+
+              {/* Icon wrapper */}
+              <span
+                className="flex items-center justify-center transition-transform duration-200 group-hover:scale-110"
+                style={{ color: isActive ? app.color : undefined }}
+              >
                 {app.icon}
-              </div>
-              <span>{app.label}</span>
+              </span>
+
+              {app.label}
+
+              {/* Hover underline */}
+              {!isActive && (
+                <span
+                  className="absolute bottom-0.5 left-3 right-3 h-px scale-x-0 group-hover:scale-x-100 transition-transform duration-200 rounded-full"
+                  style={{ background: app.color }}
+                />
+              )}
             </button>
           );
         })}
       </div>
 
-      {/* Right icons + user */}
-      <div className="flex-1" />
-      <div className="flex items-center gap-3 text-gray-600">
-        <svg className="w-4 h-4 cursor-pointer hover:text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-        <svg className="w-4 h-4 cursor-pointer hover:text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-        </svg>
-        <svg className="w-4 h-4 cursor-pointer hover:text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-        </svg>
-        <div className="flex items-center gap-2 cursor-pointer group">
-          <div className="w-7 h-7 rounded-full bg-blue-700 text-white text-xs font-bold flex items-center justify-center">J</div>
-          <div className="flex flex-col">
-            <span className="text-xs font-bold text-gray-800 group-hover:text-blue-700 transition-colors leading-none">Jan Saida Shaik</span>
-            <span className="text-[10px] text-gray-600 font-medium mt-0.5">Super Admin</span>
-          </div>
+      {/* Right Side */}
+      <div className="flex items-center gap-2 ml-3 shrink-0">
+
+        {/* Search */}
+        <div
+          className="flex items-center gap-2 rounded-lg px-3 py-1.5 w-40 cursor-text transition-all hover:w-52"
+          style={{
+            background: "#f8f9fa",
+            border: "1px solid #f0f0f0",
+          }}
+        >
+          <Search size={12} className="text-gray-400 shrink-0" />
+          <span className="text-[11.5px] text-gray-400">Search anything...</span>
+          <span
+            className="ml-auto text-[10px] px-1.5 py-0.5 rounded font-mono text-gray-400"
+            style={{ background: "#efefef" }}
+          >
+            ⌘K
+          </span>
         </div>
+
+        {/* Settings */}
+        <button
+          className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-all"
+        >
+          <Settings size={14} />
+        </button>
+
+        {/* Notifications */}
+        <button className="relative p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-all">
+          <Bell size={14} />
+          <span
+            className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full"
+            style={{ background: "#ef4444" }}
+          />
+        </button>
+
+        {/* Divider */}
+        <div className="h-5 w-px bg-gray-200 mx-1 shrink-0" />
+
+        {/* User Avatar */}
+        <div className="flex items-center gap-2 cursor-pointer group px-2 py-1 rounded-lg hover:bg-gray-50 transition-all">
+          <div
+            className="w-7 h-7 rounded-full flex items-center justify-center text-white text-[11px] font-bold shrink-0"
+            style={{
+              background: "linear-gradient(135deg, #226DB4 0%, #1a54a0 100%)",
+              boxShadow: "0 1px 4px rgba(34,109,180,0.4)",
+            }}
+          >
+            J
+          </div>
+          <div className="flex flex-col leading-none">
+            <span className="text-[12px] font-semibold text-gray-800 group-hover:text-blue-700 transition-colors">
+              Jan Saida Shaik
+            </span>
+            <span className="text-[10px] text-gray-400 mt-0.5">
+              Super Admin
+            </span>
+          </div>
+          <ChevronDown size={11} className="text-gray-400 shrink-0" />
+        </div>
+
       </div>
     </div>
   );
