@@ -54,39 +54,6 @@ const apps = [
     bg: "bg-sky-50/50",
   },
   {
-    id: "hr",
-    href: "/hr",
-    label: "HR",
-    icon: (
-      <svg width="15" height="15" viewBox="0 0 1024 1024" fill="currentColor">
-        <path d="M512,1024c-7.7,0-15.4-2.9-21.2-8.8L367,891.4c-5.6-5.6-8.8-13.3-8.8-21.2s3.2-15.6,8.8-21.2l123.8-123.8c11.7-11.7,30.7-11.7,42.4,0L657,849c5.6,5.6,8.8,13.3,8.8,21.2s-3.2,15.6-8.8,21.2l-123.8,123.8C527.4,1021.1,519.7,1024,512,1024z M430.6,870.2l81.4,81.4l81.4-81.4L512,788.8L430.6,870.2z"/>
-        <path d="M755.9,780.6c-7.7,0-15.4-2.9-21.2-8.8L611.1,648.3c-5.6-5.6-8.8-13.3-8.8-21.2s3.2-15.6,8.8-21.2l38.4-38.3c36.7-36.7,56.9-85.4,56.9-137.3c0-51.8-20.2-100.6-56.9-137.3l-0.2-0.2c-75.7-75.7-198.8-75.7-274.5,0l-0.1,0.1c-30.1,30.1-49.1,68.1-55,110.1c-5.7,40.6,1.7,82.8,21,118.7c7.8,14.6,2.3,32.8-12.3,40.6c-14.6,7.8-32.8,2.3-40.6-12.3c-25.2-47.1-34.9-102.3-27.5-155.4c7.7-55,32.6-104.8,72-144.1l0.1-0.1c48-48,111.9-74.5,179.7-74.5c67.9,0,131.7,26.4,179.7,74.4l0.2,0.2c48,48,74.4,111.8,74.4,179.7c0,67.9-26.4,131.7-74.4,179.7l-17.1,17.1l81.1,81.1l17.4-17.4c69.8-69.8,108.2-162.6,108.2-261.3S843.1,238,773.3,168.2C703.5,98.4,610.7,60,512,60S320.5,98.4,250.7,168.2C180.9,238,142.5,330.8,142.5,429.5c0,98.7,38.4,191.5,108.2,261.3l17.4,17.4l102.3-102.3c11.7-11.7,30.7-11.7,42.4,0c11.7,11.7,11.7,30.7,0,42.4L289.3,771.8c-11.7,11.7-30.7,11.7-42.4,0l-38.7-38.6c-41-41-72.7-88.8-94.4-142.1C93,539.6,82.5,485.3,82.5,429.5c0-55.8,10.6-110.1,31.5-161.6c21.6-53.3,53.4-101.1,94.4-142.1c41-41,88.8-72.7,142.1-94.3C401.8,10.6,456.2,0,512,0c55.8,0,110.2,10.6,161.6,31.5c53.3,21.6,101.1,53.4,142.1,94.3c41,41,72.7,88.8,94.4,142.1c20.9,51.5,31.5,105.8,31.5,161.6c0,55.8-10.6,110.1-31.5,161.6c-21.6,53.3-53.4,101.1-94.4,142.1l-38.7,38.7C771.2,777.7,763.5,780.6,755.9,780.6z"/>
-      </svg>
-    ),
-    color: "text-red-600",
-    bg: "bg-red-50/50",
-  },
-  {
-    id: "projects",
-    href: "/projects",
-    label: "Projects",
-    icon: (
-      <svg width="15" height="15" viewBox="0 0 1024 1024">
-        <path fill="#F7B21B" d="M395.9,928c-7.7,0-15.4-2.9-21.2-8.8L182.9,727.4c-11.7-11.7-11.7-30.7,0-42.4c11.7-11.7,30.7-11.7,42.4,0l191.8,191.8c11.7,11.7,11.7,30.7,0,42.4C411.3,925.1,403.6,928,395.9,928z"/>
-        <path fill="#F7B21B" d="M396.1,579.7c-7.7,0-15.3-2.9-21.2-8.8l-192-191.5c-11.7-11.7-11.8-30.7-0.1-42.4c11.7-11.7,30.7-11.8,42.4-0.1l192,191.5c11.7,11.7,11.8,30.7,0.1,42.4C411.5,576.8,403.8,579.7,396.1,579.7z"/>
-        <path fill="#F7B21B" d="M395.9,754c-7.7,0-15.4-2.9-21.2-8.8L183.3,553.8c-11.7-11.7-11.7-30.7,0-42.4c11.7-11.7,30.7-11.7,42.4,0l191.4,191.4c11.7,11.7,11.7,30.7,0,42.4C411.3,751,403.6,754,395.9,754z"/>
-        <path fill="#236EB4" d="M619.5,704.4c-7.7,0-15.4-2.9-21.2-8.8c-11.7-11.7-11.7-30.7,0-42.4l374.4-374.4c11.7-11.7,30.7-11.7,42.4,0c11.7,11.7,11.7,30.7,0,42.4L640.7,695.6C634.9,701.5,627.2,704.4,619.5,704.4z"/>
-        <path fill="#236EB4" d="M619.5,530.4c-7.7,0-15.4-2.9-21.2-8.8c-11.7-11.7-11.7-30.7,0-42.4L864.5,213l-44.6-44.6L640.8,347.5c-11.7,11.7-30.7,11.7-42.4,0c-11.7-11.7-11.7-30.7,0-42.4l200.3-200.3c5.6-5.6,13.3-8.8,21.2-8.8c8,0,15.6,3.2,21.2,8.8l87,87c11.7,11.7,11.7,30.7,0,42.4L640.7,521.6C634.9,527.4,627.2,530.4,619.5,530.4z"/>
-        <path fill="#049949" d="M396.1,579.7c-7.7,0-15.4-2.9-21.2-8.8c-11.7-11.7-11.7-30.7,0-42.4l223.4-223.4c11.7-11.7,30.7-11.7,42.4,0c11.7,11.7,11.7,30.7,0,42.4L417.4,570.9C411.5,576.8,403.8,579.7,396.1,579.7z"/>
-        <path fill="#049949" d="M395.9,754c-7.7,0-15.4-2.9-21.2-8.8c-11.7-11.7-11.7-30.7,0-42.4l223.6-223.6c11.7-11.7,30.7-11.7,42.4,0c11.7,11.7,11.7,30.7,0,42.4L417.1,745.2C411.3,751,403.6,754,395.9,754z"/>
-        <path fill="#049949" d="M395.9,928c-7.7,0-15.4-2.9-21.2-8.8c-11.7-11.7-11.7-30.7,0-42.4l223.6-223.6c11.7-11.7,30.7-11.7,42.4,0c11.7,11.7,11.7,30.7,0,42.4L417.1,919.2C411.3,925.1,403.6,928,395.9,928z"/>
-        <path fill="#E32628" d="M204.1,736.2c-7.7,0-15.4-2.9-21.2-8.8l-174-174c-5.6-5.6-8.8-13.3-8.8-21.2s3.2-15.6,8.8-21.2l174-174c11.7-11.7,30.7-11.7,42.4,0c11.7,11.7,11.7,30.7,0,42.4L72.5,532.2L225.3,685c11.7,11.7,11.7,30.7,0,42.4C219.5,733.3,211.8,736.2,204.1,736.2z"/>
-      </svg>
-    ),
-    color: "text-amber-600",
-    bg: "bg-amber-50/50",
-  },
-  {
     id: "helpdesk",
     href: "/helpdesk",
     label: "Help Desk",
@@ -114,20 +81,6 @@ const apps = [
     color: "text-rose-600",
     bg: "bg-rose-50/50",
   },
-  {
-    id: "marketing",
-    href: "/marketing",
-    label: "Marketing",
-    icon: (
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M11 5L6 9H2v6h4l5 4V5z"/>
-        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
-        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-      </svg>
-    ),
-    color: "text-pink-600",
-    bg: "bg-pink-50/50",
-  },
 ];
 
 export default function TopBar() {
@@ -142,12 +95,14 @@ export default function TopBar() {
     setModifierKey(isMac ? "⌘" : "Ctrl");
   }, []);
 
+  if (pathname === "/") return null;
+
   return (
     <>
-      <div className="sticky top-0 z-50 h-[56px] flex items-center px-4 lg:px-6 glass border-b border-white/20 shadow-sm overflow-hidden">
+      <div className="z-[100] h-[56px] flex items-center px-4 lg:px-6 bg-[#030712]/95 backdrop-blur-3xl border-b border-white/5 shadow-2xl overflow-hidden shrink-0">
         {/* Mobile Menu Toggle */}
         <button 
-          className="lg:hidden p-2 -ml-2 mr-2 text-gray-500 hover:text-gray-900 transition-colors"
+          className="lg:hidden p-2 -ml-2 mr-2 text-white/40 hover:text-cyan-400 transition-colors"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -170,7 +125,7 @@ export default function TopBar() {
         </div>
 
         {/* Divider - Desktop Only */}
-        <div className="hidden lg:block h-6 w-px bg-gray-200/50 mr-6 shrink-0" />
+        <div className="hidden lg:block h-6 w-px bg-white/5 mr-6 shrink-0" />
 
         {/* App Switcher - Desktop Only */}
         <div className="hidden lg:flex items-center gap-1 flex-1 overflow-x-auto no-scrollbar">
@@ -181,11 +136,13 @@ export default function TopBar() {
                 key={app.id}
                 onClick={() => router.push(app.href)}
                 className={`
-                  relative flex items-center gap-2 px-3 py-2 rounded-xl text-[13px] font-semibold whitespace-nowrap shrink-0 group
-                  ${isActive ? `${app.bg} ${app.color} shadow-sm border border-white/40` : "text-gray-500 hover:text-gray-900 hover:bg-gray-100/50"}
+                  relative flex items-center gap-2 px-3 py-2 rounded-xl text-[13px] font-semibold whitespace-nowrap shrink-0 group transition-all duration-300
+                  ${isActive 
+                    ? "bg-[#22d3ee]/10 text-[#22d3ee] shadow-[0_0_20px_rgba(34,211,238,0.15)] border border-[#22d3ee]/30" 
+                    : "text-white/40 hover:text-white/90 hover:bg-white/5"}
                 `}
               >
-                <span className={`shrink-0 ${isActive ? "text-current" : "text-gray-400 group-hover:text-gray-600"}`}>
+                <span className={`shrink-0 transition-colors duration-300 ${isActive ? "text-[#22d3ee]" : "text-white/20 group-hover:text-white/60"}`}>
                   {app.icon}
                 </span>
                 {app.label}
@@ -205,47 +162,44 @@ export default function TopBar() {
         </div>
 
         {/* Right Side */}
-        <div className="flex items-center gap-2 lg:gap-4 ml-auto shrink-0">
-          {/* Search - Desktop Only */}
-          <div className="relative group hidden xl:block">
-            <div className="absolute inset-y-0 left-3.5 flex items-center pointer-events-none text-gray-400 group-focus-within:text-primary transition-all duration-500">
-              <Search size={15} strokeWidth={2.5} />
-            </div>
+        {/* Desktop Search & Actions */}
+        <div className="hidden lg:flex items-center gap-4 ml-6">
+          <div className="relative group">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-cyan-400 transition-colors" size={14} />
             <input 
               type="text" 
-              placeholder="Search anything..." 
-              className="h-10 w-44 rich-search hover:bg-white/40 focus:bg-white/90 focus:w-72 focus:primary-glow focus:border-primary/20 outline-none rounded-2xl pl-11 pr-14 text-[13px] font-semibold text-gray-900 placeholder:text-gray-400/80 tracking-tight"
+              placeholder="Search command..."
+              className="pl-9 pr-12 py-2 bg-white/[0.03] border border-white/5 rounded-xl text-[12px] font-medium text-white placeholder:text-white/10 focus:outline-none focus:ring-1 focus:ring-cyan-500/30 focus:bg-white/[0.07] transition-all w-64 shadow-inner"
             />
-            <div className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-1 px-1.5 py-1 rounded-xl glass border-white/60 text-[10px] text-gray-500 font-bold shadow-sm backdrop-blur-md">
-              <span className="opacity-60">{modifierKey || "..."}</span>
-              <span className="opacity-60">K</span>
+            <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1 px-1.5 py-0.5 rounded border border-white/10 bg-white/5 text-[10px] text-white/20 font-bold uppercase tracking-tighter">
+              {modifierKey} K
             </div>
           </div>
 
-          <div className="flex items-center gap-0.5 lg:gap-1.5">
-            <button className="p-2 rounded-xl text-gray-500 hover:text-gray-900 hover:bg-white border border-transparent hover:border-gray-100 hover:shadow-sm">
+          <div className="flex items-center gap-3">
+            <button className="p-2 text-white/30 hover:text-cyan-400 hover:bg-white/5 rounded-xl transition-all relative group">
               <Settings size={18} />
+              <div className="absolute inset-0 bg-cyan-400/0 group-hover:bg-cyan-400/5 rounded-xl transition-all" />
             </button>
-            <button className="relative p-2 rounded-xl text-gray-500 hover:text-gray-900 hover:bg-white border border-transparent hover:border-gray-100 hover:shadow-sm">
+            <button className="p-2 text-white/30 hover:text-cyan-400 hover:bg-white/5 rounded-xl transition-all relative group">
               <Bell size={18} />
-              <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-red-500 border-2 border-white rounded-full" />
+              <span className="absolute top-2 right-2 w-2 h-2 bg-cyan-500 rounded-full border-2 border-[#030712] shadow-[0_0_10px_rgba(34,211,238,0.5)]"></span>
+              <div className="absolute inset-0 bg-cyan-400/0 group-hover:bg-cyan-400/5 rounded-xl transition-all" />
             </button>
           </div>
 
-          {/* Divider */}
-          <div className="h-6 w-px bg-gray-200/50 mx-1 shrink-0" />
+          <div className="h-8 w-px bg-white/5" />
 
-          {/* User Profile */}
-          <button className="flex items-center gap-2 p-1 rounded-2xl hover:bg-white transition-all border border-transparent hover:border-gray-100 hover:shadow-sm group">
-            <div className="w-8 lg:w-9 h-8 lg:h-9 rounded-xl bg-gradient-to-br from-primary to-primary-dark shadow-md shadow-primary/20 flex items-center justify-center text-white text-[13px] font-bold shrink-0">
+          <div className="flex items-center gap-3 pl-2 group cursor-pointer">
+            <div className="text-right">
+              <p className="text-[11px] font-black text-white/90 tracking-tight group-hover:text-white transition-colors">Jan Saida Shaik</p>
+              <p className="text-[9px] font-bold text-white/20 uppercase tracking-widest leading-none mt-0.5">Super Admin</p>
+            </div>
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-[13px] font-black text-white shadow-[0_0_20px_rgba(34,211,238,0.2)] group-hover:scale-105 group-hover:shadow-[0_0_25px_rgba(34,211,238,0.3)] transition-all duration-300">
               J
             </div>
-            <div className="hidden sm:flex flex-col items-start leading-none">
-              <span className="text-[12px] lg:text-[13px] font-black text-gray-900 group-hover:text-primary transition-colors whitespace-nowrap mb-0.5">Jan Saida Shaik</span>
-              <span className="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Super Admin</span>
-            </div>
-            <ChevronDown size={14} className="text-gray-400 group-hover:text-gray-600 transition-colors hidden sm:block" />
-          </button>
+            <ChevronDown size={14} className="text-white/20 group-hover:text-cyan-400 transition-colors" />
+          </div>
         </div>
       </div>
 

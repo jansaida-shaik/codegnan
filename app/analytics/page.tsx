@@ -10,8 +10,7 @@ const sidebarItems = [
 
 export default function AnalyticsPage() {
   return (
-    <div className="flex flex-col h-screen rich-bg overflow-hidden">
-      <TopBar />
+    <div className="flex flex-col h-full bg-slate-50 overflow-hidden font-sans selection:bg-indigo-100 selection:text-indigo-700">
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar */}
         <aside className="w-56 bg-white border-r border-gray-200 shrink-0">
@@ -32,7 +31,7 @@ export default function AnalyticsPage() {
         </aside>
 
         {/* Content */}
-        <main className="flex-1 overflow-y-auto p-6 lg:p-8 rich-bg">
+        <main className="flex-1 overflow-y-auto p-6 lg:p-8 bg-slate-50">
           <div className="max-w-7xl">
             <h1 className="text-xl font-bold text-gray-900 mb-6">Analytics Dashboard</h1>
             

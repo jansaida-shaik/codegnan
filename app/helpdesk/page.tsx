@@ -10,19 +10,18 @@ const sidebarItems = [
 
 export default function HelpdeskPage() {
   return (
-    <div className="flex flex-col h-screen rich-bg overflow-hidden">
-      <TopBar />
+    <div className="flex flex-col h-full rich-bg overflow-hidden font-sans selection:bg-[#22d3ee]/30 selection:text-white">
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar */}
-        <aside className="w-56 bg-white border-r border-gray-200 shrink-0">
+        <aside className="w-56 bg-[#030712] border-r border-white/5 shrink-0">
           <nav className="py-4">
             {sidebarItems.map((item) => (
               <div
                 key={item.label}
                 className={`px-6 py-2.5 text-xs font-semibold cursor-pointer transition-colors ${
                   item.active 
-                    ? "text-blue-700 bg-blue-50 border-r-2 border-blue-600" 
-                    : "text-gray-700 hover:bg-gray-100"
+                    ? "text-[#22d3ee] bg-white/5 border-r-2 border-[#22d3ee]" 
+                    : "text-white/40 hover:bg-white/5 hover:text-white"
                 }`}
               >
                 {item.label}

@@ -15,7 +15,8 @@ import {
   Calendar,
   Layers,
   Zap,
-  UserPlus
+  UserPlus,
+  ArrowRight
 } from "lucide-react";
 
 interface SidebarItem {
@@ -55,187 +56,216 @@ const sourceColor = (source: string) => {
   }
 };
 
-export default function Page() {
+export default function CRMPage() {
   const [activeNav, setActiveNav] = useState("Home");
 
   return (
-    <div className="flex flex-col h-screen rich-bg text-gray-800 text-sm overflow-hidden">
-      <TopBar />
+    <div className="flex flex-col h-full bg-[#f8fbff]/50 overflow-hidden font-sans selection:bg-blue-100 selection:text-primary relative">
 
-      {/* Modern Sub-Nav */}
-      <div className="bg-white border-b border-gray-200 h-11 flex items-center px-4 lg:px-8 gap-2 lg:gap-4 shrink-0 shadow-sm z-10 overflow-x-auto no-scrollbar">
+      {/* Modern Sub-Nav - Glass Effect */}
+      <div className="bg-white/80 backdrop-blur-xl border-b border-gray-200/50 h-12 flex items-center px-4 lg:px-8 gap-2 lg:gap-6 shrink-0 shadow-[0_1px_2px_rgba(0,0,0,0.02)] z-10 overflow-x-auto no-scrollbar">
         {["Home", "Lead Pipeline", "Sales Reports", "My Analytics"].map((item) => (
           <button
             key={item}
             onClick={() => setActiveNav(item)}
-            className={`px-3 lg:px-4 py-1 text-[13px] font-bold transition-all relative whitespace-nowrap ${activeNav === item
+            className={`px-3 lg:px-1 py-1 text-[13px] font-bold transition-all relative whitespace-nowrap h-full flex items-center group ${activeNav === item
               ? "text-primary"
-              : "text-gray-400 hover:text-gray-900"
+              : "text-gray-400 hover:text-gray-700"
               }`}
           >
             {item}
-            {activeNav === item && (
-              <div className="absolute -bottom-[15px] left-0 right-0 h-0.5 bg-primary rounded-full shadow-sm" />
+            {activeNav === item ? (
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full shadow-[0_0_8px_rgba(37,99,235,0.4)]" />
+            ) : (
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gray-200 scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
             )}
           </button>
         ))}
       </div>
 
       <div className="flex flex-1 overflow-hidden relative">
-        {/* Sleek Sidebar - Hidden on mobile, fixed on desktop */}
-        <div className="hidden lg:flex w-60 bg-white border-r border-gray-100 flex-col shrink-0 overflow-y-auto pt-4">
-          <nav className="flex-1 px-4 space-y-1">
+        {/* Sleek Sidebar - Premium Borders */}
+        <div className="hidden lg:flex w-64 bg-[#030712] border-r border-white/5 flex-col shrink-0 overflow-y-auto pt-6 px-4">
+
+          <nav className="flex-1 space-y-1.5">
             {crmSidebarItems.map((item) => (
               <button
                 key={item.label}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] font-bold transition-all group ${item.active
-                    ? "bg-blue-50 text-primary"
-                    : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-[13px] font-bold transition-all group ${item.active
+                    ? "bg-white/5 text-white border border-white/10 shadow-sm"
+                    : "text-white/40 hover:bg-white/5 hover:text-white border border-transparent"
                   }`}
               >
-                <span className={`${item.active ? "text-primary" : "text-gray-400 group-hover:text-gray-700"}`}>
+                <span className={`${item.active ? "text-[#22d3ee]" : "text-white/20 group-hover:text-white/60"} transition-colors`}>
                   {item.icon}
                 </span>
                 {item.label}
-                {item.label === "Dashboard" && (
-                  <span className="ml-auto w-1.5 h-1.5 rounded-full bg-primary" />
+                {item.label === "Leads" && (
+                  <span className="ml-auto bg-[#22d3ee]/10 text-[#22d3ee] px-2 py-0.5 rounded-lg text-[10px] font-black">24</span>
                 )}
               </button>
             ))}
           </nav>
+          
+          <div className="mt-auto p-4 mb-4 bg-white/5 rounded-2xl border border-white/10">
+             <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-xl bg-[#22d3ee]/10 flex items-center justify-center text-[#22d3ee] font-black">?</div>
+                <div>
+                   <p className="text-[11px] font-black text-white/90">Need Help?</p>
+                   <p className="text-[10px] text-white/30 font-bold">CRM Support Open</p>
+                </div>
+             </div>
+             <button className="w-full py-2 bg-white/[0.03] border border-white/10 rounded-xl text-[11px] font-black text-white/70 hover:bg-white/10 shadow-sm transition-all">Support Center</button>
+          </div>
         </div>
 
-        {/* Main Dashboard Content */}
-        <div className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-6 space-y-6">
-          <div className="w-full space-y-6">
+        {/* Main Dashboard Content - Rich Background */}
+        <div className="flex-1 overflow-y-auto p-4 md:p-8 space-y-8 deep-space-bg">
+          <div className="max-w-7xl space-y-8">
 
-            {/* Header with Visual Impact */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            {/* Header Redesign */}
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
               <div>
-                <h1 className="text-xl md:text-2xl font-black text-gray-900 tracking-tight">CRM Command Center</h1>
-                <p className="text-[11px] md:text-[13px] text-gray-500 font-bold mt-1 uppercase tracking-widest flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-                  System Operational • March 2026
+                <div className="flex items-center gap-2 mb-2">
+                   <span className="px-2.5 py-1 bg-[#22d3ee]/5 text-[#22d3ee] text-[10px] font-black uppercase tracking-wider rounded-lg border border-[#22d3ee]/10">Enterprise Portal</span>
+                   <span className="w-1 h-1 rounded-full bg-white/20"></span>
+                   <span className="text-[10px] font-bold text-white/30 uppercase tracking-widest">Version 4.2.0</span>
+                </div>
+                <h1 className="text-3xl md:text-4xl font-black text-white tracking-tight leading-tight">CRM Command <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#22d3ee] to-blue-600">Center</span></h1>
+                <p className="text-[13px] text-white/40 font-bold mt-2 flex items-center gap-2">
+                  <span className="flex h-2 w-2 relative">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                  Active Monitoring Operational • Mar 15, 2026
                 </p>
               </div>
-              <div className="flex items-center gap-2 md:gap-3">
-                <button className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-3 md:px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-2xl font-bold hover:bg-gray-50 shadow-sm transition-all text-xs md:text-sm">
-                  <Download size={16} /> Export
+              <div className="flex items-center gap-3">
+                <button className="flex items-center justify-center gap-2.5 px-5 py-3 bg-white/5 border border-white/10 text-white/70 rounded-2xl font-black hover:bg-white/10 shadow-lg transition-all text-[13px]">
+                  <Download size={18} strokeWidth={2.5} /> Report
                 </button>
-                <button className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 md:px-5 py-2.5 bg-primary text-white rounded-2xl font-bold hover:bg-primary-dark shadow-lg shadow-blue-500/20 transition-all text-xs md:text-sm">
-                  <UserPlus size={18} strokeWidth={2.5} /> Create Lead
+                <button className="flex items-center justify-center gap-2.5 px-6 py-3.5 bg-primary text-white rounded-2xl font-black hover:scale-[1.02] active:scale-[0.98] shadow-xl shadow-blue-500/25 transition-all text-[13px]">
+                  <UserPlus size={20} strokeWidth={2.5} /> Create New Lead
                 </button>
               </div>
             </div>
 
             {/* High Impact Hero Stat Row */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5">
               {[
-                { label: "Total Revenue Pipeline", value: "₹4.82 Cr", color: "text-blue-600", bg: "bg-blue-50", icon: <Target size={20} /> },
-                { label: "Open Deal count", value: "1,248", color: "text-indigo-600", bg: "bg-indigo-50", icon: <Layers size={20} /> },
-                { label: "Conversion rate", value: "24.5%", color: "text-emerald-600", bg: "bg-emerald-50", icon: <Zap size={20} /> },
-                { label: "Average Deal Size", value: "₹3.8L", color: "text-amber-600", bg: "bg-amber-50", icon: <BarChart3 size={20} /> },
+                { label: "Revenue Pipeline", value: "₹4.82 Cr", change: "+12.5%", color: "text-blue-600", bg: "bg-blue-50/50", icon: <Target size={24} /> },
+                { label: "Active Deals", value: "1,248", change: "+4.2%", color: "text-indigo-600", bg: "bg-indigo-50/50", icon: <Layers size={24} /> },
+                { label: "Overall Conversion", value: "24.5%", change: "+1.8%", color: "text-emerald-600", bg: "bg-emerald-50/50", icon: <Zap size={24} /> },
+                { label: "Average Value", value: "₹3.8L", change: "-0.5%", color: "text-amber-600", bg: "bg-amber-50/50", icon: <BarChart3 size={24} /> },
               ].map((stat, i) => (
-                <div key={i} className="premium-card p-3 md:p-4 flex items-center justify-between group hover:scale-[1.02] transition-all cursor-pointer border-transparent hover:border-gray-100">
-                  <div className="space-y-0.5">
-                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{stat.label}</p>
-                    <p className={`text-2xl font-black tracking-tight ${stat.color}`}>{stat.value}</p>
+                <div key={i} className="bg-white/[0.03] backdrop-blur-xl p-6 rounded-[32px] border border-white/5 shadow-2xl flex flex-col justify-between group hover:border-[#22d3ee]/20 transition-all duration-500">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className={`w-14 h-14 ${stat.bg.replace('bg-', 'bg-white/')} ${stat.color} rounded-2xl flex items-center justify-center border border-white/5 shadow-inner group-hover:scale-110 transition-transform duration-500`}>
+                      {stat.icon}
+                    </div>
+                    <span className={`px-2 py-1 rounded-lg text-[10px] font-black ${stat.change.startsWith('+') ? 'bg-emerald-500/10 text-emerald-400' : 'bg-rose-500/10 text-rose-400'}`}>
+                      {stat.change}
+                    </span>
                   </div>
-                  <div className={`w-12 h-12 ${stat.bg} ${stat.color} rounded-[18px] flex items-center justify-center border border-white group-hover:scale-105 transition-transform`}>
-                    {stat.icon}
+                  <div className="space-y-1">
+                    <p className="text-[11px] font-black text-white/20 uppercase tracking-widest">{stat.label}</p>
+                    <p className={`text-3xl font-black tracking-tight ${stat.color}`}>{stat.value}</p>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
               {/* Main Column - Lead Tracking */}
-              <div className="lg:col-span-2 space-y-8">
+              <div className="xl:col-span-2 space-y-8">
 
                 {/* Leads by Status - Redesigned Analytics */}
-                <div className="premium-card p-3 md:p-4 space-y-4">
-                  <div className="flex items-center justify-between px-2">
-                    <h2 className="text-sm md:text-base font-black text-gray-900 tracking-tight">Leads by Status</h2>
-                    <div className="hidden sm:flex items-center gap-2 text-[10px] font-bold text-gray-400">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary/20"></span>
-                      Weekly Update
+                <div className="bg-white/[0.03] p-6 md:p-8 rounded-[32px] border border-white/5 shadow-2xl space-y-8">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h2 className="text-lg md:text-xl font-black text-white tracking-tight">Lead Performance Analytics</h2>
+                      <p className="text-[11px] text-white/20 font-bold uppercase tracking-widest mt-1">Real-time Pipeline Distribution</p>
                     </div>
+                    <button className="p-2.5 rounded-xl border border-white/5 bg-white/5 text-white/20 hover:text-white transition-all">
+                      <BarChart3 size={20} />
+                    </button>
                   </div>
 
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 md:gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
                     {[
-                      { l: "New", v: "420", color: "bg-emerald-500" },
-                      { l: "Qualified", v: "185", color: "bg-indigo-500" },
-                      { l: "Proposition", v: "92", color: "bg-blue-500" },
-                      { l: "Negotiation", v: "48", color: "bg-amber-500" },
-                      { l: "Won", v: "15", color: "bg-primary" },
+                      { l: "New", v: "420", color: "from-emerald-400 to-emerald-600", secondary: "bg-emerald-50" },
+                      { l: "Qualified", v: "185", color: "from-indigo-400 to-indigo-600", secondary: "bg-indigo-50" },
+                      { l: "Proposed", v: "92", color: "from-blue-400 to-blue-600", secondary: "bg-blue-50" },
+                      { l: "Negotiation", v: "48", color: "from-amber-400 to-amber-600", secondary: "bg-amber-50" },
+                      { l: "Won", v: "15", color: "from-primary to-blue-700", secondary: "bg-blue-50" },
                     ].map((item, i) => (
-                      <div key={i} className="flex flex-col gap-1 p-2 rounded-2xl bg-gray-50/50 border border-transparent hover:border-gray-100 hover:bg-white transition-all text-center">
-                        <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                          <div className={`h-full ${item.color}`} style={{ width: `${Math.random() * 60 + 20}%` }}></div>
+                      <div key={i} className="flex flex-col gap-3 p-5 rounded-[24px] bg-white/[0.02] border border-white/5 hover:bg-white/5 hover:shadow-2xl transition-all group">
+                        <p className="text-[10px] font-black text-white/20 uppercase tracking-widest leading-none">{item.l}</p>
+                        <p className="text-3xl font-black text-white tracking-tight">{item.v}</p>
+                        <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden mt-1">
+                          <div className={`h-full bg-gradient-to-r ${item.color} shadow-[0_0_8px_rgba(34,211,238,0.2)]`} style={{ width: `${Math.random() * 60 + 20}%` }}></div>
                         </div>
-                        <p className="text-base md:text-lg font-black text-gray-900 mt-1">{item.v}</p>
-                        <p className="text-[9px] font-black text-gray-400 uppercase tracking-tighter">{item.l}</p>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Today's Leads Table */}
-                <div className="premium-card flex flex-col">
-                  <div className="px-4 md:px-6 py-3 md:py-4 border-b border-gray-50 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                {/* Priority Leads Table */}
+                <div className="bg-white/[0.03] rounded-[32px] border border-white/5 shadow-2xl overflow-hidden">
+                  <div className="px-6 md:px-8 py-6 border-b border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
-                      <h2 className="text-sm md:text-base font-black text-gray-900 tracking-tight">Priority Leads</h2>
-                      <p className="text-[9px] md:text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-0.5">Automated Assignment</p>
+                      <h2 className="text-lg md:text-xl font-black text-white tracking-tight">Priority Pipeline</h2>
+                      <p className="text-[11px] text-white/20 font-bold uppercase tracking-widest mt-1">AI-Ranked High Propensity Leads</p>
                     </div>
-                    <div className="flex items-center justify-between sm:justify-end gap-2 md:gap-3">
-                      <div className="flex items-center bg-gray-50 rounded-xl p-0.5 border border-gray-100">
-                        <button className="p-1 px-2 text-gray-400 hover:text-gray-900"><Filter size={12} /></button>
-                        <button className="p-1 px-2 text-gray-400 hover:text-gray-900"><Download size={12} /></button>
+                    <div className="flex items-center gap-3">
+                      <div className="flex bg-white/5 rounded-2xl p-1 border border-white/10">
+                        <button className="w-9 h-9 flex items-center justify-center text-white/20 hover:text-[#22d3ee] transition-colors hover:bg-white/5 rounded-xl"><Filter size={16} /></button>
+                        <button className="w-9 h-9 flex items-center justify-center text-white/20 hover:text-[#22d3ee] transition-colors hover:bg-white/5 rounded-xl"><Download size={16} /></button>
                       </div>
-                      <button className="text-[10px] md:text-[11px] font-black text-primary hover:underline whitespace-nowrap">View All Pipeline</button>
                     </div>
                   </div>
 
                   <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                       <thead>
-                        <tr className="bg-gray-50/50">
-                          <th className="px-6 py-2.5 text-[10px] font-black text-gray-400 uppercase tracking-widest">Prospect Name</th>
-                          <th className="px-4 py-2.5 text-[10px] font-black text-gray-400 uppercase tracking-widest">Source Entity</th>
-                          <th className="px-4 py-2.5 text-[10px] font-black text-gray-400 uppercase tracking-widest">Status / Stage</th>
-                          <th className="px-6 py-2.5 text-[10px] font-black text-gray-400 uppercase tracking-widest text-right">Actions</th>
+                        <tr className="bg-white/[0.02]">
+                          <th className="px-8 py-4 text-[10px] font-black text-white/20 uppercase tracking-widest border-b border-white/5">Contact / Identity</th>
+                          <th className="px-4 py-4 text-[10px] font-black text-white/20 uppercase tracking-widest border-b border-white/5">Origin Source</th>
+                          <th className="px-4 py-4 text-[10px] font-black text-white/20 uppercase tracking-widest border-b border-white/5 text-center">Propensity</th>
+                          <th className="px-8 py-4 text-[10px] font-black text-white/20 uppercase tracking-widest text-right border-b border-white/5">Engagement</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-gray-50">
+                      <tbody className="divide-y divide-white/[0.02]">
                         {leads.map((lead, i) => (
-                          <tr key={i} className="hover:bg-gray-50/50 group">
-                            <td className="px-6 py-2.5">
-                              <div className="flex items-center gap-2">
-                                <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-black text-[10px]">
+                          <tr key={i} className="hover:bg-white/5 group transition-colors">
+                            <td className="px-8 py-5">
+                              <div className="flex items-center gap-3">
+                                <div className="w-11 h-11 rounded-[16px] bg-gradient-to-br from-[#22d3ee] to-blue-600 text-white flex items-center justify-center font-black text-sm shadow-lg shadow-cyan-500/20">
                                   {lead.name.charAt(0)}
                                 </div>
                                 <div>
-                                  <p className="text-[12px] font-black text-gray-900 group-hover:text-primary transition-colors">{lead.name}</p>
-                                  <p className="text-[10px] text-gray-400 font-medium leading-none">{lead.email}</p>
+                                  <p className="text-[14px] font-black text-white group-hover:text-[#22d3ee] transition-colors leading-none mb-1.5">{lead.name}</p>
+                                  <p className="text-[11px] text-white/40 font-bold tracking-tight">{lead.email}</p>
                                 </div>
                               </div>
                             </td>
-                            <td className="px-4 py-2.5">
-                              <span className={`px-2 py-0.5 rounded-md text-[9px] font-black uppercase tracking-tighter border ${sourceColor(lead.source)}`}>
+                            <td className="px-4 py-3">
+                              <span className={`px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider border shadow-sm ${sourceColor(lead.source)}`}>
                                 {lead.source}
                               </span>
                             </td>
-                            <td className="px-4 py-2.5">
-                              <div className="flex items-center gap-2">
-                                <span className={`w-1.5 h-1.5 rounded-full ${lead.status === 'Won' ? 'bg-emerald-500' : lead.status === 'Lost' ? 'bg-rose-500' : 'bg-primary'}`} />
-                                <span className="text-[11px] font-black text-gray-800">{lead.status}</span>
-                              </div>
+                            <td className="px-4 py-3">
+                               <div className="flex flex-col items-center gap-1.5">
+                                  <div className="w-14 h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                     <div className="h-full bg-[#22d3ee]" style={{ width: `${95 - i*12}%` }}></div>
+                                  </div>
+                                  <span className="text-[10px] font-black text-white/30 uppercase tracking-tighter">{95 - i*12}% Score</span>
+                               </div>
                             </td>
-                            <td className="px-8 py-2.5 text-right">
-                              <div className="flex items-center justify-end gap-1">
-                                <button className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all"><MessageSquare size={14} /></button>
-                                <button className="p-1.5 text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all"><Phone size={14} /></button>
+                            <td className="px-8 py-3 text-right">
+                              <div className="flex items-center justify-end gap-2">
+                                <button className="w-9 h-9 flex items-center justify-center text-white/20 hover:text-white hover:bg-white/5 rounded-xl transition-all border border-transparent hover:border-white/10"><MessageSquare size={16} /></button>
+                                <button className="w-9 h-9 flex items-center justify-center bg-white/5 text-[#22d3ee] hover:bg-[#22d3ee]/10 rounded-xl transition-all border border-white/10 hover:border-[#22d3ee]/20"><Phone size={16} fill="currentColor" /></button>
                               </div>
                             </td>
                           </tr>
@@ -243,63 +273,82 @@ export default function Page() {
                       </tbody>
                     </table>
                   </div>
+                  <div className="p-6 bg-white/[0.02] border-t border-white/5 text-center">
+                     <button className="text-[11px] font-black text-[#22d3ee] hover:text-white transition-colors uppercase tracking-widest flex items-center justify-center gap-2 mx-auto">
+                        View Entire Pipeline <ChevronRight size={14} strokeWidth={3} />
+                     </button>
+                  </div>
                 </div>
               </div>
 
               {/* Sidebar Column - Insights */}
               <div className="space-y-8">
 
-                {/* Visual Lead Source Chart */}
-                <div className="premium-card p-4 md:p-5 space-y-5">
+                {/* Visual Lead Source Chart - Premium Redesign */}
+                <div className="bg-white/[0.03] p-6 md:p-8 rounded-[32px] border border-white/5 shadow-2xl space-y-8">
                   <div className="flex items-center justify-between">
-                    <h2 className="text-sm md:text-base font-black text-gray-900 tracking-tight">Leads by Source</h2>
-                    <button className="text-[10px] font-black text-gray-400 hover:text-primary">Monthly</button>
+                    <div>
+                      <h2 className="text-lg font-black text-white tracking-tight">Source Matrix</h2>
+                      <p className="text-[10px] text-white/20 font-bold uppercase tracking-widest mt-0.5">Origin Distribution</p>
+                    </div>
+                    <div className="px-2.5 py-1 bg-white/5 rounded-lg text-[10px] font-black text-white/30 border border-white/10">Monthly</div>
                   </div>
-                  <div className="relative w-48 h-48 flex items-center justify-center">
-                    <svg viewBox="0 0 36 36" className="w-full h-full transform -rotate-90">
-                      <circle cx="18" cy="18" r="14" fill="transparent" stroke="#f1f5f9" strokeWidth="4"></circle>
-                      <circle cx="18" cy="18" r="14" fill="transparent" stroke="#2563eb" strokeWidth="4" strokeDasharray="45 100" strokeDashoffset="0"></circle>
-                      <circle cx="18" cy="18" r="14" fill="transparent" stroke="#6366f1" strokeWidth="4" strokeDasharray="25 100" strokeDashoffset="-45"></circle>
-                      <circle cx="18" cy="18" r="14" fill="transparent" stroke="#10b981" strokeWidth="4" strokeDasharray="30 100" strokeDashoffset="-70"></circle>
-                    </svg>
-                    <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Conversion</p>
-                      <p className="text-2xl font-black text-gray-900">82%</p>
+
+                  <div className="relative flex items-center justify-center py-4">
+                    <div className="w-44 h-44 relative">
+                       <svg viewBox="0 0 36 36" className="w-full h-full transform -rotate-90 filter drop-shadow-sm">
+                        <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="rgba(255,255,255,0.05)" strokeWidth="3.5"></circle>
+                        <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#2563eb" strokeWidth="4.2" strokeDasharray="45 100" strokeDashoffset="0" className="transition-all duration-1000"></circle>
+                        <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#6366f1" strokeWidth="4.2" strokeDasharray="25 100" strokeDashoffset="-45" className="transition-all duration-1000"></circle>
+                        <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#10b981" strokeWidth="4.2" strokeDasharray="30 100" strokeDashoffset="-70" className="transition-all duration-1000"></circle>
+                      </svg>
+                      <div className="absolute inset-0 flex flex-col items-center justify-center">
+                        <p className="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] leading-none mb-1">Yield</p>
+                        <p className="text-4xl font-black text-gray-900 leading-none">82<span className="text-lg text-primary">%</span></p>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="w-full space-y-3">
+                  <div className="space-y-4 pt-2">
                     {[
-                      { l: "2025 Passed Outs", p: "43%", c: "bg-blue-500" },
-                      { l: "Bangalore Leads", p: "5.7%", c: "bg-emerald-500" },
-                      { l: "Direct Traffic", p: "2.8%", c: "bg-indigo-500" },
+                      { l: "Engineering Grad '25", p: "43%", c: "bg-blue-500", trend: "+5%" },
+                      { l: "Metropolitan Hubs", p: "32%", c: "bg-emerald-500", trend: "+12%" },
+                      { l: "Organic Discovery", p: "25%", c: "bg-indigo-500", trend: "-2%" },
                     ].map((item, i) => (
-                      <div key={i} className="flex items-center justify-between text-[11px] font-bold">
-                        <div className="flex items-center gap-2">
-                          <div className={`w-2 h-2 rounded-full ${item.c}`} />
-                          <span className="text-gray-500 uppercase tracking-tighter">{item.l}</span>
+                      <div key={i} className="flex flex-col gap-1.5 p-3 rounded-2xl hover:bg-gray-50 transition-colors cursor-pointer group">
+                        <div className="flex items-center justify-between">
+                           <div className="flex items-center gap-2.5">
+                              <div className={`w-2 h-2 rounded-full ${item.c} shadow-[0_0_8px_rgba(0,0,0,0.1)]`} />
+                              <span className="text-[11px] font-black text-gray-600 uppercase tracking-tighter">{item.l}</span>
+                           </div>
+                           <span className="text-[11px] font-black text-gray-900">{item.p}</span>
                         </div>
-                        <span className="text-gray-900">{item.p}</span>
+                        <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden">
+                           <div className={`h-full ${item.c}`} style={{ width: item.p }}></div>
+                        </div>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Highlights / Alerts */}
-                <div className="premium-card p-6 bg-primary overflow-hidden relative group">
-                  <div className="absolute inset-0 bg-blue-600/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-                  <div className="relative z-10 space-y-4">
-                    <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center text-white border border-white/10">
-                      <Zap size={20} fill="currentColor" />
+                {/* Highlights / Alerts - Premium Gradients */}
+                <div className="p-8 bg-gradient-to-br from-primary via-blue-700 to-indigo-800 rounded-[32px] overflow-hidden relative group shadow-xl shadow-blue-500/20">
+                  <div className="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 bg-white/10 blur-[80px] rounded-full group-hover:bg-white/20 transition-all duration-700" />
+                  <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-32 h-32 bg-blue-300/10 blur-[60px] rounded-full group-hover:bg-blue-300/20 transition-all duration-700" />
+                  
+                  <div className="relative z-10 space-y-6">
+                    <div className="w-12 h-12 bg-white/15 backdrop-blur-md rounded-2xl flex items-center justify-center text-white border border-white/20 shadow-lg">
+                      <Zap size={24} fill="currentColor" />
                     </div>
-                    <div className="space-y-1">
-                      <h3 className="text-white font-black text-lg">Daily Goal Alert</h3>
-                      <p className="text-blue-100/70 text-[12px] font-medium leading-relaxed">
-                        You are only 5 leads away from hitting your weekly qualification target. Keep going!
+                    <div className="space-y-2">
+                      <h3 className="text-white font-black text-xl tracking-tight uppercase leading-none">Weekly Objective</h3>
+                      <p className="text-blue-100/80 text-[13px] font-bold leading-relaxed">
+                        Precision tracking indicates you are <span className="text-white font-black">5 leads remaining</span> to secure your elite performance tier.
                       </p>
                     </div>
-                    <button className="w-full py-2.5 bg-white text-primary rounded-xl font-black text-xs hover:bg-blue-50 transition-all flex items-center justify-center gap-2">
-                      View My Targets <ChevronRight size={14} strokeWidth={3} />
+                    <button className="w-full py-4 bg-white text-primary rounded-[20px] font-black text-[13px] hover:scale-[1.03] active:scale-[0.97] shadow-lg shadow-black/10 transition-all flex items-center justify-center gap-2 group/btn">
+                      Analyze My Targets 
+                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" strokeWidth={3} />
                     </button>
                   </div>
                 </div>
@@ -313,3 +362,4 @@ export default function Page() {
     </div>
   );
 }
+

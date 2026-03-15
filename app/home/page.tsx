@@ -32,7 +32,7 @@ function BundleHome() {
   );
 
   return (
-    <div className="flex-1 overflow-y-auto rich-bg flex flex-col items-start px-4 md:px-6 lg:px-8 py-6 lg:py-8 space-y-6 lg:space-y-8">
+    <div className="flex-1 overflow-y-auto bg-gray-50 flex flex-col items-start px-4 md:px-6 lg:px-8 py-6 lg:py-8 space-y-6 lg:space-y-8">
       {/* Dashboard */}
       <div className="w-full space-y-6 lg:space-y-8">
         
@@ -230,8 +230,7 @@ function BundleHome() {
 
 export default function Home() {
   return (
-    <div className="flex flex-col h-screen bg-gray-50 text-gray-900 text-sm overflow-hidden font-sans selection:bg-blue-100 selection:text-primary">
-      <TopBar />
+    <div className="h-full bg-[#020617] text-white text-sm overflow-hidden font-sans selection:bg-[#22d3ee]/30 selection:text-white">
       <BundleHome />
     </div>
   );

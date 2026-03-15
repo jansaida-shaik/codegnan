@@ -18,13 +18,10 @@ export default function FinancePage() {
   ];
 
   return (
-    <div className="flex flex-col h-screen rich-bg overflow-hidden">
-      <TopBar />
+    <div className="flex flex-col h-full bg-gray-50 overflow-hidden">
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar - Hidden on mobile */}
         <div className="hidden lg:flex w-56 bg-white border-r border-gray-200 flex-col shrink-0">
-
-          
           <nav className="flex-1 overflow-y-auto py-2">
             {sidebarItems.map((item) => (
               <div
@@ -56,7 +53,7 @@ export default function FinancePage() {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 overflow-y-auto rich-bg p-4 md:p-6 lg:p-8">
+        <div className="flex-1 overflow-y-auto bg-gray-50 p-4 md:p-6 lg:p-8">
           <div className="w-full">
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
@@ -82,7 +79,7 @@ export default function FinancePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-8">
               {/* Total Receivables */}
-              <div className="premium-card overflow-hidden flex flex-col">
+              <div className="premium-card overflow-hidden flex flex-col bg-white rounded-lg shadow-sm">
                 <div className="px-6 py-3 border-b border-gray-100 flex items-center justify-between">
                   <h3 className="text-xl font-bold text-gray-900 leading-none">Total Receivables</h3>
                   <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">12</span></p>
@@ -107,7 +104,7 @@ export default function FinancePage() {
               </div>
 
               {/* Total Payables */}
-              <div className="premium-card overflow-hidden flex flex-col">
+              <div className="premium-card overflow-hidden flex flex-col bg-white rounded-lg shadow-sm">
                 <div className="px-6 py-3 border-b border-gray-100 flex items-center justify-between">
                   <h3 className="text-xl font-bold text-gray-900 leading-none">Total Payables</h3>
                   <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">48</span></p>
@@ -133,7 +130,7 @@ export default function FinancePage() {
             </div>
 
             {/* Cash Flow */}
-            <div className="premium-card overflow-hidden mb-8 flex flex-col">
+            <div className="premium-card overflow-hidden mb-8 flex flex-col bg-white rounded-lg shadow-sm">
               <div className="px-6 py-3 border-b border-gray-100 flex items-center justify-between">
                 <h3 className="text-xl font-bold text-gray-900 leading-none">Cash Flow</h3>
                 <p className="text-sm text-gray-600">Record Count: <span className="font-semibold text-gray-800">12 Months</span></p>
