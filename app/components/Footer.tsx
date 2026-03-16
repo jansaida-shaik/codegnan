@@ -32,14 +32,14 @@ export default function Footer() {
   if (pathname === "/") return null;
 
   return (
-    <div className="z-[100] h-10 bg-slate-50 border-t border-slate-200 px-4 md:px-6 flex items-center justify-between text-[11px] font-medium text-slate-400 overflow-hidden select-none shrink-0 border-b-none shadow-[0_-2px_10px_rgba(0,0,0,0.02)]">
+    <div className="z-[100] h-10 bg-slate-50 border-t border-slate-200 px-4 md:px-6 flex items-center justify-between text-[11px] font-medium text-slate-600 overflow-hidden select-none shrink-0 border-b-none shadow-[0_-2px_10px_rgba(0,0,0,0.02)]">
       {/* Left Side: System Status */}
       <div className="flex items-center gap-4">
-        <div className="flex items-center gap-2 px-2 py-0.5 rounded-lg bg-emerald-50 text-emerald-600 border border-emerald-100 shadow-sm">
-          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.3)] animate-pulse" />
+        <div className="flex items-center gap-2 px-2 py-0.5 rounded-lg bg-emerald-100 text-emerald-700 border border-emerald-200 shadow-sm">
+          <div className="w-1.5 h-1.5 rounded-full bg-emerald-600 shadow-[0_0_8px_rgba(16,185,129,0.3)] animate-pulse" />
           <span className="font-black uppercase tracking-widest text-[10px]">Systems Operational</span>
         </div>
-        <div className="hidden sm:flex items-center gap-2 opacity-60 group">
+        <div className="hidden sm:flex items-center gap-2 text-slate-500 group">
           <Cpu size={12} className="group-hover:text-primary transition-colors" />
           <span>v4.2.0-stable</span>
         </div>
@@ -53,7 +53,7 @@ export default function Footer() {
           { icon: <Zap size={12} />, label: "Edge Optimized" }
         ].map((item, idx) => (
           <div key={idx} className="flex items-center gap-1.5 hover:text-primary transition-all duration-300 cursor-pointer group">
-            <span className="text-slate-300 group-hover:text-primary transition-colors">{item.icon}</span>
+            <span className="text-slate-400 group-hover:text-primary transition-colors">{item.icon}</span>
             <span className="group-hover:translate-x-0.5 transition-transform">{item.label}</span>
           </div>
         ))}
@@ -63,14 +63,14 @@ export default function Footer() {
       <div className="flex items-center gap-4">
         <div className="hidden md:flex items-center gap-4 pr-4 border-r border-slate-200">
           {[Github, Twitter, Linkedin, Mail].map((Icon, idx) => (
-            <Icon key={idx} size={13} className="hover:text-primary transition-all duration-300 cursor-pointer hover:-translate-y-0.5" />
+            <Icon key={idx} size={13} className="text-slate-400 hover:text-primary transition-all duration-300 cursor-pointer hover:-translate-y-0.5" />
           ))}
         </div>
-        <div className="flex items-center gap-1.5">
-          <span className="opacity-60">&copy; {currentYear}</span>
+        <div className="flex items-center gap-1.5 text-slate-500">
+          <span className="">&copy; {currentYear}</span>
           <span className="font-black text-slate-900 tracking-tighter uppercase group cursor-default">
             Codegnan
-            <span className="hidden xs:inline ml-1 text-slate-400 font-medium lowercase tracking-normal">Resources PVT LTD.</span>
+            <span className="hidden xs:inline ml-1 text-slate-500 font-medium lowercase tracking-normal">Resources PVT LTD.</span>
           </span>
         </div>
       </div>

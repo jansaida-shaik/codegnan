@@ -139,10 +139,10 @@ export default function Header() {
                   relative flex items-center gap-2 px-3.5 py-2 rounded-xl text-[13px] font-bold whitespace-nowrap shrink-0 group transition-all duration-300
                   ${isActive 
                     ? "bg-primary text-white shadow-md shadow-primary/20 scale-105" 
-                    : "text-slate-500 hover:text-slate-900 hover:bg-slate-100/80"}
+                    : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/80"}
                 `}
               >
-                <span className={`shrink-0 transition-colors duration-300 ${isActive ? "text-white" : "text-slate-300 group-hover:text-slate-500"}`}>
+                <span className={`shrink-0 transition-colors duration-300 ${isActive ? "text-white" : "text-slate-400 group-hover:text-slate-600"}`}>
                   {app.icon}
                 </span>
                 {app.label}
@@ -165,11 +165,11 @@ export default function Header() {
         {/* Desktop Search & Actions */}
         <div className="hidden lg:flex items-center gap-4 ml-6">
           <div className="relative group">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-primary transition-colors" size={14} />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors" size={14} />
             <input 
               type="text" 
               placeholder="Search command..."
-              className="pl-9 pr-12 py-2 bg-slate-100/50 border border-slate-200 rounded-xl text-[12px] font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-primary/20 focus:bg-white transition-all w-64"
+              className="pl-9 pr-12 py-2 bg-slate-100/50 border border-slate-200 rounded-xl text-[12px] font-medium text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-primary/20 focus:bg-white transition-all w-64"
             />
             <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1 px-1.5 py-0.5 rounded border border-slate-200 bg-white text-[10px] text-slate-400 font-bold uppercase tracking-tighter">
               {modifierKey} K
