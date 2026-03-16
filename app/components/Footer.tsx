@@ -32,7 +32,7 @@ export default function Footer() {
   if (pathname === "/") return null;
 
   return (
-    <div className="z-[100] h-10 bg-slate-100 border-t border-slate-200 px-4 md:px-6 flex items-center justify-between text-[11px] font-bold text-slate-900 overflow-hidden select-none shrink-0 border-b-none">
+    <div className="z-[100] h-10 bg-white border-t border-slate-200 px-4 md:px-6 flex items-center justify-between text-[11px] font-bold text-slate-900 overflow-hidden select-none shrink-0 border-b-none">
       {/* Left Side: System Status */}
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2 px-2 py-0.5 rounded-lg bg-emerald-500 text-white shadow-sm shadow-emerald-500/20">

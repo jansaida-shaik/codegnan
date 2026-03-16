@@ -99,7 +99,7 @@ export default function Header() {
 
   return (
     <>
-      <div className="z-[100] h-[56px] flex items-center px-4 lg:px-6 bg-white/80 backdrop-blur-md border-b border-slate-200/60 shadow-sm overflow-hidden shrink-0">
+      <div className="z-[100] h-[56px] flex items-center px-4 lg:px-6 bg-white border-b border-slate-200 overflow-hidden shrink-0">
         {/* Mobile Menu Toggle */}
         <button 
           className="lg:hidden p-2 -ml-2 mr-2 text-slate-400 hover:text-primary transition-colors"
@@ -169,7 +169,7 @@ export default function Header() {
             <input 
               type="text" 
               placeholder="Search command..."
-              className="pl-9 pr-12 py-2 bg-slate-100 border border-slate-200 rounded-xl text-[12px] font-bold text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-primary/20 focus:bg-white transition-all w-64"
+              className="pl-9 pr-12 py-2 bg-white border border-slate-300 rounded-xl text-[12px] font-bold text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all w-64"
             />
             <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1 px-1.5 py-0.5 rounded border border-slate-200 bg-white text-[10px] text-slate-400 font-bold uppercase tracking-tighter">
               {modifierKey} K
@@ -233,7 +233,7 @@ export default function Header() {
                         );
                     })}
                 </div>
-                <div className="p-6 border-t border-gray-100 bg-gray-50/50">
+                <div className="p-6 border-t border-gray-100 bg-white">
                     <div className="flex items-center gap-3 mb-6">
                         <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white font-bold">J</div>
                         <div>
