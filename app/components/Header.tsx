@@ -24,8 +24,9 @@ const apps = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
       </svg>
     ),
-    color: "text-blue-600",
-    bg: "bg-blue-50/50",
+    color: "text-[#226DB4]",
+    bg: "bg-[#226DB4]/10",
+    activeBg: "bg-[#226DB4]",
   },
   {
     id: "crm",
@@ -38,6 +39,7 @@ const apps = [
     ),
     color: "text-blue-600",
     bg: "bg-blue-50/50",
+    activeBg: "bg-blue-600",
   },
   {
     id: "finance",
@@ -45,13 +47,16 @@ const apps = [
     label: "Finance",
     icon: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10"/>
-        <path d="M15 9.5a4 4 0 0 0-6 3.5c0 2 1.5 3 3 3.5s3 1.5 3 3.5a4 4 0 0 1-6 0"/>
-        <line x1="12" y1="7" x2="12" y2="17"/>
+        <path d="M6 3h12"/>
+        <path d="M6 8h12"/>
+        <path d="m6 13 8.5 8"/>
+        <path d="M6 13h3"/>
+        <path d="M9 13c6.667 0 6.667-10 0-10"/>
       </svg>
     ),
     color: "text-sky-600",
     bg: "bg-sky-50/50",
+    activeBg: "bg-emerald-600",
   },
   {
     id: "helpdesk",
@@ -59,13 +64,12 @@ const apps = [
     label: "Help Desk",
     icon: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-        <line x1="12" y1="17" x2="12.01" y2="17"/>
-        <circle cx="12" cy="12" r="10"/>
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
       </svg>
     ),
-    color: "text-emerald-600",
-    bg: "bg-emerald-50/50",
+    color: "text-orange-600",
+    bg: "bg-orange-50/50",
+    activeBg: "bg-orange-600",
   },
   {
     id: "analytics",
@@ -73,13 +77,13 @@ const apps = [
     label: "Analytics",
     icon: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <line x1="18" y1="20" x2="18" y2="10"/>
-        <line x1="12" y1="20" x2="12" y2="4"/>
-        <line x1="6" y1="20" x2="6" y2="14"/>
+        <path d="M21.21 15.89A10 10 0 1 1 8 2.83"/>
+        <path d="M22 12A10 10 0 0 0 12 2v10z"/>
       </svg>
     ),
     color: "text-rose-600",
     bg: "bg-rose-50/50",
+    activeBg: "bg-rose-600",
   },
 ];
 
@@ -99,10 +103,10 @@ export default function Header() {
 
   return (
     <>
-      <div className="z-[100] h-[56px] flex items-center px-4 lg:px-6 bg-[#030712]/95 backdrop-blur-3xl border-b border-white/5 shadow-2xl overflow-hidden shrink-0">
+      <div className="z-[100] h-[64px] flex items-center px-4 lg:px-6 bg-white border-b border-slate-200 shrink-0">
         {/* Mobile Menu Toggle */}
         <button 
-          className="lg:hidden p-2 -ml-2 mr-2 text-white/40 hover:text-cyan-400 transition-colors"
+          className="lg:hidden p-2 -ml-2 mr-2 text-slate-400 hover:text-primary transition-colors"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -124,29 +128,29 @@ export default function Header() {
           />
         </div>
 
-        {/* Divider - Desktop Only */}
-        <div className="hidden lg:block h-6 w-px bg-white/5 mr-6 shrink-0" />
+        <div className="hidden lg:block w-4" />
 
         {/* App Switcher - Desktop Only */}
-        <div className="hidden lg:flex items-center gap-1 flex-1 overflow-x-auto no-scrollbar">
+        <div className="hidden lg:flex items-center gap-1 flex-1 overflow-x-auto no-scrollbar py-2">
           {apps.map((app) => {
             const isActive = pathname.startsWith(app.href);
             return (
-              <button
-                key={app.id}
-                onClick={() => router.push(app.href)}
-                className={`
-                  relative flex items-center gap-2 px-3 py-2 rounded-xl text-[13px] font-semibold whitespace-nowrap shrink-0 group transition-all duration-300
-                  ${isActive 
-                    ? "bg-[#22d3ee]/10 text-[#22d3ee] shadow-[0_0_20px_rgba(34,211,238,0.15)] border border-[#22d3ee]/30" 
-                    : "text-white/40 hover:text-white/90 hover:bg-white/5"}
-                `}
-              >
-                <span className={`shrink-0 transition-colors duration-300 ${isActive ? "text-[#22d3ee]" : "text-white/20 group-hover:text-white/60"}`}>
-                  {app.icon}
-                </span>
-                {app.label}
-              </button>
+              <div key={app.id} className="p-1">
+                <button
+                  onClick={() => router.push(app.href)}
+                  className={`
+                    relative flex items-center gap-2 px-3.5 py-2 rounded-xl text-[13px] font-black whitespace-nowrap shrink-0 group transition-all duration-300
+                    ${isActive 
+                      ? `${app.activeBg} text-white shadow-md shadow-black/10 scale-105` 
+                      : "text-slate-900 hover:bg-slate-200/50"}
+                  `}
+                >
+                  <span className={`shrink-0 transition-colors duration-300 ${isActive ? "text-white" : "text-slate-900 group-hover:text-primary"}`}>
+                    {app.icon}
+                  </span>
+                  {app.label}
+                </button>
+              </div>
             );
           })}
         </div>
@@ -154,7 +158,7 @@ export default function Header() {
         {/* Mobile Active App Indicator */}
         <div className="flex-1 lg:hidden flex items-center justify-center">
             {apps.map(app => pathname.startsWith(app.href) && (
-                <div key={app.id} className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-[13px] font-bold ${app.bg} ${app.color}`}>
+                <div key={app.id} className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-[13px] font-black ${app.activeBg} text-white shadow-sm`}>
                     {app.icon}
                     {app.label}
                 </div>
@@ -165,40 +169,38 @@ export default function Header() {
         {/* Desktop Search & Actions */}
         <div className="hidden lg:flex items-center gap-4 ml-6">
           <div className="relative group">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-cyan-400 transition-colors" size={14} />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-900 group-focus-within:text-primary transition-colors" size={14} />
             <input 
               type="text" 
               placeholder="Search command..."
-              className="pl-9 pr-12 py-2 bg-white/[0.03] border border-white/5 rounded-xl text-[12px] font-medium text-white placeholder:text-white/10 focus:outline-none focus:ring-1 focus:ring-cyan-500/30 focus:bg-white/[0.07] transition-all w-64 shadow-inner"
+              className="pl-9 pr-12 py-2 bg-white border border-slate-400 rounded-xl text-[12px] font-black text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all w-64 shadow-sm"
             />
-            <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1 px-1.5 py-0.5 rounded border border-white/10 bg-white/5 text-[10px] text-white/20 font-bold uppercase tracking-tighter">
+            <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1 px-1.5 py-0.5 rounded border border-slate-300 bg-slate-50 text-[10px] text-slate-900 font-black uppercase tracking-tighter">
               {modifierKey} K
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            <button className="p-2 text-white/30 hover:text-cyan-400 hover:bg-white/5 rounded-xl transition-all relative group">
+          <div className="flex items-center gap-2">
+            <button className="p-2 text-slate-900 hover:text-primary hover:bg-slate-200/50 rounded-xl transition-all relative group">
               <Settings size={18} />
-              <div className="absolute inset-0 bg-cyan-400/0 group-hover:bg-cyan-400/5 rounded-xl transition-all" />
             </button>
-            <button className="p-2 text-white/30 hover:text-cyan-400 hover:bg-white/5 rounded-xl transition-all relative group">
+            <button className="p-2 text-slate-900 hover:text-primary hover:bg-slate-200/50 rounded-xl transition-all relative group">
               <Bell size={18} />
-              <span className="absolute top-2 right-2 w-2 h-2 bg-cyan-500 rounded-full border-2 border-[#030712] shadow-[0_0_10px_rgba(34,211,238,0.5)]"></span>
-              <div className="absolute inset-0 bg-cyan-400/0 group-hover:bg-cyan-400/5 rounded-xl transition-all" />
+              <span className="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full border-2 border-white shadow-sm"></span>
             </button>
           </div>
 
-          <div className="h-8 w-px bg-white/5" />
+          <div className="w-2" />
 
           <div className="flex items-center gap-3 pl-2 group cursor-pointer">
             <div className="text-right">
-              <p className="text-[11px] font-black text-white/90 tracking-tight group-hover:text-white transition-colors">Jan Saida Shaik</p>
-              <p className="text-[9px] font-bold text-white/20 uppercase tracking-widest leading-none mt-0.5">Super Admin</p>
+              <p className="text-[11px] font-black text-slate-900 tracking-tight group-hover:text-primary transition-colors">Jan Saida Shaik</p>
+              <p className="text-[9px] font-black text-slate-900 uppercase tracking-widest leading-none mt-0.5 opacity-80">Super Admin</p>
             </div>
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-[13px] font-black text-white shadow-[0_0_20px_rgba(34,211,238,0.2)] group-hover:scale-105 group-hover:shadow-[0_0_25px_rgba(34,211,238,0.3)] transition-all duration-300">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-blue-700 flex items-center justify-center text-[13px] font-black text-white shadow-lg shadow-primary/20 group-hover:scale-105 transition-all duration-300">
               J
             </div>
-            <ChevronDown size={14} className="text-white/20 group-hover:text-cyan-400 transition-colors" />
+            <ChevronDown size={14} className="text-slate-900 group-hover:text-primary transition-colors" />
           </div>
         </div>
       </div>
@@ -235,7 +237,7 @@ export default function Header() {
                         );
                     })}
                 </div>
-                <div className="p-6 border-t border-gray-100 bg-gray-50/50">
+                <div className="p-6 border-t border-gray-100 bg-white">
                     <div className="flex items-center gap-3 mb-6">
                         <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white font-bold">J</div>
                         <div>
