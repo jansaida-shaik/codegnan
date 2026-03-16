@@ -136,7 +136,7 @@ function HomeOverview() {
             { id: 'helpdesk', title: 'Help Desk', desc: 'Support & tickets', icon: <MessageSquare size={24} />, color: 'bg-orange-600' },
             { id: 'analytics', title: 'Analytics', desc: 'Reports & insights', icon: <PieChart size={24} />, color: 'bg-rose-600' },
           ].map((app) => (
-            <div key={app.id} className="bento-item p-8 group hover:bento-item-hover cursor-pointer">
+            <div key={app.id} className="bento-item p-8 group cursor-pointer">
               <div className={`w-12 h-12 rounded-2xl ${app.color} text-white flex items-center justify-center shadow-lg group-hover:rotate-6 transition-transform duration-300 mb-6`}>
                 {app.icon}
               </div>
