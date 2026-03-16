@@ -92,23 +92,23 @@ function HomeOverview() {
 
         <div className="flex items-center gap-4">
           <div className="bento-item p-6 flex flex-col items-center justify-center min-w-[140px]">
-            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-2">Engagement Pulse</p>
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-900 mb-2">Engagement Pulse</p>
             <div className="flex items-center gap-2">
               <span className="text-2xl font-black text-slate-900">+14.2%</span>
               <TrendingUp size={16} className="text-emerald-500" />
             </div>
             <div className="mt-4 flex items-end gap-1 h-8">
               {[4, 7, 5, 8, 6, 9, 7].map((h, i) => (
-                <div key={i} className="w-2 bg-primary/20 rounded-full" style={{ height: `${h * 10}%` }} />
+                <div key={i} className="w-2 bg-primary rounded-full shadow-[0_0_8px_rgba(34,109,180,0.2)]" style={{ height: `${h * 10}%` }} />
               ))}
             </div>
           </div>
           <div className="bento-item p-6 flex flex-col items-center justify-center min-w-[140px]">
-            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-2">Active Goals</p>
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-900 mb-2">Active Goals</p>
             <div className="text-2xl font-black text-slate-900">12 / 15</div>
             <div className="mt-4 flex -space-x-2">
               {[1, 2, 3, 4].map(i => (
-                <div key={i} className="w-6 h-6 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-[8px] font-bold text-slate-500">
+                <div key={i} className="w-6 h-6 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-[8px] font-black text-slate-900">
                   {i === 4 ? "+3" : String.fromCharCode(64 + i)}
                 </div>
               ))}
