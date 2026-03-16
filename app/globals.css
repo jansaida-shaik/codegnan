@@ -2,14 +2,14 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #020617;
+  --foreground: #0f172a;
   --primary: #226DB4;
   --primary-dark: #1a54a0;
   --sapphire: #0f172a;
-  --glass-bg: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(0, 0, 0, 0.1);
-  --premium-shadow: 0 4px 12px -1px rgba(0, 0, 0, 0.03);
-  --premium-shadow-lg: 0 20px 32px -8px rgba(0, 0, 0, 0.05);
+  --glass-bg: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(15, 23, 42, 0.1);
+  --premium-shadow: 0 4px 20px -5px rgba(15, 23, 42, 0.1);
+  --premium-shadow-lg: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
 }
 
 @theme {
