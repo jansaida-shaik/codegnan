@@ -1,223 +1,218 @@
 "use client";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Manrope, Inter } from "next/font/google";
 import Image from "next/image";
-import { Mail, Lock, ArrowRight, Loader2 } from "lucide-react";
 
+const heading = Manrope({ subsets: ["latin"], weight: ["400","500","600","700","800"], variable: "--font-heading" });
+const body = Inter({ subsets: ["latin"], weight: ["400","500","600"], variable: "--font-body" });
 
 export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  async function handleLogin(e?: React.FormEvent) {
-    if (e) e.preventDefault();
-    setError("");
-
-    if (email === "" || password === "") {
-      setError("Please enter your email and password");
-      return;
-    }
-
-    setIsLoading(true);
-    // Simulate API delay for a premium feel
-    await new Promise((resolve) => setTimeout(resolve, 800));
-    router.push("/dashboard");
-  }
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    // Mimic previous changes: simulate loading then redirect to /home
+    setTimeout(() => {
+      setLoading(false);
+      router.push("/home");
+    }, 1200);
+  };
 
   return (
-    <div className="min-h-screen flex bg-white font-sans selection:bg-blue-100 selection:text-primary">
+    <div className={`${heading.variable} ${body.variable}`} style={{ minHeight:"100vh", display:"flex", fontFamily:"var(--font-body),sans-serif" }}>
+      <style>{`
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-      {/* Left Panel - Brand */}
-      <div className="hidden lg:flex w-1/2 bg-sapphire flex-col items-center justify-center p-12 relative overflow-hidden">
-        {/* Abstract Background Decor */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-40">
-          <div className="absolute -top-1/4 -left-1/4 w-full h-full bg-blue-600/20 blur-[120px] rounded-full"></div>
-          <div className="absolute -bottom-1/4 -right-1/4 w-full h-full bg-indigo-600/20 blur-[120px] rounded-full"></div>
-        </div>
+        .left {
+          width:55%;position:relative;background:#050508;
+          display:flex;align-items:center;justify-content:center;
+          overflow:hidden;
+        }
+        .left::before {
+          content:'';position:absolute;inset:0;
+          background:
+            radial-gradient(ellipse 60% 50% at 30% 30%,rgba(124,58,237,0.35) 0%,transparent 60%),
+            radial-gradient(ellipse 50% 60% at 75% 70%,rgba(16,185,129,0.18) 0%,transparent 55%),
+            radial-gradient(ellipse 40% 40% at 60% 20%,rgba(59,130,246,0.2) 0%,transparent 50%);
+        }
+        .left::after {
+          content:'';position:absolute;inset:0;
+          background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+          background-size:44px 44px;
+        }
+        .left-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;padding:80px 56px;}
 
+        .tag{
+          display:inline-flex;align-items:center;gap:6px;
+          border:1px solid rgba(124,58,237,0.4);background:rgba(124,58,237,0.1);
+          border-radius:100px;padding:5px 14px;
+          font-size:11px;font-weight:600;letter-spacing:.1em;
+          color:rgba(167,139,250,0.9);text-transform:uppercase;
+          margin-bottom:20px;animation:up .8s cubic-bezier(.16,1,.3,1) both;
+        }
+        .tag-dot{width:6px;height:6px;border-radius:50%;background:#7c3aed;box-shadow:0 0 6px #7c3aed;}
 
-        {/* Tech Stack Logos - Subtle Background */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.12]">
+        .logo-outer{position:relative;width:176px;height:176px;margin-bottom:40px;animation:up .8s cubic-bezier(.16,1,.3,1) .04s both;}
+        .logo-outer::before{
+          content:'';position:absolute;inset:-3px;border-radius:50%;
+          background:linear-gradient(135deg,rgba(124,58,237,0.9),rgba(59,130,246,0.7),rgba(16,185,129,0.5));
+          filter:blur(8px);opacity:.7;
+        }
+        .logo-circle{
+          position:relative;width:100%;height:100%;border-radius:50%;
+          background:#fff;overflow:hidden;
+          display:flex;align-items:center;justify-content:center;
+          border:3px solid rgba(255,255,255,0.9);
+        }
 
-          {/* Python – Top Left */}
-          <div className="absolute top-[8%] left-[8%] animate-float duration-[25s]">
-            <svg width="52" height="52" viewBox="0 0 128 128" fill="white">
-              <path d="M63.391 1.988c-4.222.02-8.252.379-11.8 1.007-10.45 1.846-12.346 5.71-12.346 12.837v9.411h24.693v3.137H29.977c-7.176 0-13.46 4.313-15.426 12.521-2.268 9.405-2.368 15.275 0 25.096 1.755 7.311 5.947 12.519 13.124 12.519h8.491V67.234c0-8.151 7.051-15.34 15.426-15.34h24.665c6.866 0 12.346-5.654 12.346-12.548V15.833c0-6.693-5.646-11.72-12.346-12.837-4.244-.706-8.645-1.027-12.866-1.008zM50.037 9.557c2.55 0 4.634 2.117 4.634 4.721 0 2.593-2.083 4.69-4.634 4.69-2.56 0-4.633-2.097-4.633-4.69-.001-2.604 2.073-4.721 4.633-4.721z"/>
-              <path d="M91.682 28.38v10.966c0 8.5-7.208 15.655-15.426 15.655H51.591c-6.756 0-12.346 5.783-12.346 12.549v23.515c0 6.691 5.818 10.628 12.346 12.547 7.816 2.297 15.312 2.713 24.665 0 6.216-1.801 12.346-5.423 12.346-12.547v-9.412H63.938v-3.138h37.012c7.176 0 9.852-5.005 12.348-12.519 2.578-7.735 2.467-15.174 0-25.096-1.774-7.145-5.161-12.521-12.348-12.521h-9.268zM77.809 87.927c2.561 0 4.634 2.097 4.634 4.692 0 2.602-2.074 4.719-4.634 4.719-2.55 0-4.633-2.117-4.633-4.719 0-2.595 2.083-4.692 4.633-4.692z"/>
-            </svg>
-          </div>
+        .lh1{
+          font-family:var(--font-heading),sans-serif;
+          font-size:clamp(28px,2.8vw,40px);font-weight:800;line-height:1.15;
+          letter-spacing:-.03em;color:#fff;margin-bottom:16px;
+          animation:up .8s cubic-bezier(.16,1,.3,1) .1s both;
+        }
+        .lh1 em{
+          font-style:normal;
+          background:linear-gradient(135deg,#a78bfa,#60a5fa,#34d399);
+          -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+        }
+        .lp{font-size:14px;color:rgba(255,255,255,.38);line-height:1.8;max-width:300px;animation:up .8s cubic-bezier(.16,1,.3,1) .15s both;}
 
+        .stats{display:flex;gap:32px;margin-top:40px;animation:up .8s cubic-bezier(.16,1,.3,1) .2s both;}
+        .stat{display:flex;flex-direction:column;align-items:center;gap:3px;}
+        .stat-n{font-family:var(--font-heading),sans-serif;font-size:20px;font-weight:800;color:#fff;}
+        .stat-l{font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.08em;text-transform:uppercase;}
+        .stat-sep{width:1px;background:rgba(255,255,255,.08);align-self:stretch;}
 
-          {/* Java – Center Left */}
-          <div className="absolute top-[40%] left-[5%] animate-drift duration-[22s]">
-            <svg width="52" height="52" viewBox="0 0 32 32" fill="white">
-              <path d="M11.6 24.7s-1.2.7.9 1c2.5.3 3.8.3 6.6-.3a10 10 0 0 0 1.8.9c-6.3 2.7-14.2-.2-9.3-1.6zm-.8-3.5s-1.3 1 .7 1.2c2.7.3 4.9.3 8.6-.4a3.3 3.3 0 0 0 1.3.8c-7.5 2.2-16 .2-10.6-1.6zm14.7 6.1s.9.7-1 1.3c-3.6 1.1-15 1.4-18.2 0-1.1-.5 1-1.2 1.7-1.3.7-.2 1-.2 1-.2-1.2-.9-8.2 1.8-3.5 2.5 12.8 2.1 23.3-.9 20-2.3zm-15-12.5s-5.8 1.4-2.1 1.9c1.6.2 4.8.2 7.7 0 2.4-.2 4.8-.6 4.8-.6s-.8.4-1.4.7c-5.9 1.6-17.3.9-14-.7 2.8-1.4 5-1.3 5-1.3zm10.4 5.8c6-3.1 3.2-6.1 1.3-5.7-.5.1-.7.2-.7.2s.2-.3.5-.4c3.8-1.3 6.8 4-.7 6.1 0 0 .1-.1.1-.2zm-9.8 8.4c5.8.4 14.6-.2 14.8-2.9 0 0-.4 1.1-4.8 1.9-4.9.9-11 .8-14.6.2 0 0 .7.6 4.6.8z"/>
-              <path fill="white" d="M19 0s3.3 3.4-3.2 8.4c-5.2 4.1-1.2 6.5 0 9.1C12.8 15 10.6 12.5 12 10c2.4-3.6 8.5-5.2 7-10zm-1.7 15.3c1.6 1.8-.4 3.4-.4 3.4s4-2 2.1-4.5C17.3 12 16 10.8 23 6.8c0 0-11 2.7-5.7 8.5z"/>
-            </svg>
-          </div>
+        .right{
+          width:45%;
+          background:linear-gradient(160deg,#0d0d1a 0%,#0a0a14 100%);
+          display:flex;align-items:center;justify-content:center;
+          padding:80px 64px;position:relative;overflow:hidden;
+        }
+        .right::before{
+          content:'';position:absolute;
+          width:400px;height:400px;border-radius:50%;
+          background:radial-gradient(circle,rgba(124,58,237,0.08) 0%,transparent 70%);
+          bottom:-100px;right:-80px;pointer-events:none;
+        }
+        .form-box{width:100%;max-width:340px;animation:up .8s cubic-bezier(.16,1,.3,1) .08s both;}
 
-          {/* MongoDB – Right Middle (Between GitHub and React) */}
-          <div className="absolute top-[40%] right-[9%] animate-float duration-[20s]">
-            <svg width="48" height="48" viewBox="0 0 32 32" fill="white">
-              <path d="M16 2c-.2 0-.3.1-.4.2-1.5 1.7-6.3 7.7-6.3 13.3 0 3.7 2.8 6.8 6.3 7.3v5.7c0 .5.2.5.4.5s.4 0 .4-.5v-5.7c3.5-.5 6.3-3.6 6.3-7.3C22.7 9.9 17.6 3.7 16 2z"/>
-            </svg>
-          </div>
+        .ft{font-family:var(--font-heading),sans-serif;font-size:26px;font-weight:800;color:#fff;letter-spacing:-.025em;margin-bottom:6px;}
+        .fs{font-size:13px;color:rgba(255,255,255,.35);margin-bottom:32px;line-height:1.6;}
+        .fdiv{height:1px;background:rgba(255,255,255,.07);margin-bottom:28px;}
 
-          {/* Django – Bottom Left */}
-          <div className="absolute bottom-[25%] left-[8%] animate-drift duration-[27s]">
-            <svg width="50" height="50" viewBox="0 0 32 32" fill="white">
-              <path d="M11.5 5h3.7v15.4c-1.9.4-3.3.5-4.8.5-4.5 0-6.9-2-6.9-5.9 0-3.7 2.5-6.1 6.5-6.1.6 0 1 .1 1.5.2V5zm0 7.5c-.4-.1-.7-.2-1.2-.2-1.9 0-3 1.2-3 3.2 0 2 1 3.1 3 3.1.4 0 .7 0 1.2-.1v-6zm5.7-7.5H21v16.6c0 5.7-4.1 7.9-10.1 7.4l-.5-3.1c4 .5 6.8-.1 6.8-4.3V5z"/>
-            </svg>
-          </div>
+        .field{margin-bottom:16px;}
+        .flbl{font-size:11px;font-weight:600;color:rgba(255,255,255,.4);letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:8px;}
+        .fi-wrap{position:relative;}
+        .fi-wrap svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.22);pointer-events:none;}
+        .fi{
+          width:100%;height:48px;
+          background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;
+          padding:0 16px 0 44px;font-size:14px;color:#fff;
+          font-family:var(--font-body),sans-serif;outline:none;
+          transition:border-color .2s,background .2s,box-shadow .2s;
+        }
+        .fi:focus{border-color:rgba(124,58,237,.7);background:rgba(124,58,237,.08);box-shadow:0 0 0 4px rgba(124,58,237,.12);}
+        .fi::placeholder{color:rgba(255,255,255,.18);}
 
-          {/* React – Right Center-Bottom */}
-          <div className="absolute bottom-[30%] right-[8%] animate-float duration-[24s]">
-            <svg width="52" height="52" viewBox="0 0 32 32" fill="none" stroke="white" strokeWidth="1.5">
-              <circle cx="16" cy="16" r="2.5" fill="white"/>
-              <ellipse cx="16" cy="16" rx="14" ry="5.5"/>
-              <ellipse cx="16" cy="16" rx="14" ry="5.5" transform="rotate(60 16 16)"/>
-              <ellipse cx="16" cy="16" rx="14" ry="5.5" transform="rotate(120 16 16)"/>
-            </svg>
-          </div>
-          
-          {/* GitHub – Top Right */}
-          <div className="absolute top-[10%] right-[10%] animate-drift duration-[23s]">
-            <svg width="52" height="52" viewBox="0 0 24 24" fill="white">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
-          </div>
+        .pw-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+        .forgot{font-size:11px;font-weight:600;color:#a78bfa;text-decoration:none;letter-spacing:.04em;}
+        .eye{position:absolute;right:13px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:rgba(255,255,255,.25);padding:4px;display:flex;align-items:center;}
 
+        .cta{
+          width:100%;height:50px;margin-top:8px;
+          background:linear-gradient(135deg,#7c3aed,#6d28d9);
+          border:none;border-radius:12px;color:#fff;
+          font-size:14px;font-weight:700;font-family:var(--font-body),sans-serif;
+          cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
+          letter-spacing:.02em;position:relative;overflow:hidden;
+          box-shadow:0 8px 24px rgba(124,58,237,.45),inset 0 1px 0 rgba(255,255,255,.15);
+          transition:transform .15s,box-shadow .15s;
+        }
+        .cta::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.12),transparent 60%);}
+        .cta:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(124,58,237,.6),inset 0 1px 0 rgba(255,255,255,.15);}
+        .cta:active{transform:scale(.99);}
+        .cta:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+        .cta>*{position:relative;z-index:1;}
 
+        .trust-row{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:24px;}
+        .tdot{width:5px;height:5px;border-radius:50%;background:#10b981;box-shadow:0 0 6px rgba(16,185,129,.6);}
+        .ttxt{font-size:11px;color:rgba(255,255,255,.22);font-weight:500;}
 
+        @keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+        @media(max-width:768px){.left{display:none!important}.right{width:100%!important}}
+      `}</style>
 
-
-        </div>
-
-
-        <div className="relative z-10 flex flex-col items-center max-w-md w-full animate-in fade-in zoom-in-95 duration-1000">
-          
-          {/* Static Logo Section - Maximum Clarity, Clean Geometry */}
-          <div className="relative mb-12 flex justify-center items-center">
-            {/* Subtle backlight */}
-            <div className="absolute inset-0 bg-blue-500/10 blur-[60px] rounded-full scale-150"></div>
-
-
-            {/* Central Codegnan logo */}
-            <div className="relative w-48 h-48 bg-white rounded-full shadow-2xl border border-gray-100/50 flex items-center justify-center overflow-hidden">
-              <Image
-                src="/logo.png"
-                alt="Codegnan Logo"
-                width={800}
-                height={800}
-                unoptimized
-                priority
-                className="object-contain w-full h-full rounded-full"
-              />
+      {/* LEFT */}
+      <div className="left">
+        <div className="left-inner">
+          <div className="tag"><span className="tag-dot"/>&nbsp;EdTech Portal</div>
+          <div className="logo-outer">
+            <div className="logo-circle">
+              <Image src="/logo.png" alt="Codegnan" width={150} height={150} style={{objectFit:"contain"}} priority/>
             </div>
           </div>
-
-          <div className="space-y-6 text-center">
-            <h2 className="text-white text-5xl font-extrabold tracking-tight leading-[1.1]">
-              Elevating your <span className="text-blue-400">daily workflow</span>.
-            </h2>
-            <p className="text-blue-100/60 text-lg font-medium">
-              The central portal for your daily professional needs and operational excellence at Codegnan.
-            </p>
-          </div>
-
-          {/* Interactive Indicators */}
-          <div className="flex gap-4 mt-12">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className={`h-1.5 rounded-full transition-all duration-500 ${i === 1 ? 'w-10 bg-blue-500' : 'w-2 bg-white/20'}`}></div>
-            ))}
+          <h1 className="lh1">Elevate your<br/><em>daily workflow.</em></h1>
+          <p className="lp">The professional hub powering Codegnan's daily operations and learning excellence.</p>
+          <div className="stats">
+            <div className="stat"><span className="stat-n">12K+</span><span className="stat-l">Students</span></div>
+            <div className="stat-sep"/>
+            <div className="stat"><span className="stat-n">98%</span><span className="stat-l">Placement</span></div>
+            <div className="stat-sep"/>
+            <div className="stat"><span className="stat-n">200+</span><span className="stat-l">Partners</span></div>
           </div>
         </div>
       </div>
 
-      {/* Right Panel - Login Form */}
-      <div className="flex-1 bg-white flex items-center justify-center p-8 lg:p-12 relative overflow-y-auto">
-        <div className="w-full max-w-sm animate-in fade-in slide-in-from-right-8 duration-700">
-
-          {/* Mobile logo */}
-          <div className="flex lg:hidden justify-center mb-10">
-            <Image
-              src="/logo.png"
-              alt="Codegnan Logo"
-              width={140}
-              height={140}
-            />
-          </div>
-
-          {/* Heading */}
-          <div className="mb-10 text-center lg:text-left">
-            <h1 className="text-3xl font-extrabold text-gray-900 mb-2 tracking-tight">Welcome back</h1>
-            <p className="text-gray-500 font-semibold">Log in to manage your workspace</p>
-          </div>
-
-          {/* Error Message */}
-          {error && (
-            <div className="mb-6 px-4 py-3 bg-rose-50 border border-rose-100 text-rose-600 rounded-2xl text-sm font-bold flex items-center gap-2 animate-in slide-in-from-top-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-rose-500"></div>
-              {error}
-            </div>
-          )}
-
-          {/* Form */}
-          <form className="space-y-5" onSubmit={handleLogin}>
-            <div className="space-y-2">
-              <label className="text-[11px] font-bold text-slate-500 uppercase tracking-widest ml-1">Email Address</label>
-              <div className="relative group">
-                <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-700 transition-colors">
-                  <Mail size={18} />
-                </div>
-                <input
-                  type="email"
-                  placeholder="name@company.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3.5 bg-gray-50 text-gray-900 rounded-2xl border border-transparent focus:bg-white focus:border-blue-700/30 focus:ring-4 focus:ring-blue-700/10 transition-all font-semibold outline-none placeholder:text-gray-300"
-                />
+      {/* RIGHT */}
+      <div className="right">
+        <div className="form-box">
+          <h2 className="ft">Welcome back</h2>
+          <p className="fs">Sign in to your Codegnan workspace</p>
+          <div className="fdiv"/>
+          <form onSubmit={handleSubmit}>
+            <div className="field">
+              <label className="flbl">Email</label>
+              <div className="fi-wrap">
+                <input className="fi" type="email" placeholder="you@codegnan.com" value={email} onChange={e=>setEmail(e.target.value)} required autoComplete="email"/>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
               </div>
             </div>
-
-            <div className="space-y-2">
-              <div className="flex justify-between items-center ml-1">
-                <label className="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Password</label>
-                <button type="button" className="text-[11px] font-bold text-blue-700 hover:text-blue-800 transition-colors uppercase tracking-widest">Forgot?</button>
+            <div className="field" style={{marginBottom:24}}>
+              <div className="pw-row">
+                <label className="flbl" style={{marginBottom:0}}>Password</label>
+                <a href="#" className="forgot">Forgot?</a>
               </div>
-              <div className="relative group">
-                <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-700 transition-colors">
-                  <Lock size={18} />
-                </div>
-                <input
-                  type="password"
-                  placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3.5 bg-gray-50 text-gray-900 rounded-2xl border border-transparent focus:bg-white focus:border-blue-700/30 focus:ring-4 focus:ring-blue-700/10 transition-all font-semibold outline-none placeholder:text-gray-300"
-                />
+              <div className="fi-wrap" style={{marginTop:8}}>
+                <input className="fi" type={showPassword?"text":"password"} placeholder="••••••••••••" value={password} onChange={e=>setPassword(e.target.value)} required autoComplete="current-password" style={{paddingRight:44}}/>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <button type="button" className="eye" onClick={()=>setShowPassword(!showPassword)}>
+                  {showPassword
+                    ?<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                    :<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  }
+                </button>
               </div>
             </div>
-
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full py-4 bg-blue-700 hover:bg-blue-800 disabled:bg-blue-700/70 active:scale-[0.98] text-white font-bold rounded-2xl transition-all shadow-lg shadow-blue-700/25 flex items-center justify-center gap-2 mt-4"
-            >
-              {isLoading ? (
-                <Loader2 size={18} strokeWidth={2.5} className="animate-spin text-white" />
-              ) : (
-                <>
-                  Sign In
-                  <ArrowRight size={18} strokeWidth={2.5} />
-                </>
-              )}
+            <button type="submit" className="cta" disabled={loading}>
+              {loading
+                ?<><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{animation:"spin .8s linear infinite"}}><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>Signing in...</>
+                :<>Sign In <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></>
+              }
             </button>
           </form>
-
+          <div className="trust-row">
+            <span className="tdot"/>
+            <span className="ttxt">Protected by 256-bit SSL encryption</span>
+          </div>
         </div>
       </div>
     </div>
