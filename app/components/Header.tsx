@@ -83,7 +83,7 @@ const apps = [
   },
 ];
 
-export default function TopBar() {
+export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

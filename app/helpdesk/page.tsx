@@ -1,5 +1,5 @@
 "use client";
-import TopBar from "../components/TopBar";
+import Header from "../components/Header";
 
 const sidebarItems = [
   { label: "Tickets", active: true },

@@ -18,12 +18,12 @@ import {
 ## Fixed Navigation
 
 I have resolved the issue where the top navigation bar scrolled with the page content.
-- **Fixed TopBar**: The navigation bar is now fixed at the top of the viewport (`z-index: 100`).
+- **Fixed Header**: The navigation bar is now fixed at the top of the viewport (`z-index: 100`).
 - **Global Layout Adjustment**: Added top padding to the application layout to ensure content doesn't start underneath the fixed header.
 
 ## Verification Results
 */
-export default function BottomBar() {
+export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (

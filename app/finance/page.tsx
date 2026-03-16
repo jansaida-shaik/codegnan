@@ -1,5 +1,5 @@
 "use client";
-import TopBar from "../components/TopBar";
+import Header from "../components/Header";
 import Image from "next/image";
 
 export default function FinancePage() {
