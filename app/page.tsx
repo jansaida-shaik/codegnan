@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
-import { Mail, Lock, ArrowRight, Loader2 } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, ArrowRight, Loader2 } from "lucide-react";
 
 
 export default function LoginPage() {
@@ -11,6 +11,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   async function handleLogin(e?: React.FormEvent) {
     if (e) e.preventDefault();
@@ -40,7 +41,7 @@ export default function LoginPage() {
 
 
         {/* Tech Stack Logos - Subtle Background */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.12]">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.35]">
 
           {/* Python – Top Left */}
           <div className="absolute top-[8%] left-[8%] animate-float duration-[25s]">
@@ -171,7 +172,7 @@ export default function LoginPage() {
               <label className="text-[11px] font-bold text-slate-500 uppercase tracking-widest ml-1">Email Address</label>
               <div className="relative group">
                 <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-700 transition-colors">
-                  <Mail size={18} />
+                  <Mail size={16} strokeWidth={2.5} />
                 </div>
                 <input
                   type="email"
@@ -190,15 +191,22 @@ export default function LoginPage() {
               </div>
               <div className="relative group">
                 <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-700 transition-colors">
-                  <Lock size={18} />
+                  <Lock size={16} strokeWidth={2.5} />
                 </div>
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3.5 bg-gray-50 text-gray-900 rounded-2xl border border-transparent focus:bg-white focus:border-blue-700/30 focus:ring-4 focus:ring-blue-700/10 transition-all font-semibold outline-none placeholder:text-gray-300"
+                  className="w-full pl-12 pr-12 py-3.5 bg-gray-50 text-gray-900 rounded-2xl border border-transparent focus:bg-white focus:border-blue-700/30 focus:ring-4 focus:ring-blue-700/10 transition-all font-semibold outline-none placeholder:text-gray-300"
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute inset-y-0 right-4 flex items-center text-slate-300 hover:text-blue-700 transition-colors"
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
               </div>
             </div>
 

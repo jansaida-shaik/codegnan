@@ -25,6 +25,9 @@ I have resolved the issue where the top navigation bar scrolled with the page co
 */
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const pathname = typeof window !== "undefined" ? window.location.pathname : "";
+
+  if (pathname === "/") return null;
 
   return (
     <div className="z-[100] h-10 bg-[#030712] border-t border-white/5 px-4 md:px-6 flex items-center justify-between text-[11px] font-medium text-white/30 overflow-hidden select-none shrink-0 border-b-none">
