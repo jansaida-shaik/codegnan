@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Mail, Lock, ArrowRight, Loader2 } from "lucide-react";
 
 
-export default function Home() {
+export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
