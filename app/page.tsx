@@ -218,10 +218,6 @@ export default function Home() {
             </button>
           </form>
 
-
-          <footer className="text-center text-gray-400 font-medium text-[11px] mt-12 tracking-wide">
-            POWERED BY <span className="text-gray-900 font-bold tracking-tighter">Codegnan Ecosystem™</span>
-          </footer>
         </div>
       </div>
     </div>
