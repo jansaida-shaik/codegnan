@@ -28,7 +28,11 @@ function DigitalClock() {
   useEffect(() => {
     const tick = () => {
       const now = new Date();
-      setTime(now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false }));
+      const hours = now.getHours();
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      const hours12 = (hours % 12 || 12).toString().padStart(2, '0');
+      setTime(`${hours12}:${minutes} ${ampm}`);
     };
     tick();
     const timer = setInterval(tick, 1000);
@@ -48,7 +52,7 @@ function WeatherWidget() {
     <div className="flex items-center gap-4 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 shadow-sm">
       <div className="flex items-center gap-2">
         <MapPin size={12} className="text-primary" />
-        <span className="text-[11px] font-black uppercase tracking-widest">Hyderabad, IN</span>
+        <span className="text-[11px] font-black uppercase tracking-widest">Vijayawada, IN</span>
       </div>
       <div className="w-px h-3 bg-slate-200" />
       <div className="flex items-center gap-2">
@@ -82,7 +86,7 @@ function HomeOverview() {
           </div>
           <div className="space-y-1">
             <h1 className="text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
-              Hello, Jan <span className="inline-block animate-bounce-subtle text-primary cursor-default">🤘</span>
+              Hello, Jan Saida Shaik <span className="inline-block animate-bounce-subtle text-primary cursor-default">🤘</span>
             </h1>
             <p className="text-slate-600 font-bold text-lg max-w-xl">
               Your workspace is optimized and ready for today's goals.
@@ -131,7 +135,11 @@ function HomeOverview() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
-            { id: 'crm', title: 'CRM', desc: 'Manage leads & deals', icon: <Users size={24} />, color: 'bg-blue-600' },
+            { id: 'crm', title: 'CRM', desc: 'Manage leads & deals', icon: (
+              <svg width="24" height="24" viewBox="0 0 1024 1024" fill="currentColor">
+                <path d="M701.8,834.2c-85.4,0-165.9-33.1-226.6-93.2l-0.1-0.1L297.8,563.6c-20.6-20.7-32-48.1-31.9-77.3s11.6-56.6,32.4-77.1c20.5-20.3,47.7-31.4,76.5-31.4c0.1,0,0.2,0,0.3,0c29,0.1,56.2,11.4,76.7,31.9l162.5,162.5c19,19,50.1,19.1,69.2,0.2c9.3-9.2,14.5-21.6,14.6-34.8c0-13.2-5.1-25.5-14.4-34.8L506.5,325.5c-49.4-48.8-114.8-75.7-184.3-75.7c-0.2,0-0.4,0-0.6,0c-71.1,0.2-137.5,28.1-186.9,78.6c-49.5,50.6-76,117.7-74.6,188.8c1.4,68.9,29.2,133.5,78.5,181.8c49.3,48.4,114.5,75.1,183.7,75.1c25.3,0,50.4-3.6,74.4-10.7c15.9-4.7,32.6,4.4,37.3,20.3c4.7,15.9-4.4,32.6-20.3,37.3c-29.6,8.7-60.3,13.2-91.4,13.2c-84.9,0-165.1-32.8-225.7-92.2C36,682.5,1.7,603.2,0.1,518.5c-0.9-44.1,7-87,23.3-127.5c15.8-39.1,38.8-74.2,68.3-104.5c29.5-30.2,64.1-53.9,102.8-70.6c40.1-17.2,82.8-26,126.9-26.1c0.2,0,0.5,0,0.8,0c85.4,0,165.9,33.1,226.6,93.1l0.1,0.1l177.2,177.2c20.7,20.7,32,48.2,31.9,77.4s-11.6,56.7-32.3,77.2c-42.5,42.1-111.5,41.9-153.8-0.4L409.4,452c-19-19-49.9-19-68.9-0.2c-9.3,9.2-14.5,21.5-14.5,34.6s5,25.5,14.3,34.7l177.2,177.2c49.3,48.8,114.8,75.7,184.3,75.7c70,0,135.8-27.2,185.3-76.7s76.8-115.2,76.9-185.2c0.1-70-27.2-135.9-76.8-185.5s-115.4-77-185.4-77c-22.3,0-44.5,2.8-65.8,8.3c-3.1,0.8-6.2,1.7-9.3,2.6c-15.9,4.7-32.6-4.3-37.3-20.2s4.3-32.6,20.2-37.3c3.8-1.1,7.6-2.2,11.4-3.2c26.3-6.8,53.5-10.2,80.9-10.2c43.5,0,85.7,8.5,125.4,25.4c38.4,16.3,72.8,39.5,102.4,69.2c29.6,29.6,52.8,64.1,69,102.5c16.8,39.8,25.3,82,25.3,125.5c-0.1,86-33.7,166.8-94.5,227.6C868.7,800.7,787.8,834.2,701.8,834.2z"/>
+              </svg>
+            ), color: 'bg-blue-600' },
             { id: 'finance', title: 'Finance', desc: 'Accounts & invoices', icon: <CreditCard size={24} />, color: 'bg-emerald-600' },
             { id: 'helpdesk', title: 'Help Desk', desc: 'Support & tickets', icon: <MessageSquare size={24} />, color: 'bg-orange-600' },
             { id: 'analytics', title: 'Analytics', desc: 'Reports & insights', icon: <PieChart size={24} />, color: 'bg-rose-600' },
