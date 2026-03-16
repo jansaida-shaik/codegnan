@@ -36,7 +36,7 @@ function DigitalClock() {
   }, []);
 
   return (
-    <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white border border-slate-100 text-slate-500 shadow-sm">
+    <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 shadow-sm">
       <Clock size={12} className="text-primary" />
       <span className="text-[11px] font-black tracking-tighter">{time}</span>
     </div>
@@ -45,7 +45,7 @@ function DigitalClock() {
 
 function WeatherWidget() {
   return (
-    <div className="flex items-center gap-4 px-3 py-1.5 rounded-xl bg-white border border-slate-100 text-slate-500 shadow-sm">
+    <div className="flex items-center gap-4 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 shadow-sm">
       <div className="flex items-center gap-2">
         <MapPin size={12} className="text-primary" />
         <span className="text-[11px] font-black uppercase tracking-widest">Hyderabad, IN</span>
@@ -53,7 +53,7 @@ function WeatherWidget() {
       <div className="w-px h-3 bg-slate-200" />
       <div className="flex items-center gap-2">
         <CloudSun size={12} className="text-amber-500" />
-        <span className="text-[11px] font-black uppercase tracking-widest text-slate-600">28°C • Sunny</span>
+        <span className="text-[11px] font-black uppercase tracking-widest text-slate-900">28°C • Sunny</span>
       </div>
     </div>
   );
@@ -84,7 +84,7 @@ function HomeOverview() {
             <h1 className="text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
               Hello, Jan <span className="inline-block animate-bounce-subtle text-primary cursor-default">🤘</span>
             </h1>
-            <p className="text-slate-500 font-medium text-lg max-w-xl">
+            <p className="text-slate-600 font-bold text-lg max-w-xl">
               Your workspace is optimized and ready for today's goals.
             </p>
           </div>
@@ -141,10 +141,10 @@ function HomeOverview() {
                 {app.icon}
               </div>
               <h3 className="text-xl font-black text-slate-900 mb-2">{app.title}</h3>
-              <p className="text-slate-400 text-sm font-medium mb-6 uppercase tracking-wider">{app.desc}</p>
+              <p className="text-slate-700 text-sm font-black mb-6 uppercase tracking-wider">{app.desc}</p>
               <div className="flex items-center gap-2 group/btn cursor-pointer">
-                <span className="text-[10px] font-black uppercase tracking-widest text-primary group-hover/btn:mr-2 transition-all">Go to App</span>
-                <ChevronRight size={10} className="text-primary opacity-0 group-hover/btn:opacity-100 transition-all" />
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary group-hover/btn:mr-2 transition-all">Go to App</span>
+                <ChevronRight size={10} className="text-primary opacity-0 group-hover/btn:opacity-100 transition-all border border-primary rounded-full p-0.5" />
               </div>
             </div>
           ))}
@@ -166,12 +166,12 @@ function HomeOverview() {
             {[1, 2, 3].map((_, i) => (
               <div key={i} className="p-6 flex items-center justify-between hover:bg-slate-50 transition-colors cursor-pointer group">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 group-hover:text-primary transition-colors">
+                  <div className="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-900 group-hover:text-primary transition-colors">
                     <Zap size={18} />
                   </div>
                   <div>
-                    <p className="text-[13px] font-bold text-slate-900">System maintenance completed successfully</p>
-                    <p className="text-[11px] text-slate-400 font-medium">Auto-pilot processed • 2 mins ago</p>
+                    <p className="text-[13px] font-black text-slate-900">System maintenance completed successfully</p>
+                    <p className="text-[11px] text-slate-700 font-bold uppercase tracking-tight">Auto-pilot processed • 2 mins ago</p>
                   </div>
                 </div>
                 <div className="flex -space-x-1">
@@ -201,8 +201,8 @@ function HomeOverview() {
                   {task.completed && <CheckCircle2 size={12} className="text-white" />}
                 </div>
                 <div className="flex-1">
-                  <p className={`text-sm font-bold ${task.completed ? "text-slate-400 line-through" : "text-slate-900"}`}>{task.text}</p>
-                  <p className="text-[10px] text-slate-400 font-medium uppercase tracking-widest">{task.time}</p>
+                  <p className={`text-sm font-black ${task.completed ? "text-slate-400 line-through" : "text-slate-900"}`}>{task.text}</p>
+                  <p className="text-[10px] text-slate-700 font-black uppercase tracking-[0.2em]">{task.time}</p>
                 </div>
                 {!task.completed && <div className={`w-1.5 h-1.5 rounded-full ${task.priority === 'high' ? 'bg-rose-500' : 'bg-amber-500'}`} />}
               </div>
