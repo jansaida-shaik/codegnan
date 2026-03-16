@@ -99,7 +99,7 @@ export default function Header() {
 
   return (
     <>
-      <div className="z-[100] h-[56px] flex items-center px-4 lg:px-6 bg-slate-50 border-b border-slate-200 shadow-sm overflow-hidden shrink-0">
+      <div className="z-[100] h-[56px] flex items-center px-4 lg:px-6 bg-white/80 backdrop-blur-md border-b border-slate-200/60 shadow-sm overflow-hidden shrink-0">
         {/* Mobile Menu Toggle */}
         <button 
           className="lg:hidden p-2 -ml-2 mr-2 text-slate-400 hover:text-primary transition-colors"
@@ -125,7 +125,7 @@ export default function Header() {
         </div>
 
         {/* Divider - Desktop Only */}
-        <div className="hidden lg:block h-6 w-px bg-slate-200 mr-6 shrink-0" />
+        <div className="hidden lg:block h-6 w-px bg-slate-200/60 mr-6 shrink-0" />
 
         {/* App Switcher - Desktop Only */}
         <div className="hidden lg:flex items-center gap-1 flex-1 overflow-x-auto no-scrollbar">
@@ -136,13 +136,13 @@ export default function Header() {
                 key={app.id}
                 onClick={() => router.push(app.href)}
                 className={`
-                  relative flex items-center gap-2 px-3 py-2 rounded-xl text-[13px] font-bold whitespace-nowrap shrink-0 group transition-all duration-300
+                  relative flex items-center gap-2 px-3.5 py-2 rounded-xl text-[13px] font-bold whitespace-nowrap shrink-0 group transition-all duration-300
                   ${isActive 
-                    ? "bg-primary/10 text-primary shadow-sm border border-primary/20" 
-                    : "text-slate-400 hover:text-slate-900 hover:bg-slate-200/50"}
+                    ? "bg-primary text-white shadow-md shadow-primary/20 scale-105" 
+                    : "text-slate-500 hover:text-slate-900 hover:bg-slate-100/80"}
                 `}
               >
-                <span className={`shrink-0 transition-colors duration-300 ${isActive ? "text-primary" : "text-slate-300 group-hover:text-slate-500"}`}>
+                <span className={`shrink-0 transition-colors duration-300 ${isActive ? "text-white" : "text-slate-300 group-hover:text-slate-500"}`}>
                   {app.icon}
                 </span>
                 {app.label}
@@ -154,7 +154,7 @@ export default function Header() {
         {/* Mobile Active App Indicator */}
         <div className="flex-1 lg:hidden flex items-center justify-center">
             {apps.map(app => pathname.startsWith(app.href) && (
-                <div key={app.id} className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-[13px] font-bold bg-primary/10 text-primary border border-primary/20`}>
+                <div key={app.id} className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-[13px] font-bold bg-primary text-white shadow-sm`}>
                     {app.icon}
                     {app.label}
                 </div>
@@ -169,26 +169,24 @@ export default function Header() {
             <input 
               type="text" 
               placeholder="Search command..."
-              className="pl-9 pr-12 py-2 bg-white border border-slate-200 rounded-xl text-[12px] font-medium text-slate-900 placeholder:text-slate-300 focus:outline-none focus:ring-1 focus:ring-primary/30 focus:bg-white transition-all w-64 shadow-sm"
+              className="pl-9 pr-12 py-2 bg-slate-100/50 border border-slate-200 rounded-xl text-[12px] font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-primary/20 focus:bg-white transition-all w-64"
             />
-            <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1 px-1.5 py-0.5 rounded border border-slate-200 bg-slate-50 text-[10px] text-slate-400 font-bold uppercase tracking-tighter">
+            <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1 px-1.5 py-0.5 rounded border border-slate-200 bg-white text-[10px] text-slate-400 font-bold uppercase tracking-tighter">
               {modifierKey} K
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            <button className="p-2 text-slate-400 hover:text-primary hover:bg-white rounded-xl transition-all relative group shadow-sm">
+          <div className="flex items-center gap-2">
+            <button className="p-2 text-slate-400 hover:text-primary hover:bg-slate-100 rounded-xl transition-all relative group">
               <Settings size={18} />
-              <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 rounded-xl transition-all" />
             </button>
-            <button className="p-2 text-slate-400 hover:text-primary hover:bg-white rounded-xl transition-all relative group shadow-sm">
+            <button className="p-2 text-slate-400 hover:text-primary hover:bg-slate-100 rounded-xl transition-all relative group">
               <Bell size={18} />
-              <span className="absolute top-2 right-2 w-2 h-2 bg-rose-500 rounded-full border-2 border-white shadow-sm font-black"></span>
-              <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 rounded-xl transition-all" />
+              <span className="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full border-2 border-white shadow-sm"></span>
             </button>
           </div>
 
-          <div className="h-8 w-px bg-slate-200" />
+          <div className="h-8 w-px bg-slate-200/60" />
 
           <div className="flex items-center gap-3 pl-2 group cursor-pointer">
             <div className="text-right">
