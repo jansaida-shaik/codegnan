@@ -24,8 +24,9 @@ const apps = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
       </svg>
     ),
-    color: "text-blue-600",
-    bg: "bg-blue-50/50",
+    color: "text-[#226DB4]",
+    bg: "bg-[#226DB4]/10",
+    activeBg: "bg-[#226DB4]",
   },
   {
     id: "crm",
@@ -38,6 +39,7 @@ const apps = [
     ),
     color: "text-blue-600",
     bg: "bg-blue-50/50",
+    activeBg: "bg-blue-600",
   },
   {
     id: "finance",
@@ -54,6 +56,7 @@ const apps = [
     ),
     color: "text-sky-600",
     bg: "bg-sky-50/50",
+    activeBg: "bg-emerald-600",
   },
   {
     id: "helpdesk",
@@ -66,6 +69,7 @@ const apps = [
     ),
     color: "text-orange-600",
     bg: "bg-orange-50/50",
+    activeBg: "bg-orange-600",
   },
   {
     id: "analytics",
@@ -79,6 +83,7 @@ const apps = [
     ),
     color: "text-rose-600",
     bg: "bg-rose-50/50",
+    activeBg: "bg-rose-600",
   },
 ];
 
@@ -130,21 +135,22 @@ export default function Header() {
           {apps.map((app) => {
             const isActive = pathname.startsWith(app.href);
             return (
-              <button
-                key={app.id}
-                onClick={() => router.push(app.href)}
-                className={`
-                  relative flex items-center gap-2 px-3.5 py-2 rounded-xl text-[13px] font-black whitespace-nowrap shrink-0 group transition-all duration-300
-                  ${isActive 
-                    ? "bg-primary text-white shadow-md shadow-primary/20 scale-105" 
-                    : "text-slate-900 hover:bg-slate-200/50"}
-                `}
-              >
-                <span className={`shrink-0 transition-colors duration-300 ${isActive ? "text-white" : "text-slate-900 group-hover:text-primary"}`}>
-                  {app.icon}
-                </span>
-                {app.label}
-              </button>
+              <div key={app.id} className="p-1">
+                <button
+                  onClick={() => router.push(app.href)}
+                  className={`
+                    relative flex items-center gap-2 px-3.5 py-2 rounded-xl text-[13px] font-black whitespace-nowrap shrink-0 group transition-all duration-300
+                    ${isActive 
+                      ? `${app.activeBg} text-white shadow-md shadow-black/10 scale-105` 
+                      : "text-slate-900 hover:bg-slate-200/50"}
+                  `}
+                >
+                  <span className={`shrink-0 transition-colors duration-300 ${isActive ? "text-white" : "text-slate-900 group-hover:text-primary"}`}>
+                    {app.icon}
+                  </span>
+                  {app.label}
+                </button>
+              </div>
             );
           })}
         </div>
@@ -152,7 +158,7 @@ export default function Header() {
         {/* Mobile Active App Indicator */}
         <div className="flex-1 lg:hidden flex items-center justify-center">
             {apps.map(app => pathname.startsWith(app.href) && (
-                <div key={app.id} className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-[13px] font-black bg-primary text-white shadow-sm`}>
+                <div key={app.id} className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-[13px] font-black ${app.activeBg} text-white shadow-sm`}>
                     {app.icon}
                     {app.label}
                 </div>
