@@ -77,7 +77,7 @@ function HomeOverview() {
         <div className="space-y-4">
           <div className="flex items-center gap-3">
             <DigitalClock />
-            <div className="w-1.5 h-1.5 rounded-full bg-slate-300" />
+            <div className="w-2 h-2 rounded-full bg-slate-400" />
             <WeatherWidget />
           </div>
           <div className="space-y-1">
@@ -108,7 +108,7 @@ function HomeOverview() {
             <div className="text-2xl font-black text-slate-900">12 / 15</div>
             <div className="mt-4 flex -space-x-2">
               {[1, 2, 3, 4].map(i => (
-                <div key={i} className="w-6 h-6 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-[8px] font-black text-slate-900">
+                <div key={i} className="w-6 h-6 rounded-full border-2 border-slate-900 bg-slate-100 flex items-center justify-center text-[8px] font-black text-slate-900 shadow-sm">
                   {i === 4 ? "+3" : String.fromCharCode(64 + i)}
                 </div>
               ))}
@@ -121,12 +121,12 @@ function HomeOverview() {
       <div className="space-y-6">
         <div className="flex items-center justify-between px-2">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-white border border-slate-100 text-primary shadow-sm">
+            <div className="p-2 rounded-xl bg-white border-2 border-slate-900 text-slate-900 shadow-sm">
               <LayoutGrid size={18} />
             </div>
             <h2 className="text-xs font-black uppercase tracking-[0.3em] text-slate-900">Application Hub</h2>
           </div>
-          <button className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">Customize Grid</button>
+          <button className="text-[10px] font-black uppercase tracking-widest text-slate-900 hover:text-primary transition-colors border-b border-slate-900 pb-0.5">Customize Grid</button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -141,7 +141,7 @@ function HomeOverview() {
                 {app.icon}
               </div>
               <h3 className="text-xl font-black text-slate-900 mb-2">{app.title}</h3>
-              <p className="text-slate-700 text-sm font-black mb-6 uppercase tracking-wider">{app.desc}</p>
+              <p className="text-slate-950 text-sm font-black mb-6 uppercase tracking-wider">{app.desc}</p>
               <div className="flex items-center gap-2 group/btn cursor-pointer">
                 <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary group-hover/btn:mr-2 transition-all">Go to App</span>
                 <ChevronRight size={10} className="text-primary opacity-0 group-hover/btn:opacity-100 transition-all border border-primary rounded-full p-0.5" />
@@ -166,17 +166,17 @@ function HomeOverview() {
             {[1, 2, 3].map((_, i) => (
               <div key={i} className="p-6 flex items-center justify-between hover:bg-slate-50 transition-colors cursor-pointer group">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-900 group-hover:text-primary transition-colors">
+                  <div className="w-10 h-10 rounded-full bg-slate-200 border-2 border-slate-900 flex items-center justify-center text-slate-900 group-hover:bg-primary group-hover:text-white transition-all">
                     <Zap size={18} />
                   </div>
                   <div>
                     <p className="text-[13px] font-black text-slate-900">System maintenance completed successfully</p>
-                    <p className="text-[11px] text-slate-700 font-bold uppercase tracking-tight">Auto-pilot processed • 2 mins ago</p>
+                    <p className="text-[11px] text-slate-950 font-black uppercase tracking-tight">Auto-pilot processed • 2 mins ago</p>
                   </div>
                 </div>
                 <div className="flex -space-x-1">
                   {[1, 2].map(j => (
-                    <div key={j} className="w-6 h-6 rounded-full border-2 border-white bg-slate-200" />
+                    <div key={j} className="w-6 h-6 rounded-full border border-slate-900 bg-slate-200" />
                   ))}
                 </div>
               </div>
@@ -188,7 +188,7 @@ function HomeOverview() {
         <div className="lg:col-span-2 space-y-6">
           <div className="flex items-center justify-between px-2">
             <h2 className="text-xs font-black uppercase tracking-[0.3em] text-slate-900">Priority Tasks</h2>
-            <Filter size={14} className="text-slate-300" />
+            <Filter size={14} className="text-slate-900" />
           </div>
           <div className="bento-item p-4 space-y-3">
             {tasks.map((task) => (
@@ -202,7 +202,7 @@ function HomeOverview() {
                 </div>
                 <div className="flex-1">
                   <p className={`text-sm font-black ${task.completed ? "text-slate-400 line-through" : "text-slate-900"}`}>{task.text}</p>
-                  <p className="text-[10px] text-slate-700 font-black uppercase tracking-[0.2em]">{task.time}</p>
+                  <p className="text-[10px] text-slate-950 font-black uppercase tracking-[0.2em]">{task.time}</p>
                 </div>
                 {!task.completed && <div className={`w-1.5 h-1.5 rounded-full ${task.priority === 'high' ? 'bg-rose-500' : 'bg-amber-500'}`} />}
               </div>
@@ -235,7 +235,7 @@ function HomeOverview() {
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 selection:bg-primary/20 selection:text-primary animate-entrance overflow-x-hidden">
+    <div className="min-h-screen bg-slate-100 text-slate-900 selection:bg-primary/20 selection:text-primary animate-entrance overflow-x-hidden">
       <HomeOverview />
     </div>
   );
