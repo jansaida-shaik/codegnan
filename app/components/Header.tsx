@@ -45,9 +45,11 @@ const apps = [
     label: "Finance",
     icon: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10"/>
-        <path d="M15 9.5a4 4 0 0 0-6 3.5c0 2 1.5 3 3 3.5s3 1.5 3 3.5a4 4 0 0 1-6 0"/>
-        <line x1="12" y1="7" x2="12" y2="17"/>
+        <path d="M6 3h12"/>
+        <path d="M6 8h12"/>
+        <path d="m6 13 8.5 8"/>
+        <path d="M6 13h3"/>
+        <path d="M9 13c6.667 0 6.667-10 0-10"/>
       </svg>
     ),
     color: "text-sky-600",
@@ -59,13 +61,11 @@ const apps = [
     label: "Help Desk",
     icon: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-        <line x1="12" y1="17" x2="12.01" y2="17"/>
-        <circle cx="12" cy="12" r="10"/>
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
       </svg>
     ),
-    color: "text-emerald-600",
-    bg: "bg-emerald-50/50",
+    color: "text-orange-600",
+    bg: "bg-orange-50/50",
   },
   {
     id: "analytics",
@@ -73,9 +73,8 @@ const apps = [
     label: "Analytics",
     icon: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <line x1="18" y1="20" x2="18" y2="10"/>
-        <line x1="12" y1="20" x2="12" y2="4"/>
-        <line x1="6" y1="20" x2="6" y2="14"/>
+        <path d="M21.21 15.89A10 10 0 1 1 8 2.83"/>
+        <path d="M22 12A10 10 0 0 0 12 2v10z"/>
       </svg>
     ),
     color: "text-rose-600",
@@ -99,7 +98,7 @@ export default function Header() {
 
   return (
     <>
-      <div className="z-[100] h-[56px] flex items-center px-4 lg:px-6 bg-white border-b border-slate-200 overflow-hidden shrink-0">
+      <div className="z-[100] h-[64px] flex items-center px-4 lg:px-6 bg-white border-b border-slate-200 shrink-0">
         {/* Mobile Menu Toggle */}
         <button 
           className="lg:hidden p-2 -ml-2 mr-2 text-slate-400 hover:text-primary transition-colors"
@@ -127,7 +126,7 @@ export default function Header() {
         <div className="hidden lg:block w-4" />
 
         {/* App Switcher - Desktop Only */}
-        <div className="hidden lg:flex items-center gap-1 flex-1 overflow-x-auto no-scrollbar">
+        <div className="hidden lg:flex items-center gap-1 flex-1 overflow-x-auto no-scrollbar py-2">
           {apps.map((app) => {
             const isActive = pathname.startsWith(app.href);
             return (
