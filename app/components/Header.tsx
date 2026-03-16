@@ -124,8 +124,7 @@ export default function Header() {
           />
         </div>
 
-        {/* Divider - Desktop Only */}
-        <div className="hidden lg:block h-6 w-px bg-slate-200/60 mr-6 shrink-0" />
+        <div className="hidden lg:block w-4" />
 
         {/* App Switcher - Desktop Only */}
         <div className="hidden lg:flex items-center gap-1 flex-1 overflow-x-auto no-scrollbar">
@@ -186,7 +185,7 @@ export default function Header() {
             </button>
           </div>
 
-          <div className="h-8 w-px bg-slate-300" />
+          <div className="w-2" />
 
           <div className="flex items-center gap-3 pl-2 group cursor-pointer">
             <div className="text-right">
