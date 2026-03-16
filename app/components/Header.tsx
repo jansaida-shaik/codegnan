@@ -177,26 +177,26 @@ export default function Header() {
           </div>
 
           <div className="flex items-center gap-2">
-            <button className="p-2 text-slate-400 hover:text-primary hover:bg-slate-100 rounded-xl transition-all relative group">
+            <button className="p-2 text-slate-900 hover:text-primary hover:bg-slate-200/50 rounded-xl transition-all relative group">
               <Settings size={18} />
             </button>
-            <button className="p-2 text-slate-400 hover:text-primary hover:bg-slate-100 rounded-xl transition-all relative group">
+            <button className="p-2 text-slate-900 hover:text-primary hover:bg-slate-200/50 rounded-xl transition-all relative group">
               <Bell size={18} />
               <span className="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full border-2 border-white shadow-sm"></span>
             </button>
           </div>
 
-          <div className="h-8 w-px bg-slate-200/60" />
+          <div className="h-8 w-px bg-slate-300" />
 
           <div className="flex items-center gap-3 pl-2 group cursor-pointer">
             <div className="text-right">
               <p className="text-[11px] font-black text-slate-900 tracking-tight group-hover:text-primary transition-colors">Jan Saida Shaik</p>
-              <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none mt-0.5">Super Admin</p>
+              <p className="text-[9px] font-black text-slate-900 uppercase tracking-widest leading-none mt-0.5 opacity-80">Super Admin</p>
             </div>
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-blue-700 flex items-center justify-center text-[13px] font-black text-white shadow-lg shadow-primary/20 group-hover:scale-105 transition-all duration-300">
               J
             </div>
-            <ChevronDown size={14} className="text-slate-300 group-hover:text-primary transition-colors" />
+            <ChevronDown size={14} className="text-slate-900 group-hover:text-primary transition-colors" />
           </div>
         </div>
       </div>
