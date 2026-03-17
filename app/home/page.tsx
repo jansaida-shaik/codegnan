@@ -1,6 +1,6 @@
 "use client";
-import HomePage from "./HomePage";
+import HomeDashboard from "./HomeDashboard";
 
 export default function Page() {
-  return <HomePage />;
+  return <HomeDashboard />;
 }

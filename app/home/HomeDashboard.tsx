@@ -43,6 +43,7 @@ import {
   Copy
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
 
@@ -103,6 +104,7 @@ function WeatherWidget() {
 }
 
 export function HomeOverview() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState('overview');
   const [isTeamExpanded, setIsTeamExpanded] = useState(false);
   const [selectedMember, setSelectedMember] = useState<string | null>(null);
@@ -451,7 +453,11 @@ export function HomeOverview() {
             { id: 'helpdesk', title: 'Help Desk', desc: 'Support & tickets', icon: <MessageSquare size={24} />, color: 'bg-orange-600' },
             { id: 'analytics', title: 'Analytics', desc: 'Reports & insights', icon: <PieChart size={24} />, color: 'bg-rose-600' },
           ].map((app) => (
-            <div key={app.id} className="bento-item p-6 md:p-8 group cursor-pointer">
+            <div 
+              key={app.id} 
+              onClick={() => router.push(`/${app.id}`)}
+              className="bento-item p-6 md:p-8 group cursor-pointer"
+            >
               <div className="flex items-center gap-4 mb-4 sm:mb-6">
                 <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-2xl ${app.color} text-white flex items-center justify-center shadow-lg group-hover:rotate-6 transition-transform duration-300`}>
                   {app.icon}
@@ -1155,7 +1161,7 @@ export function HomeOverview() {
   );
 }
 
-export default function HomePage() {
+export default function HomeDashboard() {
   return (
     <div className="min-h-screen bg-slate-100">
       <HomeOverview />
