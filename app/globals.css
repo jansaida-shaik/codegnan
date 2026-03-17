@@ -12,6 +12,14 @@
   --premium-shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.03);
 }
 
+.dark {
+  --background: #020617;
+  --foreground: #f8fafc;
+  --glass-bg: rgba(15, 23, 42, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --premium-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
 @theme {
   --color-primary: #22d3ee;
   --color-primary-dark: #0891b2;
@@ -23,15 +31,18 @@
   width: 6px;
   height: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   border: 2px solid transparent;
   background-clip: content-box;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(34, 211, 238, 0.3);
   background-clip: content-box;
@@ -47,34 +58,71 @@
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-25px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-25px);
+  }
 }
 
 @keyframes drift {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  33% { transform: translate(25px, -40px) rotate(4deg); }
-  66% { transform: translate(-15px, 15px) rotate(-4deg); }
-  100% { transform: translate(0, 0) rotate(0deg); }
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  33% {
+    transform: translate(25px, -40px) rotate(4deg);
+  }
+
+  66% {
+    transform: translate(-15px, 15px) rotate(-4deg);
+  }
+
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
 }
 
 @keyframes subtleFloat {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-10px) scale(1.02); }
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-10px) scale(1.02);
+  }
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 @keyframes entrance {
-  from { opacity: 0; transform: translateY(20px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
 }
@@ -84,8 +132,13 @@
 }
 
 @keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .animate-spin-slow {
@@ -121,12 +174,12 @@ body {
   -webkit-backdrop-filter: blur(12px) saturate(160%);
   border: 1px solid rgba(255, 255, 255, 0.6);
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02),
-              0 1px 2px rgba(0, 0, 0, 0.01);
+    0 1px 2px rgba(0, 0, 0, 0.01);
   transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 @utility rich-bg {
-  background: 
+  background:
     radial-gradient(circle at 15% 20%, rgba(34, 109, 180, 0.06) 0%, transparent 40%),
     radial-gradient(circle at 85% 30%, rgba(34, 109, 180, 0.04) 0%, transparent 45%),
     radial-gradient(circle at 50% 100%, rgba(34, 109, 180, 0.05) 0%, transparent 60%),
@@ -134,7 +187,7 @@ body {
 }
 
 @utility deep-space-bg {
-  background: 
+  background:
     radial-gradient(circle at 0% 0%, rgba(34, 109, 180, 0.1) 0%, transparent 40%),
     radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.05) 0%, transparent 40%),
     #020617;
@@ -142,7 +195,7 @@ body {
 
 @utility primary-glow {
   box-shadow: 0 0 0 4px rgba(34, 109, 180, 0.08),
-              0 4px 12px -2px rgba(34, 109, 180, 0.12);
+    0 4px 12px -2px rgba(34, 109, 180, 0.12);
 }
 
 @utility light-glass {
@@ -150,13 +203,13 @@ body {
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 
+  box-shadow:
     0 10px 30px -15px rgba(0, 0, 0, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 @utility premium-light-bg {
-  background: 
+  background:
     radial-gradient(circle at 0% 0%, rgba(34, 109, 180, 0.04) 0%, transparent 40%),
     radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.03) 0%, transparent 40%),
     #f8fafc;
@@ -167,7 +220,7 @@ body {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 
+  box-shadow:
     0 4px 6px -1px rgba(15, 23, 42, 0.05),
     0 2px 4px -2px rgba(15, 23, 42, 0.02);
 }
@@ -175,22 +228,33 @@ body {
 @utility bento-item {
   background: #ffffff;
   border-radius: 1.5rem;
-  border: 1.5px solid #94a3b8;
-  box-shadow: 
-    0 15px 30px -5px rgba(15, 23, 42, 0.12),
-    0 8px 12px -6px rgba(15, 23, 42, 0.08);
+  border: 2px solid #e2e8f0;
+  box-shadow:
+    0 18px 35px -5px rgba(15, 23, 42, 0.15),
+    0 8px 15px -6px rgba(15, 23, 42, 0.1);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   z-index: 1;
+
+  .dark & {
+    background: #0f172a;
+    border-color: #1e293b;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  }
 
   &:hover {
     transform: translateY(-4px);
     background: #ffffff;
     border-color: rgba(34, 109, 180, 0.3);
-    box-shadow: 
+    box-shadow:
       0 20px 25px -5px rgba(15, 23, 42, 0.06),
       0 8px 10px -6px rgba(15, 23, 42, 0.04);
     z-index: 10;
+
+    .dark & {
+      background: #1e293b;
+      border-color: rgba(34, 211, 238, 0.4);
+    }
   }
 }
 
@@ -205,6 +269,7 @@ body {
 @utility no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -215,8 +280,8 @@ body {
   border: 1px solid rgba(34, 109, 180, 0.08);
   border-radius: 1.5rem;
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.02), 
-              0 12px 48px -12px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.02),
+    0 12px 48px -12px rgba(15, 23, 42, 0.08);
 
   &:hover {
     box-shadow: 0 16px 40px -12px rgba(15, 23, 42, 0.1);
