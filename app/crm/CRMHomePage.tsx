@@ -115,18 +115,18 @@ export default function CRMHomePage() {
 
       <div className="flex flex-1 overflow-hidden relative">
         {/* Sleek Sidebar - Premium Borders */}
-        <div className="hidden lg:flex w-64 bg-white border-r border-slate-200 flex-col shrink-0 overflow-y-auto pt-6 px-4">
+        <div className="hidden lg:flex w-64 bg-white border-r border-slate-300 flex-col shrink-0 overflow-y-auto pt-6 px-4">
 
           <nav className="flex-1 space-y-1.5">
             {crmSidebarItems.map((item) => (
               <button
                 key={item.label}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-[13px] font-bold transition-all group ${item.active
-                  ? "bg-slate-100 text-slate-900 border border-slate-200 shadow-sm"
-                  : "text-slate-500 hover:bg-slate-50 hover:text-slate-900 border border-transparent"
+                  ? "bg-slate-100 text-slate-900 border border-slate-900 shadow-sm"
+                  : "text-slate-900 hover:bg-slate-50 hover:text-slate-900 border border-transparent"
                   }`}
               >
-                <span className={`${item.active ? "text-primary" : "text-slate-300 group-hover:text-slate-500"} transition-colors`}>
+                <span className={`${item.active ? "text-primary" : "text-slate-900 group-hover:text-slate-500"} transition-colors`}>
                   {item.icon}
                 </span>
                 {item.label}
@@ -137,7 +137,7 @@ export default function CRMHomePage() {
             ))}
           </nav>
 
-          <div className="mt-auto p-4 mb-4 bg-slate-50 rounded-2xl border border-slate-200">
+          {/*<div className="mt-auto p-4 mb-4 bg-slate-50 rounded-2xl border border-slate-200">
             <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary font-black">?</div>
               <div>
@@ -146,7 +146,7 @@ export default function CRMHomePage() {
               </div>
             </div>
             <button className="w-full py-2 bg-white border border-slate-200 rounded-xl text-[11px] font-black text-slate-600 hover:bg-slate-100 shadow-sm transition-all">Support Center</button>
-          </div>
+          </div>*/}
         </div>
 
         {/* Main Dashboard Content - Light Bento Background */}

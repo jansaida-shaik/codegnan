@@ -86,27 +86,27 @@ export default function GlobalNotificationCenter({ isOpen, onClose }: GlobalNoti
             animate={{ opacity: 1, x: 0, scale: 1 }}
             exit={{ opacity: 0, x: 100, scale: 0.95 }}
             transition={{ type: "spring", damping: 20, stiffness: 100 }}
-            className="fixed top-20 right-6 w-full max-w-[400px] bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-[28px] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-white/40 dark:border-white/10 z-[160] flex flex-col overflow-hidden max-h-[80vh]"
+            className="fixed top-20 right-6 w-full max-w-[400px] bg-white rounded-[28px] shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-slate-200 z-[160] flex flex-col overflow-hidden max-h-[80vh]"
           >
             {/* Header */}
             <div className="p-5 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <div className="w-10 h-10 rounded-xl bg-white dark:bg-white/10 flex items-center justify-center border border-slate-200 dark:border-white/10 shadow-sm shrink-0 relative">
-                <Bell size={20} className="text-slate-900 dark:text-white" />
-                <span className="absolute -top-1 -right-1 min-w-[14px] h-[14px] px-1 bg-rose-500 rounded-full border-2 border-white dark:border-slate-900 shadow-sm flex items-center justify-center text-[8px] text-white font-black">6</span>
+                <Bell size={20} className="text-slate-900" />
+                <span className="absolute -top-1 -right-1 min-w-[14px] h-[14px] px-1 bg-rose-500 rounded-full border-2 border-white shadow-sm flex items-center justify-center text-[8px] text-white font-black">6</span>
               </div>
                 <div>
-                  <h2 className="text-sm font-black text-slate-900 dark:text-white tracking-tight leading-none">Notifications</h2>
+                  <h2 className="text-sm font-black text-slate-900 tracking-tight leading-none">Notifications</h2>
                   <p className="text-[10px] font-bold text-slate-400 mt-1 uppercase tracking-widest">{notifications.length} Recent</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <button className="text-[10px] font-black text-slate-400 hover:text-slate-900 dark:hover:text-white uppercase tracking-widest transition-colors mr-2">
+                <button className="text-[10px] font-black text-slate-400 hover:text-slate-900 uppercase tracking-widest transition-colors mr-2">
                   Clear All
                 </button>
                 <button 
                   onClick={onClose}
-                  className="p-1.5 hover:bg-slate-200/50 dark:hover:bg-white/10 rounded-full transition-colors text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                  className="p-1.5 hover:bg-slate-100 rounded-full transition-colors text-slate-400 hover:text-slate-900"
                 >
                   <X size={16} />
                 </button>
@@ -119,17 +119,17 @@ export default function GlobalNotificationCenter({ isOpen, onClose }: GlobalNoti
                 <motion.div
                   key={notification.id}
                   whileHover={{ scale: 1.02 }}
-                  className="bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/5 rounded-2xl p-4 flex gap-4 cursor-pointer hover:bg-white/60 dark:hover:bg-white/10 transition-all group"
+                  className="bg-slate-50 border border-slate-100 rounded-2xl p-4 flex gap-4 cursor-pointer hover:bg-slate-100 hover:border-slate-200 transition-all group"
                 >
-                  <div className={`w-10 h-10 rounded-xl ${notification.bg} dark:bg-white/5 flex items-center justify-center shrink-0 border border-white/40 dark:border-white/5 group-hover:scale-110 transition-transform`}>
+                  <div className={`w-10 h-10 rounded-xl ${notification.bg} flex items-center justify-center shrink-0 border border-slate-100 group-hover:scale-110 transition-transform`}>
                     {notification.icon}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-0.5">
-                      <h3 className="text-[12px] font-black text-slate-900 dark:text-white truncate tracking-tight">{notification.title}</h3>
+                      <h3 className="text-[12px] font-black text-slate-900 truncate tracking-tight">{notification.title}</h3>
                       <span className="text-[9px] font-bold text-slate-400 uppercase tracking-tighter shrink-0">{notification.time}</span>
                     </div>
-                    <p className="text-[11px] font-bold text-slate-500 dark:text-slate-400 leading-snug line-clamp-2">
+                    <p className="text-[11px] font-bold text-slate-500 leading-snug line-clamp-2">
                       {notification.message}
                     </p>
                   </div>
@@ -138,7 +138,7 @@ export default function GlobalNotificationCenter({ isOpen, onClose }: GlobalNoti
             </div>
 
             {/* Footer Tip */}
-            <div className="p-4 border-t border-white/20 dark:border-white/10 text-center">
+            <div className="p-4 border-t border-slate-100 text-center">
               <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
                 Manage Notification Preferences in Settings
               </p>

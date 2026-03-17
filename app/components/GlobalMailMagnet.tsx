@@ -87,7 +87,7 @@ export default function GlobalMailMagnet({ isOpen, onClose }: GlobalMailMagnetPr
             animate={{ opacity: 1, x: 0, scale: 1 }}
             exit={{ opacity: 0, x: 100, scale: 0.9 }}
             transition={{ type: "spring", damping: 20, stiffness: 100 }}
-            className="fixed top-20 right-6 w-full max-w-[400px] bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-[28px] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-white/40 dark:border-white/10 z-[160] flex flex-col overflow-hidden"
+            className="fixed top-20 right-6 w-full max-w-[400px] bg-white rounded-[28px] shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-slate-200 z-[160] flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="p-5 pb-2">
@@ -98,13 +98,13 @@ export default function GlobalMailMagnet({ isOpen, onClose }: GlobalMailMagnetPr
                   <span className="absolute -top-1 -right-1 min-w-[14px] h-[14px] px-1 bg-rose-500 rounded-full border-2 border-white dark:border-slate-900 shadow-sm flex items-center justify-center text-[8px] text-white font-black group-hover:scale-110 transition-transform">4</span>
                 </div>
                   <div>
-                    <h2 className="text-sm font-black text-slate-900 dark:text-white tracking-tight leading-none">Mail Magnet</h2>
+                    <h2 className="text-sm font-black text-slate-900 tracking-tight leading-none">Mail Magnet</h2>
                     <p className="text-[10px] font-bold text-slate-400 mt-1 uppercase tracking-widest">Notification</p>
                   </div>
                 </div>
                 <button 
                   onClick={onClose}
-                  className="p-1.5 hover:bg-slate-200/50 dark:hover:bg-white/10 rounded-full transition-colors text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                  className="p-1.5 hover:bg-slate-100 rounded-full transition-colors text-slate-400 hover:text-slate-900"
                 >
                   <X size={16} />
                 </button>
@@ -117,7 +117,7 @@ export default function GlobalMailMagnet({ isOpen, onClose }: GlobalMailMagnetPr
                     key={tab}
                     onClick={() => setActiveTab(tab)}
                     className={`pb-2 text-[12px] font-bold transition-all relative ${
-                      activeTab === tab ? "text-slate-900 dark:text-white" : "text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                      activeTab === tab ? "text-slate-900" : "text-slate-400 hover:text-slate-600"
                     }`}
                   >
                     {tab}
@@ -139,23 +139,23 @@ export default function GlobalMailMagnet({ isOpen, onClose }: GlobalMailMagnetPr
                 <motion.div
                   key={email.id}
                   whileHover={{ scale: 1.02 }}
-                  className="bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/5 rounded-2xl p-4 flex gap-4 cursor-pointer hover:bg-white/60 dark:hover:bg-white/10 transition-all group"
+                  className="bg-slate-50 border border-slate-100 rounded-2xl p-4 flex gap-4 cursor-pointer hover:bg-slate-100 hover:border-slate-200 transition-all group"
                 >
-                  <div className={`w-10 h-10 rounded-xl ${email.bg} dark:bg-white/10 flex items-center justify-center shrink-0 border border-white/40 dark:border-white/5 group-hover:rotate-6 transition-transform shadow-sm`}>
+                  <div className={`w-10 h-10 rounded-xl ${email.bg} flex items-center justify-center shrink-0 border border-slate-100 group-hover:rotate-6 transition-transform shadow-sm`}>
                     <span className={`text-[12px] font-black ${email.color}`}>{email.initials}</span>
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-1">
-                      <h3 className="text-[12px] font-black text-slate-900 dark:text-white truncate tracking-tight">{email.sender}</h3>
+                      <h3 className="text-[12px] font-black text-slate-900 truncate tracking-tight">{email.sender}</h3>
                       <div className="flex items-center gap-2">
                         {email.unread && <div className="w-1.5 h-1.5 rounded-full bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,0.4)]" />}
                         <span className="text-[9px] font-bold text-slate-400 uppercase tracking-tighter shrink-0">{email.time}</span>
                       </div>
                     </div>
-                    <p className="text-[11px] font-black text-slate-950 dark:text-white/90 truncate leading-none mb-1.5">
+                    <p className="text-[11px] font-black text-slate-950 truncate leading-none mb-1.5">
                       {email.subject}
                     </p>
-                    <p className="text-[10px] font-bold text-slate-500 dark:text-slate-400 leading-snug line-clamp-1 opacity-70">
+                    <p className="text-[10px] font-bold text-slate-500 leading-snug line-clamp-1 opacity-70">
                       {email.preview}
                     </p>
                   </div>
@@ -165,12 +165,12 @@ export default function GlobalMailMagnet({ isOpen, onClose }: GlobalMailMagnetPr
 
             {/* Sticky Search Footer (Mac style pill) */}
             <div className="p-4 pt-0">
-              <div className="flex items-center justify-between bg-white/40 dark:bg-black/20 border border-white/40 dark:border-white/5 rounded-2xl p-2.5 px-4">
+              <div className="flex items-center justify-between bg-slate-50 border border-slate-100 rounded-2xl p-2.5 px-4">
                 <div className="flex items-center gap-3">
                   <Search size={14} className="text-slate-400" />
                   <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Search Mail...</p>
                 </div>
-                <div className="flex items-center gap-1.5 px-1.5 py-0.5 bg-white/60 dark:bg-white/5 border border-white/60 dark:border-white/5 rounded-md shadow-sm">
+                <div className="flex items-center gap-1.5 px-1.5 py-0.5 bg-white border border-slate-200 rounded-md shadow-sm">
                    <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest">{modifierKey} /</span>
                 </div>
               </div>

@@ -595,121 +595,6 @@ export function HomeOverview() {
                     </p>
                   </div>
                 </motion.div>
-
-                {/* Detailed Profile Card */}
-                <AnimatePresence>
-                  {selectedMember === person.name && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 5, scale: 0.95 }}
-                      className="absolute bottom-full left-0 mb-4 w-[280px] bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border-2 border-slate-900 overflow-hidden z-[100]"
-                      style={{ transformOrigin: 'bottom left' }}
-                    >
-                      {/* Close Button & Branded Header Area */}
-                      <div className={`p-5 ${person.bg} border-b border-slate-200 relative`}>
-                        <button
-                          onClick={(e) => { e.stopPropagation(); setSelectedMember(null); }}
-                          className="absolute top-4 right-4 p-1.5 rounded-lg bg-white/80 border border-slate-200 text-slate-500 hover:text-rose-500 hover:border-rose-200 transition-all shadow-sm z-20"
-                        >
-                          <X size={14} />
-                        </button>
-
-                        <div className="flex items-start justify-between">
-                          <div className={`w-14 h-14 rounded-2xl bg-white border-2 border-slate-900 flex items-center justify-center text-xl font-black ${person.color} shadow-xl`}>
-                            {person.initial}
-                          </div>
-                          <div className="flex gap-1.5 pt-1">
-                            {person.awards?.map((award, i) => (
-                              <div key={i} className="p-1.5 rounded-lg bg-white border border-slate-200 text-amber-500 shadow-sm">
-                                {award}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                        <div className="mt-4">
-                          <h3 className="text-sm font-black text-slate-900 uppercase tracking-tight leading-tight">{person.name}</h3>
-                          <p className="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em]">{person.role}</p>
-                        </div>
-                      </div>
-
-                      {/* Detailed Stats Area with Copy Actions */}
-                      <div className="p-5 space-y-4 bg-white">
-                        <div className="space-y-3">
-                          <div className="flex items-center justify-between group/copy">
-                            <div className="flex items-center gap-3">
-                              <Mail size={12} className="text-slate-400" />
-                              <span className="text-[10px] font-black text-slate-700">{person.email}</span>
-                            </div>
-                            <button
-                              onClick={(e) => { e.stopPropagation(); navigator.clipboard.writeText(person.email); }}
-                              className="text-slate-500 hover:text-primary transition-colors pr-1"
-                            >
-                              <Copy size={12} />
-                            </button>
-                          </div>
-
-                          <div className="flex items-center justify-between group/copy">
-                            <div className="flex items-center gap-3">
-                              <Phone size={12} className="text-slate-400" />
-                              <span className="text-[10px] font-black text-slate-700">{person.phone}</span>
-                            </div>
-                            <button
-                              onClick={(e) => { e.stopPropagation(); navigator.clipboard.writeText(person.phone); }}
-                              className="text-slate-500 hover:text-primary transition-colors pr-1"
-                            >
-                              <Copy size={12} />
-                            </button>
-                          </div>
-
-                          <div className="flex items-center gap-3 text-slate-400">
-                            <MapPin size={12} />
-                            <span className="text-[10px] font-black text-slate-700">{person.location}</span>
-                          </div>
-                        </div>
-
-                        <div className="h-px bg-slate-100" />
-
-                        <div className="flex items-center justify-between">
-                          <div className="space-y-1">
-                            <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Performance</p>
-                            <div className="flex items-center gap-1">
-                              {[...Array(5)].map((_, i) => (
-                                <Star
-                                  key={i}
-                                  size={10}
-                                  fill={i < Math.floor(person.rating || 0) ? "currentColor" : "none"}
-                                  className={i < Math.floor(person.rating || 0) ? "text-amber-400" : "text-slate-200"}
-                                />
-                              ))}
-                              <span className="ml-1 text-[10px] font-black text-slate-900">{person.rating}</span>
-                            </div>
-                          </div>
-                          <div className="text-right flex flex-col items-end">
-                            <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest">User ID</p>
-                            <div className="flex items-center gap-1.5">
-                              <p className="text-[10px] font-black text-slate-900">#{person.userid}</p>
-                              <button
-                                onClick={(e) => { e.stopPropagation(); navigator.clipboard.writeText(person.userid); }}
-                                className="text-slate-500 hover:text-primary transition-colors"
-                              >
-                                <Copy size={10} />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="flex flex-wrap gap-1.5 pt-1">
-                          {person.badges?.map((badge, i) => (
-                            <span key={i} className="text-[8px] font-black text-slate-900 bg-slate-50 border border-slate-200 px-2.5 py-1 rounded-lg uppercase tracking-tighter">
-                              {badge}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
               </div>
             ))}
           </div>
@@ -784,116 +669,153 @@ export function HomeOverview() {
                           </p>
                         </div>
                       </motion.div>
-
-                      {/* Detailed Profile Card (Modal Specific) */}
-                      <AnimatePresence>
-                        {selectedMember === `modal-${person.name}` && (
-                          <motion.div
-                            initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: 5, scale: 0.95 }}
-                            className="absolute bottom-full left-0 mb-4 w-[280px] bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border-2 border-slate-900 overflow-hidden z-[110]"
-                            style={{ transformOrigin: 'bottom left' }}
-                          >
-                            {/* Close Button & Header */}
-                            <div className={`p-5 ${person.bg} border-b border-slate-200 relative`}>
-                              <button
-                                onClick={(e) => { e.stopPropagation(); setSelectedMember(null); }}
-                                className="absolute top-4 right-4 p-1.5 rounded-lg bg-white/80 border border-slate-200 text-slate-500 hover:text-rose-500 hover:border-rose-200 transition-all shadow-sm z-20"
-                              >
-                                <X size={14} />
-                              </button>
-
-                              <div className="flex items-start justify-between">
-                                <div className={`w-14 h-14 rounded-2xl bg-white border-2 border-slate-900 flex items-center justify-center text-xl font-black ${person.color} shadow-xl`}>
-                                  {person.initial}
-                                </div>
-                                <div className="flex gap-1.5 pt-1">
-                                  {person.awards?.map((award, i) => (
-                                    <div key={i} className="p-1.5 rounded-lg bg-white border border-slate-200 text-amber-500 shadow-sm">
-                                      {award}
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
-                              <div className="mt-4">
-                                <h3 className="text-sm font-black text-slate-900 uppercase tracking-tight leading-tight">{person.name}</h3>
-                                <p className="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em]">{person.role}</p>
-                              </div>
-                            </div>
-
-                            <div className="p-5 space-y-4 bg-white">
-                              <div className="space-y-3">
-                                <div className="flex items-center justify-between">
-                                  <div className="flex items-center gap-3">
-                                    <Mail size={12} className="text-slate-400" />
-                                    <span className="text-[10px] font-black text-slate-700">{person.email}</span>
-                                  </div>
-                                  <button
-                                    onClick={(e) => { e.stopPropagation(); navigator.clipboard.writeText(person.email); }}
-                                    className="text-slate-500 hover:text-primary transition-colors"
-                                  >
-                                    <Copy size={12} />
-                                  </button>
-                                </div>
-
-                                <div className="flex items-center justify-between">
-                                  <div className="flex items-center gap-3">
-                                    <Phone size={12} className="text-slate-400" />
-                                    <span className="text-[10px] font-black text-slate-700">{person.phone}</span>
-                                  </div>
-                                  <button
-                                    onClick={(e) => { e.stopPropagation(); navigator.clipboard.writeText(person.phone); }}
-                                    className="text-slate-500 hover:text-primary transition-colors"
-                                  >
-                                    <Copy size={12} />
-                                  </button>
-                                </div>
-                              </div>
-
-                              <div className="h-px bg-slate-100" />
-
-                              <div className="flex items-center justify-between">
-                                <div className="space-y-1">
-                                  <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Performance</p>
-                                  <div className="flex items-center gap-1">
-                                    {[...Array(5)].map((_, i) => (
-                                      <Star
-                                        key={i}
-                                        size={10}
-                                        fill={i < Math.floor(person.rating || 0) ? "currentColor" : "none"}
-                                        className={i < Math.floor(person.rating || 0) ? "text-amber-400" : "text-slate-200"}
-                                      />
-                                    ))}
-                                    <span className="ml-1 text-[10px] font-black text-slate-900">{person.rating}</span>
-                                  </div>
-                                </div>
-                                <div className="text-right flex flex-col items-end">
-                                  <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest">User ID</p>
-                                  <div className="flex items-center gap-1.5">
-                                    <p className="text-[10px] font-black text-slate-900">#{person.userid}</p>
-                                    <button
-                                      onClick={(e) => { e.stopPropagation(); navigator.clipboard.writeText(person.userid); }}
-                                      className="text-slate-500 hover:text-primary transition-colors"
-                                    >
-                                      <Copy size={10} />
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
                     </div>
                   ))}
                 </div>
               </div>
-
-
             </motion.div>
           </div>
         )}
+      </AnimatePresence>
+
+      {/* SHARED PROFILE MODAL */}
+      <AnimatePresence>
+        {(() => {
+          const person = teamMembers.find(m => selectedMember === m.name || selectedMember === `modal-${m.name}`);
+          if (!person) return null;
+          
+          return (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={(e) => { e.stopPropagation(); setSelectedMember(null); }}
+              className="fixed inset-0 z-[300] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm cursor-pointer"
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                onClick={(e) => e.stopPropagation()}
+                className="relative w-full max-w-[320px] bg-white rounded-[40px] shadow-2xl border-2 border-slate-900 overflow-hidden cursor-default"
+              >
+                {/* Modal Header */}
+                <div className={`p-8 ${person.bg} border-b border-slate-200 relative`}>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setSelectedMember(null); }}
+                    className="absolute top-6 right-6 p-2 rounded-xl bg-white/80 border-2 border-slate-900 text-slate-900 hover:text-rose-600 hover:border-rose-600 transition-all shadow-sm z-20"
+                  >
+                    <X size={16} />
+                  </button>
+
+                  <div className="flex items-start gap-5">
+                    <div className={`w-16 h-16 rounded-2xl bg-white border-2 border-slate-900 flex items-center justify-center text-2xl font-black ${person.color} shadow-xl shrink-0`}>
+                      {person.initial}
+                    </div>
+                    
+                    <div className="flex flex-col gap-2.5 pt-1 min-w-0">
+                      {/* Awards */}
+                      <div className="flex flex-wrap gap-2">
+                        {person.awards?.map((award, i) => (
+                          <div key={i} className="p-2 rounded-xl bg-white border-2 border-slate-900 text-amber-500 shadow-sm animate-bounce-subtle" style={{ animationDelay: `${i * 0.2}s` }}>
+                            {award}
+                          </div>
+                        ))}
+                      </div>
+                      
+                      {/* Badges */}
+                      <div className="flex flex-wrap gap-2">
+                        {person.badges?.map((badge, i) => (
+                          <span key={i} className="text-[9px] font-black text-slate-900 bg-white border-2 border-slate-900 px-3 py-1.5 rounded-xl uppercase tracking-tighter whitespace-nowrap shadow-sm">
+                            {badge}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-6">
+                    <h3 className="text-lg font-black text-slate-900 uppercase tracking-tighter leading-none">{person.name}</h3>
+                    <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.25em] mt-1">{person.role}</p>
+                  </div>
+                </div>
+
+                {/* Stats & Info */}
+                <div className="p-8 space-y-6 bg-white">
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between group/copy">
+                      <div className="flex items-center gap-4">
+                        <div className="w-8 h-8 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400">
+                          <Mail size={14} />
+                        </div>
+                        <span className="text-[11px] font-black text-slate-700">{person.email}</span>
+                      </div>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); navigator.clipboard.writeText(person.email); }}
+                        className="p-1.5 text-slate-400 hover:text-primary transition-colors pr-1"
+                      >
+                        <Copy size={14} />
+                      </button>
+                    </div>
+
+                    <div className="flex items-center justify-between group/copy">
+                      <div className="flex items-center gap-4">
+                        <div className="w-8 h-8 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400">
+                          <Phone size={14} />
+                        </div>
+                        <span className="text-[11px] font-black text-slate-700">{person.phone}</span>
+                      </div>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); navigator.clipboard.writeText(person.phone); }}
+                        className="p-1.5 text-slate-400 hover:text-primary transition-colors pr-1"
+                      >
+                        <Copy size={14} />
+                      </button>
+                    </div>
+
+                    <div className="flex items-center gap-4 text-slate-400">
+                      <div className="w-8 h-8 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400">
+                        <MapPin size={14} />
+                      </div>
+                      <span className="text-[11px] font-black text-slate-700">{person.location}</span>
+                    </div>
+                  </div>
+
+                  <div className="h-px bg-slate-100" />
+
+                  <div className="flex items-center justify-between">
+                    <div className="space-y-2">
+                      <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Performance</p>
+                      <div className="flex items-center gap-1.5">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            size={12}
+                            fill={i < Math.floor(person.rating || 0) ? "currentColor" : "none"}
+                            className={i < Math.floor(person.rating || 0) ? "text-amber-400" : "text-slate-200"}
+                          />
+                        ))}
+                        <span className="ml-2 text-[12px] font-black text-slate-900">{person.rating}</span>
+                      </div>
+                    </div>
+                    <div className="text-right flex flex-col items-end">
+                      <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">User ID</p>
+                      <div className="flex items-center gap-2">
+                        <p className="text-[12px] font-black text-slate-900 tracking-tighter">#{person.userid}</p>
+                        <button
+                          onClick={(e) => { e.stopPropagation(); navigator.clipboard.writeText(person.userid); }}
+                          className="p-1 text-slate-400 hover:text-primary transition-colors"
+                        >
+                          <Copy size={12} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          );
+        })()}
       </AnimatePresence>
 
       {/* Global Operations Hub - New Modules based on Reference */}
