@@ -8,11 +8,25 @@ import {
   ChevronDown, 
   Settings, 
   LayoutGrid, 
-  MessageSquare, 
-  Menu, 
-  X 
+  Mail,
+  HelpCircle,
+  LogOut,
+  User,
+  Menu,
+  X,
+  Plus,
+  Calendar,
+  Sparkles,
+  MessageSquare,
+  Copy,
+  Phone,
+  Check
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import GlobalSearch from "./GlobalSearch";
+import GlobalCalendar from "./GlobalCalendar";
+import { useTheme } from "./ThemeProvider";
 
 const apps = [
   {
@@ -90,13 +104,45 @@ const apps = [
 export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
+  const { toggleMailMagnet, toggleNotificationCenter } = useTheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [modifierKey, setModifierKey] = useState("");
+  const [settingsRotation, setSettingsRotation] = useState(0);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+  const profileRef = useRef<HTMLDivElement>(null);
+
+  const handleCopy = (text: string, id: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 1500);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
+        setIsProfileOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => {
     const isMac = typeof window !== "undefined" && 
       (/Mac|iPod|iPhone|iPad/.test(navigator.userAgent) || navigator.platform.includes('Mac'));
     setModifierKey(isMac ? "⌘" : "Ctrl");
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsSearchOpen(true);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   if (pathname === "/") return null;
@@ -122,7 +168,7 @@ export default function Header() {
             alt="Codegnan"
             width={200}
             height={56}
-            className="object-contain h-7 w-auto"
+            className="object-contain h-6 sm:h-7 w-auto"
             priority
             unoptimized
           />
@@ -168,39 +214,156 @@ export default function Header() {
         {/* Right Side */}
         {/* Desktop Search & Actions */}
         <div className="hidden lg:flex items-center gap-4 ml-6">
-          <div className="relative group">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-900 group-focus-within:text-primary transition-colors" size={14} />
-            <input 
-              type="text" 
-              placeholder="Search command..."
-              className="pl-9 pr-12 py-2 bg-white border border-slate-400 rounded-xl text-[12px] font-black text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all w-64 shadow-sm"
-            />
+          <button 
+            onClick={() => setIsSearchOpen(true)}
+            className="flex items-center gap-3 pl-3 pr-12 py-2 bg-white border border-slate-400 rounded-xl text-[12px] font-black text-slate-500 hover:border-primary transition-all shadow-sm w-56 text-left relative group"
+          >
+            <Search className="text-slate-900 group-hover:text-primary transition-colors" size={14} />
+            Search records
             <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1 px-1.5 py-0.5 rounded border border-slate-300 bg-slate-50 text-[10px] text-slate-900 font-black uppercase tracking-tighter">
               {modifierKey} K
             </div>
-          </div>
+          </button>
 
-          <div className="flex items-center gap-2">
-            <button className="p-2 text-slate-900 hover:text-primary hover:bg-slate-200/50 rounded-xl transition-all relative group">
-              <Settings size={18} />
+          <div className="flex items-center gap-4">
+            <button className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all">
+              <Plus size={16} />
             </button>
-            <button className="p-2 text-slate-900 hover:text-primary hover:bg-slate-200/50 rounded-xl transition-all relative group">
+            <button className="p-2 text-slate-900 hover:text-primary hover:bg-slate-200/50 rounded-xl transition-all">
+              <Sparkles size={18} />
+            </button>
+            <button 
+              onClick={toggleNotificationCenter}
+              className="p-2 text-slate-900 hover:text-primary hover:bg-slate-200/50 rounded-xl transition-all relative group"
+            >
               <Bell size={18} />
-              <span className="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full border-2 border-white shadow-sm"></span>
+              <span className="absolute top-1 right-1 min-w-[12px] h-[12px] px-0.5 bg-rose-500 rounded-full border border-white shadow-sm flex items-center justify-center text-[6px] text-white font-black group-hover:scale-110 transition-transform">6</span>
+            </button>
+            <button 
+              onClick={() => setIsCalendarOpen(true)}
+              className="p-2 text-slate-900 hover:text-primary hover:bg-slate-200/50 rounded-xl transition-all"
+            >
+              <Calendar size={18} />
+            </button>
+            <button 
+              onClick={toggleMailMagnet}
+              className="p-2 text-slate-900 hover:text-primary hover:bg-slate-200/50 rounded-xl transition-all relative group"
+            >
+              <Mail size={18} />
+              <span className="absolute top-1 right-1 min-w-[12px] h-[12px] px-0.5 bg-sky-500 rounded-full border border-white shadow-sm flex items-center justify-center text-[6px] text-white font-black group-hover:scale-110 transition-transform">4</span>
+            </button>
+            <button 
+              onClick={() => setSettingsRotation(prev => prev + 360)}
+              className="p-2 text-slate-900 hover:text-primary hover:bg-slate-200/50 rounded-xl transition-all"
+            >
+              <motion.div
+                animate={{ rotate: settingsRotation }}
+                transition={{ type: "spring", stiffness: 200, damping: 15 }}
+              >
+                <Settings size={18} />
+              </motion.div>
             </button>
           </div>
 
-          <div className="w-2" />
+          <div className="flex items-center gap-3 pl-2 group h-full relative" ref={profileRef}>
+            <div 
+              className="flex items-center gap-3 cursor-pointer"
+              onClick={() => setIsProfileOpen(!isProfileOpen)}
+            >
+              <div className="flex flex-col items-end justify-center hidden xl:flex">
+                <p className="text-[11px] font-black text-slate-900 tracking-tight leading-none group-hover:text-primary transition-colors">Jan Saida Shaik</p>
+                <span className="text-[7px] font-black text-white uppercase tracking-widest bg-orange-500 px-1.5 py-0.5 rounded-md shadow-sm mt-1">Super Admin</span>
+              </div>
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-blue-700 flex items-center justify-center text-[13px] font-black text-white shadow-lg shadow-primary/20 group-hover:scale-105 transition-all duration-300">
+                J
+              </div>
+              <ChevronDown size={14} className={`text-slate-900 group-hover:text-primary transition-transform duration-300 ${isProfileOpen ? "rotate-180" : ""}`} />
+            </div>
 
-          <div className="flex items-center gap-3 pl-2 group cursor-pointer">
-            <div className="text-right">
-              <p className="text-[11px] font-black text-slate-900 tracking-tight group-hover:text-primary transition-colors">Jan Saida Shaik</p>
-              <p className="text-[9px] font-black text-slate-900 uppercase tracking-widest leading-none mt-0.5 opacity-80">Super Admin</p>
-            </div>
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-blue-700 flex items-center justify-center text-[13px] font-black text-white shadow-lg shadow-primary/20 group-hover:scale-105 transition-all duration-300">
-              J
-            </div>
-            <ChevronDown size={14} className="text-slate-900 group-hover:text-primary transition-colors" />
+            {/* Profile Dropdown Overlay */}
+            <AnimatePresence>
+              {isProfileOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                  className="absolute top-full right-0 mt-2 w-80 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden z-[110]"
+                >
+                  {/* Branded Header Area */}
+                  <div className="bg-gradient-to-br from-primary to-blue-700 p-6 text-white text-left relative">
+                    <div className="absolute top-4 right-4 group/help">
+                      <HelpCircle size={16} className="text-white/60 hover:text-white cursor-pointer transition-colors" />
+                    </div>
+                    
+                    <div className="flex items-center gap-4">
+                      <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-md border-2 border-white/30 flex items-center justify-center text-xl font-black text-white shadow-xl shrink-0">
+                        J
+                      </div>
+                      <div className="min-w-0">
+                        <h3 className="text-base font-black tracking-tight leading-tight mb-1 truncate">Jan Saida Shaik</h3>
+                        <div className="flex items-center gap-2 px-2 py-0.5 bg-black/20 rounded-full border border-white/10 w-fit">
+                          <span className="text-[9px] font-medium text-white/80 whitespace-nowrap">User Id:</span>
+                          <span className="text-[9px] font-black tracking-wider">60038126533</span>
+                        <button 
+                          onClick={() => handleCopy("60038126533", "userid")}
+                          className="hover:text-amber-400 text-white/90 transition-colors"
+                        >
+                          {copiedId === "userid" ? <Check size={10} className="text-emerald-400" /> : <Copy size={10} />}
+                        </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Menu Options */}
+                  <div className="p-3 bg-white space-y-1">
+                    <div className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-all group cursor-pointer border border-transparent hover:border-slate-100">
+                      <div className="p-2 rounded-xl bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-sm">
+                        <Mail size={16} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Email Address</p>
+                        <p className="text-[11px] font-black text-slate-900 truncate">jansaida@codegnan.com</p>
+                      </div>
+                      <button 
+                        onClick={() => handleCopy("jansaida@codegnan.com", "email")}
+                        className="p-1.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-100 transition-all"
+                      >
+                        {copiedId === "email" ? <Check size={14} className="text-emerald-500" /> : <Copy size={14} />}
+                      </button>
+                    </div>
+
+                    <div className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-all group cursor-pointer border border-transparent hover:border-slate-100">
+                      <div className="p-2 rounded-xl bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-all shadow-sm">
+                        <Phone size={16} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Phone Number</p>
+                        <p className="text-[11px] font-black text-slate-900">9705243061</p>
+                      </div>
+                      <button 
+                        onClick={() => handleCopy("9705243061", "phone")}
+                        className="p-1.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-100 transition-all"
+                      >
+                        {copiedId === "phone" ? <Check size={14} className="text-emerald-500" /> : <Copy size={14} />}
+                      </button>
+                    </div>
+
+                    <div className="h-px bg-slate-100 my-1 mx-2" />
+
+                    <button 
+                      className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-rose-50 text-rose-600 transition-all group"
+                      onClick={() => router.push("/login")}
+                    >
+                      <div className="p-1.5 rounded-lg bg-rose-50 text-rose-600 group-hover:bg-rose-600 group-hover:text-white transition-all">
+                        <LogOut size={16} />
+                      </div>
+                      <span className="text-[12px] font-black uppercase tracking-widest">Sign out</span>
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </div>
@@ -249,6 +412,12 @@ export default function Header() {
             </div>
         </div>
       )}
+
+      {/* Global Search Palette */}
+      <GlobalSearch isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+
+      {/* Global Calendar Overlay */}
+      <GlobalCalendar isOpen={isCalendarOpen} onClose={() => setIsCalendarOpen(false)} />
     </>
   );
 }
