@@ -113,12 +113,12 @@ export function HomeOverview() {
   ]);
 
   const teamMembers = [
-    { 
-      name: "Jan Saida Shaik", 
-      role: "Super Admin", 
-      status: "offline", 
-      initial: "JS", 
-      color: "text-blue-600", 
+    {
+      name: "Jan Saida Shaik",
+      role: "Super Admin",
+      status: "offline",
+      initial: "JS",
+      color: "text-blue-600",
       bg: "bg-blue-50",
       email: "jansaida@codegnan.com",
       phone: "9705243061",
@@ -128,12 +128,12 @@ export function HomeOverview() {
       badges: ["Founder", "Direct"],
       awards: [<Trophy size={12} />, <Award size={12} />]
     },
-    { 
-      name: "Anush Kumar", 
-      role: "Associate Admin", 
-      status: "offline", 
-      initial: "AK", 
-      color: "text-blue-600", 
+    {
+      name: "Anush Kumar",
+      role: "Associate Admin",
+      status: "offline",
+      initial: "AK",
+      color: "text-blue-600",
       bg: "bg-blue-50",
       email: "anush@codegnan.com",
       phone: "9876543210",
@@ -143,12 +143,12 @@ export function HomeOverview() {
       badges: ["Admin", "Sync"],
       awards: [<Medal size={12} />]
     },
-    { 
-      name: "Battula Kranthi Kumar", 
-      role: "Hyderabad Counsellor", 
-      status: "offline", 
-      initial: "BK", 
-      color: "text-emerald-600", 
+    {
+      name: "Battula Kranthi Kumar",
+      role: "Hyderabad Counsellor",
+      status: "offline",
+      initial: "BK",
+      color: "text-emerald-600",
       bg: "bg-emerald-50",
       email: "kranthi@codegnan.com",
       phone: "9123456789",
@@ -158,12 +158,12 @@ export function HomeOverview() {
       badges: ["Top Seller", "Coach"],
       awards: [<Trophy size={12} />, <Star size={12} />]
     },
-    { 
-      name: "Bhanu Satish Kotha", 
-      role: "Associate Admin", 
-      status: "offline", 
-      initial: "BS", 
-      color: "text-amber-600", 
+    {
+      name: "Bhanu Satish Kotha",
+      role: "Associate Admin",
+      status: "offline",
+      initial: "BS",
+      color: "text-amber-600",
       bg: "bg-amber-50",
       email: "bhanu@codegnan.com",
       phone: "9000000000",
@@ -173,12 +173,12 @@ export function HomeOverview() {
       badges: ["Lead"],
       awards: [<Award size={12} />]
     },
-    { 
-      name: "Deva Anil Pedda", 
-      role: "Vijayawada Counsellor", 
-      status: "offline", 
-      initial: "DP", 
-      color: "text-indigo-600", 
+    {
+      name: "Deva Anil Pedda",
+      role: "Vijayawada Counsellor",
+      status: "offline",
+      initial: "DP",
+      color: "text-indigo-600",
       bg: "bg-indigo-50",
       email: "anil@codegnan.com",
       phone: "9111111111",
@@ -188,12 +188,12 @@ export function HomeOverview() {
       badges: ["Growth"],
       awards: [<Medal size={12} />]
     },
-    { 
-      name: "Sushmitha", 
-      role: "Front Desk Vijayawada", 
-      status: "offline", 
-      initial: "SM", 
-      color: "text-rose-600", 
+    {
+      name: "Sushmitha",
+      role: "Front Desk Vijayawada",
+      status: "offline",
+      initial: "SM",
+      color: "text-rose-600",
       bg: "bg-rose-50",
       email: "sushmitha@codegnan.com",
       phone: "9222222222",
@@ -203,12 +203,12 @@ export function HomeOverview() {
       badges: ["Support"],
       awards: [<Star size={12} />]
     },
-    { 
-      name: "Jaya Sri", 
-      role: "Administrator", 
-      status: "offline", 
-      initial: "JS", 
-      color: "text-cyan-600", 
+    {
+      name: "Jaya Sri",
+      role: "Administrator",
+      status: "offline",
+      initial: "JS",
+      color: "text-cyan-600",
       bg: "bg-cyan-50",
       email: "jayasri@codegnan.com",
       phone: "9333333333",
@@ -218,12 +218,12 @@ export function HomeOverview() {
       badges: ["Admin", "Ops"],
       awards: [<Award size={12} />]
     },
-    { 
-      name: "Kala Sowmya Devara", 
-      role: "Visakhapatnam Counsellor", 
-      status: "offline", 
-      initial: "KD", 
-      color: "text-teal-600", 
+    {
+      name: "Kala Sowmya Devara",
+      role: "Visakhapatnam Counsellor",
+      status: "offline",
+      initial: "KD",
+      color: "text-teal-600",
       bg: "bg-teal-50",
       email: "kala@codegnan.com",
       phone: "9444444444",
@@ -233,12 +233,12 @@ export function HomeOverview() {
       badges: ["Sales", "Vizag"],
       awards: [<Trophy size={12} />]
     },
-    { 
-      name: "Kondeti Sai Venkata Pavan", 
-      role: "Hyderabad Counsellor", 
-      status: "offline", 
-      initial: "KP", 
-      color: "text-purple-600", 
+    {
+      name: "Kondeti Sai Venkata Pavan",
+      role: "Hyderabad Counsellor",
+      status: "offline",
+      initial: "KP",
+      color: "text-purple-600",
       bg: "bg-purple-50",
       email: "pavan@codegnan.com",
       phone: "9555555555",
@@ -248,12 +248,12 @@ export function HomeOverview() {
       badges: ["Top Seller"],
       awards: [<Star size={12} />, <Medal size={12} />]
     },
-    { 
-      name: "Lakshmi Sowjanya", 
-      role: "Front Desk Hyderabad", 
-      status: "offline", 
-      initial: "LS", 
-      color: "text-pink-600", 
+    {
+      name: "Lakshmi Sowjanya",
+      role: "Front Desk Hyderabad",
+      status: "offline",
+      initial: "LS",
+      color: "text-pink-600",
       bg: "bg-pink-50",
       email: "lakshmi@codegnan.com",
       phone: "9666666666",
@@ -263,12 +263,12 @@ export function HomeOverview() {
       badges: ["Service"],
       awards: [<Award size={12} />]
     },
-    { 
-      name: "Modali Srinivas", 
-      role: "Tele Caller", 
-      status: "offline", 
-      initial: "MS", 
-      color: "text-slate-600", 
+    {
+      name: "Modali Srinivas",
+      role: "Tele Caller",
+      status: "offline",
+      initial: "MS",
+      color: "text-slate-600",
       bg: "bg-slate-50",
       email: "srinivas@codegnan.com",
       phone: "9777777777",
@@ -278,12 +278,12 @@ export function HomeOverview() {
       badges: ["Leads"],
       awards: [<Star size={12} />]
     },
-    { 
-      name: "Monika", 
-      role: "Vijayawada Counsellor", 
-      status: "offline", 
-      initial: "MT", 
-      color: "text-orange-600", 
+    {
+      name: "Monika",
+      role: "Vijayawada Counsellor",
+      status: "offline",
+      initial: "MT",
+      color: "text-orange-600",
       bg: "bg-orange-50",
       email: "monika@codegnan.com",
       phone: "9888888888",
@@ -293,12 +293,12 @@ export function HomeOverview() {
       badges: ["Top Talent"],
       awards: [<Trophy size={12} />]
     },
-    { 
-      name: "Narendra Modugumudi", 
-      role: "Vijayawada Counsellor", 
-      status: "offline", 
-      initial: "NM", 
-      color: "text-blue-600", 
+    {
+      name: "Narendra Modugumudi",
+      role: "Vijayawada Counsellor",
+      status: "offline",
+      initial: "NM",
+      color: "text-blue-600",
       bg: "bg-blue-50",
       email: "narendra@codegnan.com",
       phone: "9999999999",
@@ -308,12 +308,12 @@ export function HomeOverview() {
       badges: ["Sales"],
       awards: [<Medal size={12} />]
     },
-    { 
-      name: "Naveen Babu", 
-      role: "Vijayawada Counsellor", 
-      status: "offline", 
-      initial: "NB", 
-      color: "text-emerald-600", 
+    {
+      name: "Naveen Babu",
+      role: "Vijayawada Counsellor",
+      status: "offline",
+      initial: "NB",
+      color: "text-emerald-600",
       bg: "bg-emerald-50",
       email: "naveen@codegnan.com",
       phone: "9000000001",
@@ -323,12 +323,12 @@ export function HomeOverview() {
       badges: ["Support"],
       awards: [<Star size={12} />]
     },
-    { 
-      name: "Phanindra", 
-      role: "Hyderabad Counsellor", 
-      status: "offline", 
-      initial: "PH", 
-      color: "text-amber-600", 
+    {
+      name: "Phanindra",
+      role: "Hyderabad Counsellor",
+      status: "offline",
+      initial: "PH",
+      color: "text-amber-600",
       bg: "bg-amber-50",
       email: "phanindra@codegnan.com",
       phone: "9000000002",
@@ -338,12 +338,12 @@ export function HomeOverview() {
       badges: ["Closing"],
       awards: [<Award size={12} />]
     },
-    { 
-      name: "Sasank Matta", 
-      role: "Hyderabad Counsellor", 
-      status: "offline", 
-      initial: "SM", 
-      color: "text-indigo-600", 
+    {
+      name: "Sasank Matta",
+      role: "Hyderabad Counsellor",
+      status: "offline",
+      initial: "SM",
+      color: "text-indigo-600",
       bg: "bg-indigo-50",
       email: "sasank@codegnan.com",
       phone: "9000000003",
@@ -602,13 +602,13 @@ export function HomeOverview() {
                     >
                       {/* Close Button & Branded Header Area */}
                       <div className={`p-5 ${person.bg} border-b border-slate-200 relative`}>
-                        <button 
+                        <button
                           onClick={(e) => { e.stopPropagation(); setSelectedMember(null); }}
                           className="absolute top-4 right-4 p-1.5 rounded-lg bg-white/80 border border-slate-200 text-slate-500 hover:text-rose-500 hover:border-rose-200 transition-all shadow-sm z-20"
                         >
                           <X size={14} />
                         </button>
-                        
+
                         <div className="flex items-start justify-between">
                           <div className={`w-14 h-14 rounded-2xl bg-white border-2 border-slate-900 flex items-center justify-center text-xl font-black ${person.color} shadow-xl`}>
                             {person.initial}
@@ -635,27 +635,27 @@ export function HomeOverview() {
                               <Mail size={12} className="text-slate-400" />
                               <span className="text-[10px] font-black text-slate-700">{person.email}</span>
                             </div>
-                            <button 
+                            <button
                               onClick={(e) => { e.stopPropagation(); navigator.clipboard.writeText(person.email); }}
                               className="text-slate-500 hover:text-primary transition-colors pr-1"
                             >
                               <Copy size={12} />
                             </button>
                           </div>
-                          
+
                           <div className="flex items-center justify-between group/copy">
                             <div className="flex items-center gap-3">
                               <Phone size={12} className="text-slate-400" />
                               <span className="text-[10px] font-black text-slate-700">{person.phone}</span>
                             </div>
-                            <button 
+                            <button
                               onClick={(e) => { e.stopPropagation(); navigator.clipboard.writeText(person.phone); }}
                               className="text-slate-500 hover:text-primary transition-colors pr-1"
                             >
                               <Copy size={12} />
                             </button>
                           </div>
-                          
+
                           <div className="flex items-center gap-3 text-slate-400">
                             <MapPin size={12} />
                             <span className="text-[10px] font-black text-slate-700">{person.location}</span>
@@ -669,11 +669,11 @@ export function HomeOverview() {
                             <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Performance</p>
                             <div className="flex items-center gap-1">
                               {[...Array(5)].map((_, i) => (
-                                <Star 
-                                  key={i} 
-                                  size={10} 
+                                <Star
+                                  key={i}
+                                  size={10}
                                   fill={i < Math.floor(person.rating || 0) ? "currentColor" : "none"}
-                                  className={i < Math.floor(person.rating || 0) ? "text-amber-400" : "text-slate-200"} 
+                                  className={i < Math.floor(person.rating || 0) ? "text-amber-400" : "text-slate-200"}
                                 />
                               ))}
                               <span className="ml-1 text-[10px] font-black text-slate-900">{person.rating}</span>
@@ -683,7 +683,7 @@ export function HomeOverview() {
                             <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest">User ID</p>
                             <div className="flex items-center gap-1.5">
                               <p className="text-[10px] font-black text-slate-900">#{person.userid}</p>
-                              <button 
+                              <button
                                 onClick={(e) => { e.stopPropagation(); navigator.clipboard.writeText(person.userid); }}
                                 className="text-slate-500 hover:text-primary transition-colors"
                               >
@@ -763,7 +763,7 @@ export function HomeOverview() {
                       >
                         <div className="relative shrink-0">
                           <div className={`w-12 h-12 rounded-xl ${person.bg} border-2 border-slate-200 flex items-center justify-center text-[14px] font-black ${person.color} shadow-xs`}>
-                             {person.initial}
+                            {person.initial}
                           </div>
                           <div className={`absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-white shadow-xs ${person.status === 'online' ? 'bg-emerald-500' : 'bg-slate-300'}`} />
                         </div>
@@ -791,13 +791,13 @@ export function HomeOverview() {
                           >
                             {/* Close Button & Header */}
                             <div className={`p-5 ${person.bg} border-b border-slate-200 relative`}>
-                              <button 
+                              <button
                                 onClick={(e) => { e.stopPropagation(); setSelectedMember(null); }}
                                 className="absolute top-4 right-4 p-1.5 rounded-lg bg-white/80 border border-slate-200 text-slate-500 hover:text-rose-500 hover:border-rose-200 transition-all shadow-sm z-20"
                               >
                                 <X size={14} />
                               </button>
-                              
+
                               <div className="flex items-start justify-between">
                                 <div className={`w-14 h-14 rounded-2xl bg-white border-2 border-slate-900 flex items-center justify-center text-xl font-black ${person.color} shadow-xl`}>
                                   {person.initial}
@@ -823,20 +823,20 @@ export function HomeOverview() {
                                     <Mail size={12} className="text-slate-400" />
                                     <span className="text-[10px] font-black text-slate-700">{person.email}</span>
                                   </div>
-                                  <button 
+                                  <button
                                     onClick={(e) => { e.stopPropagation(); navigator.clipboard.writeText(person.email); }}
                                     className="text-slate-500 hover:text-primary transition-colors"
                                   >
                                     <Copy size={12} />
                                   </button>
                                 </div>
-                                
+
                                 <div className="flex items-center justify-between">
                                   <div className="flex items-center gap-3">
                                     <Phone size={12} className="text-slate-400" />
                                     <span className="text-[10px] font-black text-slate-700">{person.phone}</span>
                                   </div>
-                                  <button 
+                                  <button
                                     onClick={(e) => { e.stopPropagation(); navigator.clipboard.writeText(person.phone); }}
                                     className="text-slate-500 hover:text-primary transition-colors"
                                   >
@@ -844,19 +844,19 @@ export function HomeOverview() {
                                   </button>
                                 </div>
                               </div>
-                              
+
                               <div className="h-px bg-slate-100" />
-                              
+
                               <div className="flex items-center justify-between">
                                 <div className="space-y-1">
                                   <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Performance</p>
                                   <div className="flex items-center gap-1">
                                     {[...Array(5)].map((_, i) => (
-                                      <Star 
-                                        key={i} 
-                                        size={10} 
+                                      <Star
+                                        key={i}
+                                        size={10}
                                         fill={i < Math.floor(person.rating || 0) ? "currentColor" : "none"}
-                                        className={i < Math.floor(person.rating || 0) ? "text-amber-400" : "text-slate-200"} 
+                                        className={i < Math.floor(person.rating || 0) ? "text-amber-400" : "text-slate-200"}
                                       />
                                     ))}
                                     <span className="ml-1 text-[10px] font-black text-slate-900">{person.rating}</span>
@@ -866,7 +866,7 @@ export function HomeOverview() {
                                   <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest">User ID</p>
                                   <div className="flex items-center gap-1.5">
                                     <p className="text-[10px] font-black text-slate-900">#{person.userid}</p>
-                                    <button 
+                                    <button
                                       onClick={(e) => { e.stopPropagation(); navigator.clipboard.writeText(person.userid); }}
                                       className="text-slate-500 hover:text-primary transition-colors"
                                     >
@@ -986,7 +986,7 @@ export function HomeOverview() {
                 </div>
                 <div className="space-y-3">
                   {eventsData.map((event, i) => (
-                    <motion.div 
+                    <motion.div
                       key={i}
                       whileHover={{ x: 4 }}
                       className="p-3 rounded-xl bg-white border border-slate-100 hover:border-primary/30 shadow-sm transition-all"
@@ -1019,7 +1019,7 @@ export function HomeOverview() {
                 </div>
                 <div className="space-y-3">
                   {mentionsData.map((mention, i) => (
-                    <motion.div 
+                    <motion.div
                       key={i}
                       whileHover={{ x: 4 }}
                       className="p-3 rounded-xl bg-white border border-slate-100 hover:border-primary/30 shadow-sm transition-all group"
