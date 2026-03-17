@@ -202,7 +202,7 @@ export default function FinanceHomePage() {
                     <span>0</span>
                   </div>
                   <div className="flex-1 flex items-end justify-around gap-4 ml-12 h-full border-b border-slate-500 pb-2">
-                    {[40, 55, 48, 65, 75, 90, 82, 45, 35, 28, 20, 15].map((h, i) => (
+                    {[40, 55, 48, 65, 75, 90, 82, 45, 35, 28, 20, 16].map((h, i) => (
                       <div key={i} className="flex-1 group relative h-full flex flex-col justify-end max-w-[40px]">
                         <motion.div
                           initial={{ height: 0 }}
