@@ -1,0 +1,226 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Role enum removed for SQLite compatibility. Using string instead.
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  password      String?
+  image         String?
+  role          String    @default("STANDARD")
+  profile       Profile?
+  leads         Lead[]
+  accounts      Account[]
+  contacts      Contact[]
+  tickets       Ticket[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Profile {
+  id          String   @id @default(cuid())
+  bio         String?
+  phone       String?
+  location    String?
+  skills      String?  // Stored as JSON string or comma-separated
+  socialLinks String?  // Stored as JSON string
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// CRM Module
+model Account {
+  id          String    @id @default(cuid())
+  name        String
+  industry    String?
+  website     String?
+  assignedTo  User?     @relation(fields: [userId], references: [id])
+  userId      String?
+  contacts    Contact[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Contact {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  phone       String
+  accountId   String?
+  account     Account? @relation(fields: [accountId], references: [id])
+  assignedTo  User?    @relation(fields: [userId], references: [id])
+  userId      String?
+  deals       Deal[]
+  activities  CRMActivity[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Lead {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  phone       String
+  source      String
+  status      String
+  score       Int      @default(0)
+  assignedTo  User?    @relation(fields: [userId], references: [id])
+  userId      String?
+  deals       Deal[]
+  activities  CRMActivity[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Deal {
+  id          String   @id @default(cuid())
+  title       String
+  value       Float
+  stage       String
+  probability Int
+  closeDate   DateTime?
+  lead        Lead?    @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  leadId      String?
+  contact     Contact? @relation(fields: [contactId], references: [id], onDelete: Cascade)
+  contactId   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model CRMActivity {
+  id          String   @id @default(cuid())
+  type        String   // Call, Task, Meeting
+  title       String
+  dueDate     DateTime
+  status      String   // Pending, Completed
+  lead        Lead?    @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  leadId      String?
+  contact     Contact? @relation(fields: [contactId], references: [id], onDelete: Cascade)
+  contactId   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Finance Module
+model Invoice {
+  id            String   @id @default(cuid())
+  invoiceNumber String   @unique
+  customerName  String
+  amount        Float
+  status        String   // Paid, Unpaid, Overdue
+  dueDate       DateTime
+  issuedDate    DateTime @default(now())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Expense {
+  id          String   @id @default(cuid())
+  category    String
+  amount      Float
+  date        DateTime @default(now())
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model BankAccount {
+  id          String   @id @default(cuid())
+  name        String
+  balance     Float
+  accountType String   // Savings, Current
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Help Desk Module
+model Ticket {
+  id            String   @id @default(cuid())
+  subject       String
+  description   String
+  status        String   // Open, Pending, Resolved
+  priority      String   // High, Medium, Low
+  requesterName String
+  assignedTo    User?    @relation(fields: [userId], references: [id])
+  userId        String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+// Analytics Module
+model SavedReport {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  data        String   // JSON string of report data/config
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model TeamMember {
+  id        String   @id @default(cuid())
+  name      String
+  role      String
+  status    String   @default("offline")
+  initial   String
+  color     String
+  bg        String
+  email     String   @unique
+  phone     String
+  userid    String   @unique
+  location  String
+  rating    Float    @default(0)
+  badges    String   // Stored as JSON string (array of strings)
+  awards    String   // Stored as JSON string (array of strings)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model DashboardTask {
+  id        String   @id @default(cuid())
+  text      String
+  time      String
+  priority  String
+  completed Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model DashboardEvent {
+  id        String   @id @default(cuid())
+  title     String
+  time      String
+  date      String
+  location  String
+  iconType  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model DashboardMention {
+  id        String   @id @default(cuid())
+  user      String
+  initial   String
+  role      String
+  text      String
+  time      String
+  color     String
+  bg        String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
