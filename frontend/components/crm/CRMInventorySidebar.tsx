@@ -60,17 +60,7 @@ export default function CRMInventorySidebar() {
 
   return (
     <div className="hidden lg:flex w-64 bg-[#1e2230] flex-col shrink-0 overflow-y-auto no-scrollbar text-slate-400">
-      {/* Sidebar Header */}
-      <div className="p-4 flex items-center gap-3">
-        <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white shadow-lg">
-          <Box size={18} fill="currentColor" />
-        </div>
-        <span className="text-sm font-bold text-white tracking-tight">Codegnan CRM</span>
-        <div className="ml-auto flex items-center gap-1">
-          <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-          <ChevronDown size={14} className="text-slate-500" />
-        </div>
-      </div>
+      <div className="h-4" /> {/* Spacer instead of header */}
 
       {/* Main Navigation */}
       <nav className="px-2 space-y-0.5 mb-6">
@@ -91,25 +81,13 @@ export default function CRMInventorySidebar() {
         })}
       </nav>
 
-      {/* CRM Section Header */}
-      <div className="px-5 mb-3 flex items-center justify-between group cursor-pointer">
-        <div className="flex items-center gap-2">
-           <div className="w-6 h-6 rounded bg-blue-500/10 flex items-center justify-center text-blue-400 font-bold text-[10px]">CT</div>
-           <span className="text-[11px] font-bold text-white">CRM Tea...</span>
-           <ChevronDown size={12} className="text-slate-500" />
-        </div>
-        <MoreHorizontal size={14} className="text-slate-600 group-hover:text-slate-400" />
-      </div>
+
 
 
 
       {/* CRM Tools Navigation */}
       <nav className="px-2 space-y-0.5 pb-20">
-        <div className="flex items-center gap-3 px-3 py-2 text-[12px] font-bold text-slate-400 cursor-pointer hover:bg-[#2d3345]/50 rounded-lg">
-           <Layers size={16} />
-           <span>Workqueue</span>
-           <span className="ml-auto text-amber-500">✨</span>
-        </div>
+
         
         {crmSidebarItems.map((item) => {
           const isActive = pathname === item.href;

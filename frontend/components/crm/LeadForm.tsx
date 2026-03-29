@@ -14,7 +14,7 @@ interface LeadFormProps {
 
 export default function LeadForm({ initial, onSave, onCancel }: LeadFormProps) {
   const [form, setForm] = useState({
-    name: "", email: "", phone: "", source: "Direct Call", status: "New", userId: "", ...initial,
+    name: "", email: "", phone: "", mobile: "", walkInCounsellor: "", source: "Direct Call", status: "New", userId: "", ...initial,
   });
   const [users, setUsers] = useState<any[]>([]);
   const [saving, setSaving] = useState(false);
@@ -65,10 +65,26 @@ export default function LeadForm({ initial, onSave, onCancel }: LeadFormProps) {
           />
         </div>
         <div>
+          <label className="block text-xs font-bold text-slate-600 mb-1.5">Mobile</label>
+          <input
+            value={form.mobile} onChange={e => set("mobile", e.target.value)}
+            placeholder="+91 98765 43210"
+            className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+          />
+        </div>
+        <div className="col-span-2">
           <label className="block text-xs font-bold text-slate-600 mb-1.5">Email</label>
           <input
             type="email" value={form.email} onChange={e => set("email", e.target.value)}
             placeholder="email@example.com"
+            className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+          />
+        </div>
+        <div className="col-span-2">
+          <label className="block text-xs font-bold text-slate-600 mb-1.5">Walk-in Counsellor</label>
+          <input
+            value={form.walkInCounsellor} onChange={e => set("walkInCounsellor", e.target.value)}
+            placeholder="e.g. Monika"
             className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
           />
         </div>

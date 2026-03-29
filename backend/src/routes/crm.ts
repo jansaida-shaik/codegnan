@@ -53,10 +53,21 @@ router.get("/leads", async (req, res) => {
 
 router.post("/leads", async (req, res) => {
   try {
-    const { name, email, phone, source, status, score } = req.body;
+    const { name, email, phone, mobile, walkInCounsellor, source, status, score, userId } = req.body;
     if (!name || !phone) return res.status(400).json({ error: "Name and phone are required" });
     const lead = await prisma.lead.create({
-      data: { name, email: email || "", phone, source: source || "Direct Call", status: status || "New", score: score || 0 },
+      data: { 
+        name, 
+        email: email || "", 
+        phone, 
+        mobile: mobile || "",
+        walkInCounsellor: walkInCounsellor || "",
+        source: source || "Direct Call", 
+        status: status || "New", 
+        score: score || 0,
+        userId: userId || null
+      },
+      include: { assignedTo: true }
     });
     res.status(201).json(lead);
   } catch (error) {
@@ -66,10 +77,15 @@ router.post("/leads", async (req, res) => {
 
 router.put("/leads/:id", async (req, res) => {
   try {
-    const { name, email, phone, source, status, score } = req.body;
+    const { name, email, phone, mobile, walkInCounsellor, source, status, score, userId } = req.body;
     const lead = await prisma.lead.update({
       where: { id: req.params.id },
-      data: { name, email, phone, source, status, score: score ? Number(score) : undefined },
+      data: { 
+        name, email, phone, mobile, walkInCounsellor, source, status, 
+        score: score ? Number(score) : undefined,
+        userId: userId || undefined
+      },
+      include: { assignedTo: true }
     });
     res.json(lead);
   } catch (error) {
@@ -105,6 +121,7 @@ router.get("/dashboard", async (req, res) => {
       prisma.lead.findMany({
         take: 5,
         orderBy: { createdAt: "desc" },
+        include: { assignedTo: true }
       }),
     ]);
 
@@ -124,9 +141,11 @@ router.get("/dashboard", async (req, res) => {
         name: l.name,
         email: l.email,
         phone: l.phone,
+        mobile: l.mobile,
+        walkInCounsellor: l.walkInCounsellor,
         source: l.source,
         status: l.status,
-        owner: "Admin",
+        owner: l.assignedTo?.name || "Admin",
       })),
       statusCounts: statusCounts.map((s: any) => ({ name: s.status, value: s._count._all })),
       sourceCounts: sourceCounts.map((s: any) => ({ name: s.source, value: s._count._all })),
