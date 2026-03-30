@@ -17,7 +17,9 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to the Codegnan Ecosystem API Structure. The server is healthy and routing." });
 });
 
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+const frontendUrl = process.env.FRONTEND_URL || "http://localhost:3000";
+
+app.use(cors({ origin: frontendUrl, credentials: true }));
 app.use(
   helmet({
     crossOriginResourcePolicy: { policy: "cross-origin" },
@@ -35,9 +37,10 @@ app.get("/health", (req, res) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() });
 });
 
-// Start server
-app.listen(port, () => {
-  console.log(`Backend server running on http://localhost:${port}`);
+// Start server on 0.0.0.0 (all network interfaces) for cross-device access
+app.listen(Number(port), "0.0.0.0", () => {
+  console.log(`🚀 Backend server ready at 0.0.0.0:${port}`);
+  console.log(`🔗 Accepting requests from: ${frontendUrl}`);
 });
 
 export { prisma };

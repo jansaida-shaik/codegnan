@@ -9,16 +9,16 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@prisma/client": "^6.2.1",
+    "@prisma/client": "^5.22.0",
     "@vercel/speed-insights": "^2.0.0",
     "bcryptjs": "^3.0.3",
     "framer-motion": "^12.37.0",
     "lucide-react": "^0.577.0",
-    "next": "16.1.6",
+    "next": "^15.0.3",
     "next-auth": "5.0.0-beta.25",
-    "prisma": "^6.2.1",
-    "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "prisma": "^5.22.0",
+    "react": "^19.0.0-rc",
+    "react-dom": "^19.0.0-rc"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -31,8 +31,5 @@
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
     "typescript": "^5"
-  },
-  "prisma": {
-    "seed": "tsx prisma/seed.ts"
   }
 }
