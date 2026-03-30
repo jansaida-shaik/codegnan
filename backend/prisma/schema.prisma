@@ -15,7 +15,7 @@ datasource db {
 // Role enum removed for SQLite compatibility. Using string instead.
 
 model User {
-  id            String    @id @default(cuid())
+  id            String    @id
   name          String?
   email         String?   @unique
   password      String?
@@ -31,7 +31,7 @@ model User {
 }
 
 model Profile {
-  id          String   @id @default(cuid())
+  id          String   @id
   bio         String?
   phone       String?
   location    String?
@@ -45,7 +45,7 @@ model Profile {
 
 // CRM Module
 model Account {
-  id          String    @id @default(cuid())
+  id          String    @id
   name        String
   industry    String?
   website     String?
@@ -57,7 +57,7 @@ model Account {
 }
 
 model Contact {
-  id          String   @id @default(cuid())
+  id          String   @id
   name        String
   email       String
   phone       String
@@ -72,7 +72,7 @@ model Contact {
 }
 
 model Lead {
-  id                String   @id @default(cuid())
+  id                String   @id
   name              String
   email             String
   phone             String
@@ -90,7 +90,7 @@ model Lead {
 }
 
 model Deal {
-  id          String   @id @default(cuid())
+  id          String   @id
   title       String
   value       Float
   stage       String
@@ -105,7 +105,7 @@ model Deal {
 }
 
 model CRMActivity {
-  id          String   @id @default(cuid())
+  id          String   @id
   type        String   // Call, Task, Meeting
   title       String
   dueDate     DateTime
@@ -120,7 +120,7 @@ model CRMActivity {
 
 // Finance Module
 model Invoice {
-  id            String   @id @default(cuid())
+  id            String   @id
   invoiceNumber String   @unique
   customerName  String
   amount        Float
@@ -132,17 +132,17 @@ model Invoice {
 }
 
 model Expense {
-  id          String   @id @default(cuid())
-  category    String
-  amount      Float
-  date        DateTime @default(now())
-  description String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id            String   @id
+  category      String
+  amount        Float
+  date          DateTime @default(now())
+  description   String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
 
 model BankAccount {
-  id          String   @id @default(cuid())
+  id          String   @id
   name        String
   balance     Float
   accountType String   // Savings, Current
@@ -152,7 +152,7 @@ model BankAccount {
 
 // Help Desk Module
 model Ticket {
-  id            String   @id @default(cuid())
+  id            String   @id
   subject       String
   description   String
   status        String   // Open, Pending, Resolved
@@ -166,7 +166,7 @@ model Ticket {
 
 // Analytics Module
 model SavedReport {
-  id          String   @id @default(cuid())
+  id          String   @id
   title       String
   description String?
   data        String   // JSON string of report data/config
@@ -175,7 +175,7 @@ model SavedReport {
 }
 
 model TeamMember {
-  id        String   @id @default(cuid())
+  id        String   @id
   name      String
   role      String
   status    String   @default("offline")
@@ -194,7 +194,7 @@ model TeamMember {
 }
 
 model DashboardTask {
-  id        String   @id @default(cuid())
+  id        String   @id
   text      String
   time      String
   priority  String
@@ -204,7 +204,7 @@ model DashboardTask {
 }
 
 model DashboardEvent {
-  id        String   @id @default(cuid())
+  id        String   @id
   title     String
   time      String
   date      String
@@ -215,7 +215,7 @@ model DashboardEvent {
 }
 
 model DashboardMention {
-  id        String   @id @default(cuid())
+  id        String   @id
   user      String
   initial   String
   role      String

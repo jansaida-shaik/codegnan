@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { prisma } from "../index";
 import bcrypt from "bcryptjs";
+import { generateId } from "../lib/id-generator";
 
 const router = Router();
 
@@ -57,6 +58,7 @@ router.post("/leads", async (req, res) => {
     if (!name || !phone) return res.status(400).json({ error: "Name and phone are required" });
     const lead = await prisma.lead.create({
       data: { 
+        id: generateId(),
         name, 
         email: email || "", 
         phone, 
@@ -64,13 +66,14 @@ router.post("/leads", async (req, res) => {
         walkInCounsellor: walkInCounsellor || "",
         source: source || "Direct Call", 
         status: status || "New", 
-        score: score || 0,
+        score: score ? Number(score) : 0,
         userId: userId || null
       },
       include: { assignedTo: true }
     });
     res.status(201).json(lead);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: "Failed to create lead" });
   }
 });
@@ -82,7 +85,7 @@ router.put("/leads/:id", async (req, res) => {
       where: { id: req.params.id },
       data: { 
         name, email, phone, mobile, walkInCounsellor, source, status, 
-        score: score ? Number(score) : undefined,
+        score: score !== undefined ? Number(score) : undefined,
         userId: userId || undefined
       },
       include: { assignedTo: true }
@@ -200,7 +203,7 @@ router.post("/profile", async (req, res) => {
     
     // First update the core user fields
     await prisma.user.update({
-      where: { id },
+      where: { id: id },
       data: { name, email }
     });
 
@@ -208,7 +211,7 @@ router.post("/profile", async (req, res) => {
     const profile = await prisma.profile.upsert({
       where: { userId: id },
       update: { ...rest },
-      create: { userId: id, ...rest },
+      create: { id: generateId(), userId: id, ...rest },
       include: { user: true }
     });
     res.json(profile);
@@ -236,7 +239,7 @@ router.put("/deals/:id", async (req, res) => {
     const { stage, probability } = req.body;
     
     const deal = await prisma.deal.update({
-      where: { id },
+      where: { id: id },
       data: { stage, probability: Number(probability) },
       include: { lead: true }
     });
@@ -252,6 +255,7 @@ router.post("/deals", async (req, res) => {
     if (!title) return res.status(400).json({ error: "Title is required" });
     const deal = await prisma.deal.create({
       data: {
+        id: generateId(),
         title,
         value: Number(value) || 0,
         stage: stage || "Qualified",
@@ -293,7 +297,13 @@ router.post("/contacts", async (req, res) => {
     const { name, email, phone, accountId } = req.body;
     if (!name || !phone) return res.status(400).json({ error: "Name and phone are required" });
     const contact = await prisma.contact.create({
-      data: { name, email: email || "", phone, accountId: accountId || null },
+      data: { 
+        id: generateId(),
+        name, 
+        email: email || "", 
+        phone, 
+        accountId: accountId || null 
+      },
     });
     res.status(201).json(contact);
   } catch (error) {
@@ -330,7 +340,7 @@ router.post("/leads/:id/convert", async (req, res) => {
     
     // 1. Fetch the lead
     const lead = await prisma.lead.findUnique({
-      where: { id },
+      where: { id: id },
       include: { deals: true, activities: true }
     });
     
@@ -341,6 +351,7 @@ router.post("/leads/:id/convert", async (req, res) => {
       // 2a. Create the Contact
       const newContact = await tx.contact.create({
         data: {
+          id: generateId(),
           name: lead.name,
           email: lead.email,
           phone: lead.phone,
